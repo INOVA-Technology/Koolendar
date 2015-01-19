@@ -1,0 +1,444 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DB3495CF1A6D78CF0083668E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3495CE1A6D78CF0083668E /* AppDelegate.swift */; };
+		DB3495D11A6D78CF0083668E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3495D01A6D78CF0083668E /* ViewController.swift */; };
+		DB3495D41A6D78CF0083668E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB3495D21A6D78CF0083668E /* Main.storyboard */; };
+		DB3495D61A6D78CF0083668E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB3495D51A6D78CF0083668E /* Images.xcassets */; };
+		DB3495D91A6D78CF0083668E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB3495D71A6D78CF0083668E /* LaunchScreen.xib */; };
+		DB3495E51A6D78CF0083668E /* KoolendarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3495E41A6D78CF0083668E /* KoolendarTests.swift */; };
+		DB3495EF1A6D7EC20083668E /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3495EE1A6D7EC20083668E /* CollectionViewCell.swift */; };
+		DB3495F21A6D87570083668E /* image-2013-08-25-024001.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = DB3495F01A6D87570083668E /* image-2013-08-25-024001.jpeg */; };
+		DB3495F31A6D87570083668E /* image-2013-08-25-024033.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = DB3495F11A6D87570083668E /* image-2013-08-25-024033.jpeg */; };
+		DB3495F71A6D8DDC0083668E /* url-3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DB3495F61A6D8DDC0083668E /* url-3.jpg */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DB3495DF1A6D78CF0083668E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DB3495C11A6D78CF0083668E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DB3495C81A6D78CF0083668E;
+			remoteInfo = Koolendar;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DB3495C91A6D78CF0083668E /* Koolendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Koolendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB3495CD1A6D78CF0083668E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DB3495CE1A6D78CF0083668E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		DB3495D01A6D78CF0083668E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DB3495D31A6D78CF0083668E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DB3495D51A6D78CF0083668E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		DB3495D81A6D78CF0083668E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		DB3495DE1A6D78CF0083668E /* KoolendarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KoolendarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB3495E31A6D78CF0083668E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DB3495E41A6D78CF0083668E /* KoolendarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KoolendarTests.swift; sourceTree = "<group>"; };
+		DB3495EE1A6D7EC20083668E /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		DB3495F01A6D87570083668E /* image-2013-08-25-024001.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "image-2013-08-25-024001.jpeg"; sourceTree = "<group>"; };
+		DB3495F11A6D87570083668E /* image-2013-08-25-024033.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "image-2013-08-25-024033.jpeg"; sourceTree = "<group>"; };
+		DB3495F61A6D8DDC0083668E /* url-3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "url-3.jpg"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DB3495C61A6D78CF0083668E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB3495DB1A6D78CF0083668E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DB3495C01A6D78CF0083668E = {
+			isa = PBXGroup;
+			children = (
+				DB3495CB1A6D78CF0083668E /* Koolendar */,
+				DB3495E11A6D78CF0083668E /* KoolendarTests */,
+				DB3495CA1A6D78CF0083668E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DB3495CA1A6D78CF0083668E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DB3495C91A6D78CF0083668E /* Koolendar.app */,
+				DB3495DE1A6D78CF0083668E /* KoolendarTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DB3495CB1A6D78CF0083668E /* Koolendar */ = {
+			isa = PBXGroup;
+			children = (
+				DB3495CE1A6D78CF0083668E /* AppDelegate.swift */,
+				DB3495F81A6D8E210083668E /* images */,
+				DB3495D01A6D78CF0083668E /* ViewController.swift */,
+				DB3495D21A6D78CF0083668E /* Main.storyboard */,
+				DB3495EE1A6D7EC20083668E /* CollectionViewCell.swift */,
+				DB3495D51A6D78CF0083668E /* Images.xcassets */,
+				DB3495D71A6D78CF0083668E /* LaunchScreen.xib */,
+				DB3495CC1A6D78CF0083668E /* Supporting Files */,
+			);
+			path = Koolendar;
+			sourceTree = "<group>";
+		};
+		DB3495CC1A6D78CF0083668E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DB3495CD1A6D78CF0083668E /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DB3495E11A6D78CF0083668E /* KoolendarTests */ = {
+			isa = PBXGroup;
+			children = (
+				DB3495E41A6D78CF0083668E /* KoolendarTests.swift */,
+				DB3495E21A6D78CF0083668E /* Supporting Files */,
+			);
+			path = KoolendarTests;
+			sourceTree = "<group>";
+		};
+		DB3495E21A6D78CF0083668E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DB3495E31A6D78CF0083668E /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DB3495F81A6D8E210083668E /* images */ = {
+			isa = PBXGroup;
+			children = (
+				DB3495F61A6D8DDC0083668E /* url-3.jpg */,
+				DB3495F01A6D87570083668E /* image-2013-08-25-024001.jpeg */,
+				DB3495F11A6D87570083668E /* image-2013-08-25-024033.jpeg */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DB3495C81A6D78CF0083668E /* Koolendar */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB3495E81A6D78CF0083668E /* Build configuration list for PBXNativeTarget "Koolendar" */;
+			buildPhases = (
+				DB3495C51A6D78CF0083668E /* Sources */,
+				DB3495C61A6D78CF0083668E /* Frameworks */,
+				DB3495C71A6D78CF0083668E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Koolendar;
+			productName = Koolendar;
+			productReference = DB3495C91A6D78CF0083668E /* Koolendar.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DB3495DD1A6D78CF0083668E /* KoolendarTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB3495EB1A6D78CF0083668E /* Build configuration list for PBXNativeTarget "KoolendarTests" */;
+			buildPhases = (
+				DB3495DA1A6D78CF0083668E /* Sources */,
+				DB3495DB1A6D78CF0083668E /* Frameworks */,
+				DB3495DC1A6D78CF0083668E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DB3495E01A6D78CF0083668E /* PBXTargetDependency */,
+			);
+			name = KoolendarTests;
+			productName = KoolendarTests;
+			productReference = DB3495DE1A6D78CF0083668E /* KoolendarTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DB3495C11A6D78CF0083668E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = INOVA;
+				TargetAttributes = {
+					DB3495C81A6D78CF0083668E = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					DB3495DD1A6D78CF0083668E = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = DB3495C81A6D78CF0083668E;
+					};
+				};
+			};
+			buildConfigurationList = DB3495C41A6D78CF0083668E /* Build configuration list for PBXProject "Koolendar" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DB3495C01A6D78CF0083668E;
+			productRefGroup = DB3495CA1A6D78CF0083668E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DB3495C81A6D78CF0083668E /* Koolendar */,
+				DB3495DD1A6D78CF0083668E /* KoolendarTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DB3495C71A6D78CF0083668E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB3495D41A6D78CF0083668E /* Main.storyboard in Resources */,
+				DB3495D91A6D78CF0083668E /* LaunchScreen.xib in Resources */,
+				DB3495D61A6D78CF0083668E /* Images.xcassets in Resources */,
+				DB3495F21A6D87570083668E /* image-2013-08-25-024001.jpeg in Resources */,
+				DB3495F71A6D8DDC0083668E /* url-3.jpg in Resources */,
+				DB3495F31A6D87570083668E /* image-2013-08-25-024033.jpeg in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB3495DC1A6D78CF0083668E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DB3495C51A6D78CF0083668E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB3495D11A6D78CF0083668E /* ViewController.swift in Sources */,
+				DB3495CF1A6D78CF0083668E /* AppDelegate.swift in Sources */,
+				DB3495EF1A6D7EC20083668E /* CollectionViewCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB3495DA1A6D78CF0083668E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB3495E51A6D78CF0083668E /* KoolendarTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DB3495E01A6D78CF0083668E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DB3495C81A6D78CF0083668E /* Koolendar */;
+			targetProxy = DB3495DF1A6D78CF0083668E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DB3495D21A6D78CF0083668E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DB3495D31A6D78CF0083668E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		DB3495D71A6D78CF0083668E /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DB3495D81A6D78CF0083668E /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DB3495E61A6D78CF0083668E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		DB3495E71A6D78CF0083668E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DB3495E91A6D78CF0083668E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Koolendar/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		DB3495EA1A6D78CF0083668E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Koolendar/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		DB3495EC1A6D78CF0083668E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = KoolendarTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Koolendar.app/Koolendar";
+			};
+			name = Debug;
+		};
+		DB3495ED1A6D78CF0083668E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = KoolendarTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Koolendar.app/Koolendar";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DB3495C41A6D78CF0083668E /* Build configuration list for PBXProject "Koolendar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB3495E61A6D78CF0083668E /* Debug */,
+				DB3495E71A6D78CF0083668E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DB3495E81A6D78CF0083668E /* Build configuration list for PBXNativeTarget "Koolendar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB3495E91A6D78CF0083668E /* Debug */,
+				DB3495EA1A6D78CF0083668E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		DB3495EB1A6D78CF0083668E /* Build configuration list for PBXNativeTarget "KoolendarTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB3495EC1A6D78CF0083668E /* Debug */,
+				DB3495ED1A6D78CF0083668E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DB3495C11A6D78CF0083668E /* Project object */;
+}
