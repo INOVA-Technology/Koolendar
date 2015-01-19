@@ -1,2 +1,2 @@
 # Koolendar
-Its kool. Its a calendar. Its a Koolendar. 
+It's kool. It's a calendar. It's a Koolendar. 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E76222B1A6DB16200EAB134 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 2E76222A1A6DB16200EAB134 /* README.md */; };
 		DB3495CF1A6D78CF0083668E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3495CE1A6D78CF0083668E /* AppDelegate.swift */; };
 		DB3495D11A6D78CF0083668E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3495D01A6D78CF0083668E /* ViewController.swift */; };
 		DB3495D41A6D78CF0083668E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB3495D21A6D78CF0083668E /* Main.storyboard */; };
@@ -30,6 +31,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2E7622291A6DABF800EAB134 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
+		2E76222A1A6DB16200EAB134 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		DB3495C91A6D78CF0083668E /* Koolendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Koolendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB3495CD1A6D78CF0083668E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB3495CE1A6D78CF0083668E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +67,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2E76222C1A6DB18E00EAB134 /* Etc */ = {
+			isa = PBXGroup;
+			children = (
+				2E7622291A6DABF800EAB134 /* MyPlayground.playground */,
+				2E76222A1A6DB16200EAB134 /* README.md */,
+			);
+			name = Etc;
+			sourceTree = "<group>";
+		};
 		DB3495C01A6D78CF0083668E = {
 			isa = PBXGroup;
 			children = (
@@ -86,12 +98,13 @@
 			isa = PBXGroup;
 			children = (
 				DB3495CE1A6D78CF0083668E /* AppDelegate.swift */,
-				DB3495F81A6D8E210083668E /* images */,
 				DB3495D01A6D78CF0083668E /* ViewController.swift */,
-				DB3495D21A6D78CF0083668E /* Main.storyboard */,
 				DB3495EE1A6D7EC20083668E /* CollectionViewCell.swift */,
+				DB3495D21A6D78CF0083668E /* Main.storyboard */,
 				DB3495D51A6D78CF0083668E /* Images.xcassets */,
 				DB3495D71A6D78CF0083668E /* LaunchScreen.xib */,
+				2E76222C1A6DB18E00EAB134 /* Etc */,
+				DB3495F81A6D8E210083668E /* images */,
 				DB3495CC1A6D78CF0083668E /* Supporting Files */,
 			);
 			path = Koolendar;
@@ -237,6 +250,7 @@
 			files = (
 				DB3495D11A6D78CF0083668E /* ViewController.swift in Sources */,
 				DB3495CF1A6D78CF0083668E /* AppDelegate.swift in Sources */,
+				2E76222B1A6DB16200EAB134 /* README.md in Sources */,
 				DB3495EF1A6D7EC20083668E /* CollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -429,6 +443,7 @@
 				DB3495EA1A6D78CF0083668E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DB3495EB1A6D78CF0083668E /* Build configuration list for PBXNativeTarget "KoolendarTests" */ = {
 			isa = XCConfigurationList;
@@ -437,6 +452,7 @@
 				DB3495ED1A6D78CF0083668E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
