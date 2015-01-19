@@ -16,16 +16,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     //add more clever way to do this
     var arr:[Int] = []
     
-    var name: AnyObject? {
-        get {
-            return NSUserDefaults.standardUserDefaults().objectForKey("name")
-        }
-        set {
-            NSUserDefaults.standardUserDefaults().setObject(newValue!, forKey: "name")
-            NSUserDefaults.standardUserDefaults().synchronize()
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -64,8 +54,5 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         return cell
     }
 
-    func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
-        name = arr[indexPath.row]
-    }
 }
 
