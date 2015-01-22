@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		2E2E82831A7099A800F83374 /* MonthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E82821A7099A800F83374 /* MonthViewController.swift */; };
 		2E76222B1A6DB16200EAB134 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 2E76222A1A6DB16200EAB134 /* README.md */; };
+		2ED290141A70AED000DF4356 /* MonthViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED290131A70AED000DF4356 /* MonthViewCell.swift */; };
 		DB3495CF1A6D78CF0083668E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3495CE1A6D78CF0083668E /* AppDelegate.swift */; };
 		DB3495D41A6D78CF0083668E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB3495D21A6D78CF0083668E /* Main.storyboard */; };
 		DB3495D61A6D78CF0083668E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB3495D51A6D78CF0083668E /* Images.xcassets */; };
 		DB3495D91A6D78CF0083668E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB3495D71A6D78CF0083668E /* LaunchScreen.xib */; };
 		DB3495E51A6D78CF0083668E /* KoolendarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3495E41A6D78CF0083668E /* KoolendarTests.swift */; };
-		DB3495EF1A6D7EC20083668E /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3495EE1A6D7EC20083668E /* CollectionViewCell.swift */; };
 		DB3495F21A6D87570083668E /* image-2013-08-25-024001.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = DB3495F01A6D87570083668E /* image-2013-08-25-024001.jpeg */; };
 		DB3495F31A6D87570083668E /* image-2013-08-25-024033.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = DB3495F11A6D87570083668E /* image-2013-08-25-024033.jpeg */; };
 		DB3495F71A6D8DDC0083668E /* url-3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DB3495F61A6D8DDC0083668E /* url-3.jpg */; };
@@ -34,6 +34,7 @@
 		2E2E82821A7099A800F83374 /* MonthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthViewController.swift; sourceTree = "<group>"; };
 		2E7622291A6DABF800EAB134 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		2E76222A1A6DB16200EAB134 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		2ED290131A70AED000DF4356 /* MonthViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthViewCell.swift; sourceTree = "<group>"; };
 		DB3495C91A6D78CF0083668E /* Koolendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Koolendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB3495CD1A6D78CF0083668E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB3495CE1A6D78CF0083668E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -43,7 +44,6 @@
 		DB3495DE1A6D78CF0083668E /* KoolendarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KoolendarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB3495E31A6D78CF0083668E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB3495E41A6D78CF0083668E /* KoolendarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KoolendarTests.swift; sourceTree = "<group>"; };
-		DB3495EE1A6D7EC20083668E /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		DB3495F01A6D87570083668E /* image-2013-08-25-024001.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "image-2013-08-25-024001.jpeg"; sourceTree = "<group>"; };
 		DB3495F11A6D87570083668E /* image-2013-08-25-024033.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "image-2013-08-25-024033.jpeg"; sourceTree = "<group>"; };
 		DB3495F61A6D8DDC0083668E /* url-3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "url-3.jpg"; sourceTree = "<group>"; };
@@ -99,7 +99,7 @@
 			children = (
 				DB3495CE1A6D78CF0083668E /* AppDelegate.swift */,
 				2E2E82821A7099A800F83374 /* MonthViewController.swift */,
-				DB3495EE1A6D7EC20083668E /* CollectionViewCell.swift */,
+				2ED290131A70AED000DF4356 /* MonthViewCell.swift */,
 				DB3495D21A6D78CF0083668E /* Main.storyboard */,
 				DB3495D51A6D78CF0083668E /* Images.xcassets */,
 				DB3495D71A6D78CF0083668E /* LaunchScreen.xib */,
@@ -251,7 +251,7 @@
 				2E2E82831A7099A800F83374 /* MonthViewController.swift in Sources */,
 				DB3495CF1A6D78CF0083668E /* AppDelegate.swift in Sources */,
 				2E76222B1A6DB16200EAB134 /* README.md in Sources */,
-				DB3495EF1A6D7EC20083668E /* CollectionViewCell.swift in Sources */,
+				2ED290141A70AED000DF4356 /* MonthViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

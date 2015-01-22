@@ -14,9 +14,6 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
     var calendar = NSCalendar.currentCalendar()
     var date = NSDate()
     
-    //add more clever way to do this
-    var arr:[Int] = []
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,10 +26,6 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
         layout.itemSize = CGSize(width: sizeX/3, height: sizeY/5)
         collectionView.collectionViewLayout = layout
         collectionView.backgroundColor = UIColor.darkGrayColor()
-        
-        let daysInMonth = calendar.rangeOfUnit(.CalendarUnitDay, inUnit: .CalendarUnitMonth, forDate: date).length
-        
-        arr = [Int](1...daysInMonth)
     }
     
     override func didReceiveMemoryWarning() {
@@ -41,12 +34,12 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return arr.count
+        return calendar.rangeOfUnit(.CalendarUnitDay, inUnit: .CalendarUnitMonth, forDate: date).length
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        var cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as CollectionViewCell
-        cell.theDay.text = String(arr[indexPath.row])
+        var cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as MonthViewCell
+        cell.theDay.text = String(indexPath.row + 1)
         let day = calendar.components(.DayCalendarUnit, fromDate: date).day
         if indexPath.row == day - 1 {
             cell.backgroundColor = UIColor.blueColor()

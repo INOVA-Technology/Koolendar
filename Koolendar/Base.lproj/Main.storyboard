@@ -27,7 +27,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="n2o-lI-b9O" customClass="CollectionViewCell" customModule="Koolendar" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="n2o-lI-b9O" customClass="MonthViewCell" customModule="Koolendar" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -45,7 +45,7 @@
                                         </view>
                                         <color key="backgroundColor" red="0.60601482520470984" green="0.83123988027712647" blue="0.85895040760869568" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
-                                            <outlet property="theDay" destination="KcF-xO-hgM" id="msZ-Jq-JhV"/>
+                                            <outlet property="theDay" destination="KcF-xO-hgM" id="iR7-IX-7m4"/>
                                             <segue destination="Gql-jq-uMB" kind="show" id="iL1-HC-bQK"/>
                                         </connections>
                                     </collectionViewCell>
