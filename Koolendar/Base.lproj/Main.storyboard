@@ -70,10 +70,10 @@
             </objects>
             <point key="canvasLocation" x="1025.5" y="69.5"/>
         </scene>
-        <!--View Controller-->
+        <!--Day View Controller-->
         <scene sceneID="7Zr-D8-xR7">
             <objects>
-                <viewController id="Gql-jq-uMB" sceneMemberID="viewController">
+                <viewController id="Gql-jq-uMB" customClass="DayViewController" customModule="Koolendar" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="sQZ-YO-Res"/>
                         <viewControllerLayoutGuide type="bottom" id="lRX-F1-Nyf"/>
@@ -98,7 +98,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EZr-GR-SYe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1598.5" y="28.5"/>
+            <point key="canvasLocation" x="1612.5" y="69.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="YD6-tG-x0B">
