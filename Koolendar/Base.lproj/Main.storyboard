@@ -86,7 +86,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="url-3.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="IEb-gG-Mpv">
-                                <rect key="frame" x="-25" y="258" width="457" height="244"/>
+                                <rect key="frame" x="0.0" y="320" width="375" height="206"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
