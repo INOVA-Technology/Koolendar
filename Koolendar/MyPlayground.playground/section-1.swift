@@ -8,6 +8,12 @@ let languages:[String] = NSLocale.preferredLanguages() as [String]
 
 let flags: NSCalendarUnit = .DayCalendarUnit | .MonthCalendarUnit | .YearCalendarUnit
 let date = NSDate()
-let cal = NSCalendar.currentCalendar().components(flags, fromDate: date)
+let cal = NSCalendar.currentCalendar()
 
-cal.day
+let comps = cal.components(flags, fromDate: date)
+
+comps.day
+
+cal.rangeOfUnit(.CalendarUnitDay, inUnit: .CalendarUnitMonth, forDate: date)
+
+(1, 31)
