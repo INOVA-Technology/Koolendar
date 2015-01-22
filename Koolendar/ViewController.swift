@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
-    var collectionView: UICollectionView?
+    @IBOutlet weak var collectionView: UICollectionView!
     var calendar = NSCalendar.currentCalendar()
     var date = NSDate()
     
@@ -20,16 +20,16 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-//        This isn't working :(
-//        let screenSize = UIScreen.mainScreen().bounds
-//        let sizeX = screenSize.width
-//        let sizeY = screenSize.height
-//        let layout = UICollectionViewFlowLayout()
-//        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-//        layout.itemSize = CGSize(width: sizeX/3, height: sizeY/3)
-//        collectionView?.collectionViewLayout = layout
-//        collectionView?.backgroundColor = UIColor.orangeColor()
+
+        let screenSize = UIScreen.mainScreen().bounds
+        let sizeX = screenSize.width
+        let sizeY = screenSize.height
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
+        layout.itemSize = CGSize(width: sizeX/3, height: sizeY/5)
+        collectionView.collectionViewLayout = layout
+        collectionView.backgroundColor = UIColor.darkGrayColor()
         
         let daysInMonth = calendar.rangeOfUnit(.CalendarUnitDay, inUnit: .CalendarUnitMonth, forDate: date).length
         
