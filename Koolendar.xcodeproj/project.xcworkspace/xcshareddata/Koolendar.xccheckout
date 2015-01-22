@@ -5,7 +5,7 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>03A4E5FD-73D6-4DAD-84CF-0817E5A178ED</string>
+	<string>A0794EA2-C14E-44B0-9D0F-5FC23730DFC8</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Koolendar</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
@@ -34,7 +34,7 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>2191DA28B8A0CC53DD57F5C089C4E4334AA9B38C</string>
 			<key>IDESourceControlWCCName</key>
-			<string>Koolendar</string>
+			<string>koolendar</string>
 		</dict>
 	</array>
 </dict>

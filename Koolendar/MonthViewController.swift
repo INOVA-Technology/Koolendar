@@ -1,14 +1,14 @@
 //
-//  ViewController.swift
+//  MonthViewController.swift
 //  Koolendar
 //
-//  Created by Chase on 1/19/15.
+//  Created by Addison Bean on 1/21/15.
 //  Copyright (c) 2015 INOVA. All rights reserved.
 //
 
 import UIKit
 
-class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class MonthViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
     @IBOutlet weak var collectionView: UICollectionView!
     var calendar = NSCalendar.currentCalendar()
@@ -19,8 +19,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-
+        
         let screenSize = UIScreen.mainScreen().bounds
         let sizeX = screenSize.width
         let sizeY = screenSize.height
@@ -35,7 +34,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
         arr = [Int](1...daysInMonth)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -55,5 +54,14 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         return cell
     }
 
-}
+    /*
+    // MARK: - Navigation
 
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}
