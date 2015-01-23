@@ -9,7 +9,7 @@
 import UIKit
 
 class DayViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,6 +21,13 @@ class DayViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func goBack(sender: UIButton) {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    @IBAction func addEvent(sender: UIButton) {
+        
+    }
 
     /*
     // MARK: - Navigation

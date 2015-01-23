@@ -61,6 +61,7 @@
                     <navigationItem key="navigationItem" id="jLM-3R-Qs7">
                         <barButtonItem key="rightBarButtonItem" title="Gooooo" id="uQI-af-xVe"/>
                     </navigationItem>
+                    <nil key="simulatedTopBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="collectionView" destination="Itz-8b-Mzg" id="hgY-dz-Ton"/>
@@ -91,9 +92,28 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="url-3.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="IEb-gG-Mpv">
                                 <rect key="frame" x="0.0" y="320" width="375" height="206"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ML0-Ys-j47">
+                                <rect key="frame" x="288" y="20" width="71" height="30"/>
+                                <state key="normal" title="Add Event">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addEvent:" destination="Gql-jq-uMB" eventType="touchUpInside" id="3X1-zU-7LX"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Wm-th-vU5">
+                                <rect key="frame" x="16" y="20" width="35" height="30"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="goBack:" destination="Gql-jq-uMB" eventType="touchUpInside" id="HTE-UK-5to"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <nil key="simulatedTopBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EZr-GR-SYe" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -103,8 +123,9 @@
         <!--Navigation Controller-->
         <scene sceneID="YD6-tG-x0B">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rUF-Du-KGr" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="rUF-Du-KGr" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="HeC-6u-9jd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
