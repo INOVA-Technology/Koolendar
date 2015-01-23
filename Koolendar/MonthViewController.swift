@@ -23,7 +23,7 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
         let layout = UICollectionViewFlowLayout()
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
-        layout.itemSize = CGSize(width: sizeX/7, height: sizeX/7 + 15)
+        layout.itemSize = CGSize(width: sizeX/3, height: sizeY/5)
         collectionView.collectionViewLayout = layout
         collectionView.backgroundColor = UIColor.darkGrayColor()
     }
