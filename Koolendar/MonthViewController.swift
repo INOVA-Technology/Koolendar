@@ -25,7 +25,7 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
         layout.minimumLineSpacing = 0
         layout.itemSize = CGSize(width: sizeX/3, height: sizeY/5)
         collectionView.collectionViewLayout = layout
-        collectionView.backgroundColor = UIColor.darkGrayColor()
+        collectionView.backgroundColor = ColorScheme.background
     }
     
     override func didReceiveMemoryWarning() {
@@ -42,7 +42,9 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
         cell.theDay.text = String(indexPath.row + 1)
         let day = calendar.components(.DayCalendarUnit, fromDate: date).day
         if indexPath.row == day - 1 {
-            cell.backgroundColor = UIColor.blueColor()
+            cell.backgroundColor = ColorScheme.currentDayCell
+        } else {
+            cell.backgroundColor = ColorScheme.dayCell
         }
         return cell
     }
