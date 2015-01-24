@@ -12,7 +12,13 @@ let cal = NSCalendar.currentCalendar()
 
 let comps = cal.components(flags, fromDate: date)
 
-comps.day
+let formatter = NSDateFormatter()
+formatter.dateFormat = "MM"
+let todayDate:Array = formatter.monthSymbols
+todayDate[comps.month]
+
+
+comps.month
 
 cal.rangeOfUnit(.CalendarUnitDay, inUnit: .CalendarUnitMonth, forDate: date)
 

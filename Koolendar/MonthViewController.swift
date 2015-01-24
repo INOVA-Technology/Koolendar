@@ -10,7 +10,10 @@ import UIKit
 
 class MonthViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
+    @IBOutlet weak var nameOfMonth: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
+    let flags: NSCalendarUnit = .DayCalendarUnit | .MonthCalendarUnit | .YearCalendarUnit
+
     var calendar = NSCalendar.currentCalendar()
     var date = NSDate()
     
@@ -26,6 +29,12 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
         layout.itemSize = CGSize(width: sizeX/3, height: sizeY/5)
         collectionView.collectionViewLayout = layout
         collectionView.backgroundColor = ColorScheme.background
+        
+        var comps = calendar.components(flags, fromDate: date)
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "MM"
+        let todayDate:Array = formatter.monthSymbols
+        nameOfMonth.text = String(todayDate[comps.month] as NSString)
     }
     
     override func didReceiveMemoryWarning() {
