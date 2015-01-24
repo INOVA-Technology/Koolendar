@@ -23,3 +23,11 @@ comps.month
 cal.rangeOfUnit(.CalendarUnitDay, inUnit: .CalendarUnitMonth, forDate: date)
 
 (1, 31)
+
+var info: NSDictionary?
+if let path = NSBundle.mainBundle().pathForResource("Info", ofType: "plist") {
+    info = NSDictionary(contentsOfFile: path)
+}
+if let dict = info {
+    info!["LSRequiresIPhoneOS"]
+}
