@@ -12,6 +12,7 @@
 		2ED290141A70AED000DF4356 /* MonthViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED290131A70AED000DF4356 /* MonthViewCell.swift */; };
 		2ED290161A70B10500DF4356 /* DayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED290151A70B10500DF4356 /* DayViewController.swift */; };
 		2ED2901A1A73284E00DF4356 /* KOOLColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED290191A73284E00DF4356 /* KOOLColors.swift */; };
+		2ED290871A7485A200DF4356 /* Koolendar.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2ED290851A7485A200DF4356 /* Koolendar.xcdatamodeld */; };
 		DB3495CF1A6D78CF0083668E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3495CE1A6D78CF0083668E /* AppDelegate.swift */; };
 		DB3495D41A6D78CF0083668E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB3495D21A6D78CF0083668E /* Main.storyboard */; };
 		DB3495D61A6D78CF0083668E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB3495D51A6D78CF0083668E /* Images.xcassets */; };
@@ -39,6 +40,7 @@
 		2ED290131A70AED000DF4356 /* MonthViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthViewCell.swift; sourceTree = "<group>"; };
 		2ED290151A70B10500DF4356 /* DayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayViewController.swift; sourceTree = "<group>"; };
 		2ED290191A73284E00DF4356 /* KOOLColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KOOLColors.swift; sourceTree = "<group>"; };
+		2ED290861A7485A200DF4356 /* Koolendar.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Koolendar.xcdatamodel; sourceTree = "<group>"; };
 		DB3495C91A6D78CF0083668E /* Koolendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Koolendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB3495CD1A6D78CF0083668E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB3495CE1A6D78CF0083668E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				2ED290191A73284E00DF4356 /* KOOLColors.swift */,
 				DB3495D51A6D78CF0083668E /* Images.xcassets */,
 				DB3495D71A6D78CF0083668E /* LaunchScreen.xib */,
+				2ED290851A7485A200DF4356 /* Koolendar.xcdatamodeld */,
 				2E76222C1A6DB18E00EAB134 /* Etc */,
 				DB3495F81A6D8E210083668E /* images */,
 				DB3495CC1A6D78CF0083668E /* Supporting Files */,
@@ -255,6 +258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E2E82831A7099A800F83374 /* MonthViewController.swift in Sources */,
+				2ED290871A7485A200DF4356 /* Koolendar.xcdatamodeld in Sources */,
 				2ED290161A70B10500DF4356 /* DayViewController.swift in Sources */,
 				DB3495CF1A6D78CF0083668E /* AppDelegate.swift in Sources */,
 				2E76222B1A6DB16200EAB134 /* README.md in Sources */,
@@ -463,6 +467,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		2ED290851A7485A200DF4356 /* Koolendar.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2ED290861A7485A200DF4356 /* Koolendar.xcdatamodel */,
+			);
+			currentVersion = 2ED290861A7485A200DF4356 /* Koolendar.xcdatamodel */;
+			path = Koolendar.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = DB3495C11A6D78CF0083668E /* Project object */;
 }
