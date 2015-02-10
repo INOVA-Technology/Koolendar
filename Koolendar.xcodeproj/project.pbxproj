@@ -21,6 +21,7 @@
 		DB3495F21A6D87570083668E /* image-2013-08-25-024001.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = DB3495F01A6D87570083668E /* image-2013-08-25-024001.jpeg */; };
 		DB3495F31A6D87570083668E /* image-2013-08-25-024033.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = DB3495F11A6D87570083668E /* image-2013-08-25-024033.jpeg */; };
 		DB3495F71A6D8DDC0083668E /* url-3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DB3495F61A6D8DDC0083668E /* url-3.jpg */; };
+		DBD70A1E1A8A8F1400639001 /* EventForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD70A1D1A8A8F1400639001 /* EventForm.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		DB3495F01A6D87570083668E /* image-2013-08-25-024001.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "image-2013-08-25-024001.jpeg"; sourceTree = "<group>"; };
 		DB3495F11A6D87570083668E /* image-2013-08-25-024033.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "image-2013-08-25-024033.jpeg"; sourceTree = "<group>"; };
 		DB3495F61A6D8DDC0083668E /* url-3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "url-3.jpg"; sourceTree = "<group>"; };
+		DBD70A1D1A8A8F1400639001 /* EventForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventForm.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 				2E2E82821A7099A800F83374 /* MonthViewController.swift */,
 				2ED290131A70AED000DF4356 /* MonthViewCell.swift */,
 				2ED290151A70B10500DF4356 /* DayViewController.swift */,
+				DBD70A1D1A8A8F1400639001 /* EventForm.swift */,
 				DB3495D21A6D78CF0083668E /* Main.storyboard */,
 				2ED290191A73284E00DF4356 /* KOOLColors.swift */,
 				DB3495D51A6D78CF0083668E /* Images.xcassets */,
@@ -257,6 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBD70A1E1A8A8F1400639001 /* EventForm.swift in Sources */,
 				2E2E82831A7099A800F83374 /* MonthViewController.swift in Sources */,
 				2ED290871A7485A200DF4356 /* Koolendar.xcdatamodeld in Sources */,
 				2ED290161A70B10500DF4356 /* DayViewController.swift in Sources */,
