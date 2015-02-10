@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class DayViewController: UIViewController {
     
@@ -26,7 +27,41 @@ class DayViewController: UIViewController {
     }
     
     @IBAction func addEvent(sender: UIButton) {
+        println("added event")
+        var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+        var context: NSManagedObjectContext = appDel.managedObjectContext!
         
+        var newEvent = NSEntityDescription.insertNewObjectForEntityForName("Events", inManagedObjectContext: context) as NSManagedObject
+        
+        newEvent.setValue("test event", forKey: "poop")
+        newEvent.setValue("test event description", forKey: "test")
+        
+        context.save(nil)
+        
+        println(newEvent)
+        println("its done been saved bruh")
+        
+    }
+    
+    @IBAction func whatFreakinEvents(sender: UIButton) {
+        println("yo, user wants to know whats goin down today")
+        var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+        var context: NSManagedObjectContext = appDel.managedObjectContext!
+        
+        var request = NSFetchRequest(entityName: "Events")
+        request.returnsObjectsAsFaults = false
+        
+        var results: NSArray = context.executeFetchRequest(request, error: nil)!
+        
+        if (results.count > 0) {
+            for res in results {
+                println(res)
+            }
+        }
+        else {
+            println("0 results... u got problems bro")
+        }
+
     }
 
     /*
