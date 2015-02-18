@@ -49,17 +49,18 @@ class EventForm: UIViewController {
             ).first as String
         
         let db = Database("\(path)/KoolendarEventsList.sqlite3")  // name is long so it has a very slim chance of being accessed by other apps
-        
         let events = db["events"]
+        let id   = Expression<Int>("id")
         let name = Expression<String>("name")
         let desc = Expression<String>("desc")
         
         db.create(table: events, ifNotExists: true) { t in
+            t.column(id)
             t.column(name)
             t.column(desc)
         }
         
-        if let insertId = events.insert(name <- eventName.text, desc <- eventDesc.text) {
+        if let insertId = events.insert(name <- eventName.text, desc <- eventDesc.text, id <- events.count) {
             //            println(events.filter(name == eventName.text))
         }
         

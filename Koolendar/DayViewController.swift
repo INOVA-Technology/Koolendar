@@ -10,16 +10,18 @@ import UIKit
 import CoreData
 import SQLite
 
-class DayViewController: UIViewController {
+class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var theEventsOfLife: UILabel!
     @IBOutlet weak var dude: UIImageView!
     //    @IBOutlet weak var eventsOfLife: UILabel!
+    @IBOutlet weak var eventList: UITableView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
+//         this crashes it, idk if we need it
+        // self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
     override func didReceiveMemoryWarning() {
@@ -31,12 +33,51 @@ class DayViewController: UIViewController {
         self.navigationController?.popViewControllerAnimated(true)
     }
     
-    @IBAction func addEvent(sender: UIButton) {
-        //        println("added event")
-        //
-        //
-        //
-        //        println("its done been saved bruh")
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let path = NSSearchPathForDirectoriesInDomains(
+            .DocumentDirectory, .UserDomainMask, true
+            ).first as String
+        
+        let db = Database("\(path)/KoolendarEventsList.sqlite3")
+        let events = db["events"]
+        let name = Expression<String>("name")
+        let desc = Expression<String>("desc")
+
+        db.create(table: events, ifNotExists: true) { t in
+            t.column(name)
+            t.column(desc)
+        }
+        
+        return events.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var cell = eventList.dequeueReusableCellWithIdentifier("eventCell") as UITableViewCell
+        
+        let path = NSSearchPathForDirectoriesInDomains(
+            .DocumentDirectory, .UserDomainMask, true
+            ).first as String
+        
+        let db = Database("\(path)/KoolendarEventsList.sqlite3")
+        let events = db["events"]
+        let id   = Expression<Int>("id")
+        let name = Expression<String>("name")
+        let desc = Expression<String>("desc")
+        
+        db.create(table: events, ifNotExists: true) { t in
+            t.column(id)
+            t.column(name)
+            t.column(desc)
+        }
+        
+//        cell.textLabel?.text = events.select(name).filter(id == indexPath.row).first![events[id]]
+        cell.textLabel?.text = "UGGHH"
+        
+        return cell
+        
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
     }
     

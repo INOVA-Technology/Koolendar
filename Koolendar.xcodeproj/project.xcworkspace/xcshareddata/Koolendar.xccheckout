@@ -12,8 +12,6 @@
 	<dict>
 		<key>2191DA28B8A0CC53DD57F5C089C4E4334AA9B38C</key>
 		<string>https://github.com/INOVA-Technology/Koolendar</string>
-		<key>3AE8ED2E684071AF4FB151FA51BF266B82FF45BD</key>
-		<string>https://github.com/stephencelis/SQLite.swift</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Koolendar.xcodeproj</string>
@@ -21,8 +19,6 @@
 	<dict>
 		<key>2191DA28B8A0CC53DD57F5C089C4E4334AA9B38C</key>
 		<string>../..</string>
-		<key>3AE8ED2E684071AF4FB151FA51BF266B82FF45BD</key>
-		<string>../../../Github/Koolendar/SQLite.swift</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/INOVA-Technology/Koolendar</string>
@@ -39,14 +35,6 @@
 			<string>2191DA28B8A0CC53DD57F5C089C4E4334AA9B38C</string>
 			<key>IDESourceControlWCCName</key>
 			<string>koolendar</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>3AE8ED2E684071AF4FB151FA51BF266B82FF45BD</string>
-			<key>IDESourceControlWCCName</key>
-			<string>SQLite.swift</string>
 		</dict>
 	</array>
 </dict>
