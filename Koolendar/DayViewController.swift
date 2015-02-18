@@ -8,15 +8,20 @@
 
 import UIKit
 import CoreData
+import SQLite
 
 class DayViewController: UIViewController {
     
+    @IBOutlet weak var theEventsOfLife: UILabel!
+    @IBOutlet weak var dude: UIImageView!
+    //    @IBOutlet weak var eventsOfLife: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -27,51 +32,49 @@ class DayViewController: UIViewController {
     }
     
     @IBAction func addEvent(sender: UIButton) {
-        println("added event")
-        var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
-        var context: NSManagedObjectContext = appDel.managedObjectContext!
-        
-        var newEvent = NSEntityDescription.insertNewObjectForEntityForName("Events", inManagedObjectContext: context) as NSManagedObject
-        
-        newEvent.setValue("test event", forKey: "poop")
-        newEvent.setValue("test event description", forKey: "test")
-        
-        context.save(nil)
-        
-        println(newEvent)
-        println("its done been saved bruh")
+        //        println("added event")
+        //
+        //
+        //
+        //        println("its done been saved bruh")
         
     }
     
     @IBAction func whatFreakinEvents(sender: UIButton) {
+        
+        
         println("yo, user wants to know whats goin down today")
-        var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
-        var context: NSManagedObjectContext = appDel.managedObjectContext!
         
-        var request = NSFetchRequest(entityName: "Events")
-        request.returnsObjectsAsFaults = false
+        //        dude.hidden = true
+        //        eventsOfLife.hidden = false
         
-        var results: NSArray = context.executeFetchRequest(request, error: nil)!
         
-        if (results.count > 0) {
-            for res in results {
-                println(res)
-            }
+        let path = NSSearchPathForDirectoriesInDomains(
+            .DocumentDirectory, .UserDomainMask, true
+            ).first as String
+        
+        let db = Database("\(path)/KoolendarEventsList.sqlite3")
+        let events = db["events"]
+        let name = Expression<String>("name")
+        let desc = Expression<String>("desc")
+        
+        var testing: String = ""
+        for user in events {
+            testing = "\(testing)event name: \(user[name]) event desc: \(user[desc])"
+            // id: 1, name: Optional("Alice"), email: alice@mac.com
         }
-        else {
-            println("0 results... u got problems bro")
-        }
-
+        theEventsOfLife.text = testing
+        
     }
-
+    
     /*
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
     }
     */
-
+    
 }
