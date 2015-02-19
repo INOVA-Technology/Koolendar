@@ -35,7 +35,7 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
         let formatter = NSDateFormatter()
         formatter.dateFormat = "MM"
         let todayDate:Array = formatter.monthSymbols
-        nameOfMonth.text = String(todayDate[comps.month] as NSString)
+        nameOfMonth.text = String(todayDate[comps.month - 1] as NSString)
     }
     
     override func didReceiveMemoryWarning() {
