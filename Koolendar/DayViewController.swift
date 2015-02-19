@@ -44,15 +44,16 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         let events = db["events"]
         let name = Expression<String>("name")
         let desc = Expression<String>("desc")
-        
+        let id   = Expression<Int>("id")
         db.create(table: events, ifNotExists: true) { t in
+            t.column(id)
             t.column(name)
             t.column(desc)
         }
         
-//        return events.count
+        return events.count
         
-        return self.tableData.count
+//        return self.tableData.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -74,8 +75,8 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             t.column(desc)
         }
         
-        //        cell.textLabel?.text = events.select(name).filter(id == indexPath.row).first![events[id]]
-        cell.textLabel?.text = "UGGHH"
+        var eventsArray = Array(events)
+        cell.textLabel?.text = "\(eventsArray[indexPath.row][name]) - \(eventsArray[indexPath.row][desc])"
         
         return cell
     }
@@ -84,9 +85,7 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         println(indexPath.row)
     }
     
-    func numberOfSections() -> Int {
-        return 1
-    }
+    
     
 
     @IBAction func whatFreakinEvents(sender: UIButton) {
