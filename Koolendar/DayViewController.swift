@@ -18,7 +18,9 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.tableView.rowHeight = 70;
+        self.tableView.backgroundView = UIImageView(image: UIImage(named: "SimpleBg"))
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
     }
@@ -77,6 +79,15 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         var eventsArray = Array(events)
         cell.textLabel?.text = "\(eventsArray[indexPath.row][name]) - \(eventsArray[indexPath.row][desc])"
+        
+        if (indexPath.row % 2 == 0) {
+            cell.backgroundColor = UIColor.clearColor()
+        } else {
+            cell.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
+            cell.textLabel?.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0)
+            
+            
+        }
         
         return cell
     }
