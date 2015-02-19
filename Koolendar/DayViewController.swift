@@ -12,16 +12,15 @@ import SQLite
 
 class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet weak var theEventsOfLife: UILabel!
-    @IBOutlet weak var dude: UIImageView!
-    //    @IBOutlet weak var eventsOfLife: UILabel!
-    @IBOutlet weak var eventList: UITableView!
+    @IBOutlet var tableView: UITableView!
     
+    var tableData: [String] = ["We", "Heart", "Swift"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//         this crashes it, idk if we need it
-        // self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        
+        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -33,7 +32,10 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         self.navigationController?.popViewControllerAnimated(true)
     }
     
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        
         let path = NSSearchPathForDirectoriesInDomains(
             .DocumentDirectory, .UserDomainMask, true
             ).first as String
@@ -42,17 +44,19 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         let events = db["events"]
         let name = Expression<String>("name")
         let desc = Expression<String>("desc")
-
+        
         db.create(table: events, ifNotExists: true) { t in
             t.column(name)
             t.column(desc)
         }
         
-        return events.count
+//        return events.count
+        
+        return self.tableData.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = eventList.dequeueReusableCellWithIdentifier("eventCell") as UITableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("Cell") as UITableViewCell
         
         let path = NSSearchPathForDirectoriesInDomains(
             .DocumentDirectory, .UserDomainMask, true
@@ -70,17 +74,21 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             t.column(desc)
         }
         
-//        cell.textLabel?.text = events.select(name).filter(id == indexPath.row).first![events[id]]
+        //        cell.textLabel?.text = events.select(name).filter(id == indexPath.row).first![events[id]]
         cell.textLabel?.text = "UGGHH"
         
         return cell
-        
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+    func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+        println(indexPath.row)
     }
     
+    func numberOfSections() -> Int {
+        return 1
+    }
+    
+
     @IBAction func whatFreakinEvents(sender: UIButton) {
         
         
@@ -104,18 +112,9 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             testing = "\(testing)event name: \(user[name]) event desc: \(user[desc])"
             // id: 1, name: Optional("Alice"), email: alice@mac.com
         }
-        theEventsOfLife.text = testing
+//        theEventsOfLife.text = testing
         
     }
-    
-    /*
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
-    }
-    */
+   
     
 }
