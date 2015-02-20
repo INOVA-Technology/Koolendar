@@ -47,11 +47,6 @@ class EventForm: UIViewController {
         let em = EventManager()
         em.addEvent(startDate: startTimeField.date, endDate: endTimeField.date, name: eventName.text, description: eventDesc.text)
         
-        for user in events {
-            println("name: \(user[name])")
-            // id: 1, name: Optional("Alice"), email: alice@mac.com
-        }
-        //        println(newEvent)
         println("its done been saved bruh")
         
     }

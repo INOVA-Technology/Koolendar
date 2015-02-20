@@ -38,6 +38,21 @@ let path = NSSearchPathForDirectoriesInDomains(
 let time = NSDate().timeIntervalSince1970
 let data = NSDate(timeIntervalSince1970: time)
 
+let db = Database("\(path)/KoolendarEventsList.sqlite3")
+let id   = Expression<Int>("id")
+let startDate = Expression<Double>("startDate")
+let endDate = Expression<Double>("endDate")
+let name = Expression<String>("name")
+let desc = Expression<String>("desc")
+let events = db["events"]
 
+db.create(table: events, ifNotExists: true) { t in
+    t.column(id)
+    t.column(name)
+    t.column(desc)
+    t.column(startDate)
+    t.column(endDate)
+}
 
+//events.insert(id <- events.count, name <- "Event Name")
 

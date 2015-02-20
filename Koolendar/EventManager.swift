@@ -32,18 +32,17 @@ class EventManager {
         events = db["events"]
         
         db.create(table: events, ifNotExists: true) { t in
-            t.column(id, primaryKey: true)
-            t.column(name)
-            t.column(desc)
-            t.column(startDate)
-            t.column(endDate)
+            t.column(self.id, primaryKey: true)
+            t.column(self.name)
+            t.column(self.desc)
+            t.column(self.startDate)
+            t.column(self.endDate)
         }
-        
-        // this should work idk
+
         func addEvent(startDate: NSDate, endDate: NSDate, name: String, description: String) {
-            let s_timestamp = date.timeIntervalSince1970
-            let e_timestamp = date.timeIntervalSince1970
-            events.insert(id <- events.count, startDate <- timestamp, endDate <- e_timestamp, self.name <- name, desc <- description)
+            let s_timestamp: Double = Double(startDate.timeIntervalSince1970)
+            let e_timestamp: Double = Double(endDate.timeIntervalSince1970)
+            events.insert(id <- events.count, self.name <- name, desc <- description, self.startDate <- s_timestamp, self.endDate <- e_timestamp)
         }
     }
 }
