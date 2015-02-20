@@ -16,8 +16,8 @@ class EventForm: UIViewController {
     @IBOutlet weak var eventDesc: UITextField!
     
     @IBOutlet weak var startTimeField: UIDatePicker!
-    
     @IBOutlet weak var endTimeField: UIDatePicker!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,7 +45,7 @@ class EventForm: UIViewController {
     
     @IBAction func addEvent(sender: UIButton) {
         let em = EventManager()
-        em.addEvent(startDate: startTimeField.date, endDate: endTimeField.date, name: eventName.text, description: eventDesc.text)
+        em.addEvent(name: eventName.text, description: eventDesc.text, startDate: startTimeField.date, endDate: endTimeField.date, allDay: false)
         
         println("its done been saved bruh")
         
