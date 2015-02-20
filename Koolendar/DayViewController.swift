@@ -36,49 +36,16 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        
-        let path = NSSearchPathForDirectoriesInDomains(
-            .DocumentDirectory, .UserDomainMask, true
-            ).first as String
-        
-        let db = Database("\(path)/KoolendarEventsList.sqlite3")
-        let events = db["events"]
-        let name = Expression<String>("name")
-        let desc = Expression<String>("desc")
-        let id   = Expression<Int>("id")
-        db.create(table: events, ifNotExists: true) { t in
-            t.column(id)
-            t.column(name)
-            t.column(desc)
-        }
-        
-        return events.count
-        
-//        return self.tableData.count
+        return EventManager().events.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("Cell") as UITableViewCell
         
-        let path = NSSearchPathForDirectoriesInDomains(
-            .DocumentDirectory, .UserDomainMask, true
-            ).first as String
+        let em = EventManager()
         
-        let db = Database("\(path)/KoolendarEventsList.sqlite3")
-        let events = db["events"]
-        let id   = Expression<Int>("id")
-        let name = Expression<String>("name")
-        let desc = Expression<String>("desc")
-        
-        db.create(table: events, ifNotExists: true) { t in
-            t.column(id)
-            t.column(name)
-            t.column(desc)
-        }
-        
-        var eventsArray = Array(events)
-        cell.textLabel?.text = "\(eventsArray[indexPath.row][name]) - \(eventsArray[indexPath.row][desc])"
+        var eventsArray = Array(em.events)
+        cell.textLabel?.text = "\(eventsArray[indexPath.row][em.name]) - \(eventsArray[indexPath.row][em.desc])"
         
         if (indexPath.row % 2 == 0) {
             cell.backgroundColor = UIColor.clearColor()
@@ -100,30 +67,7 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
 
     @IBAction func whatFreakinEvents(sender: UIButton) {
-        
-        
-        println("yo, user wants to know whats goin down today")
-        
-        //        dude.hidden = true
-        //        eventsOfLife.hidden = false
-        
-        
-        let path = NSSearchPathForDirectoriesInDomains(
-            .DocumentDirectory, .UserDomainMask, true
-            ).first as String
-        
-        let db = Database("\(path)/KoolendarEventsList.sqlite3")
-        let events = db["events"]
-        let name = Expression<String>("name")
-        let desc = Expression<String>("desc")
-        
-        var testing: String = ""
-        for user in events {
-            testing = "\(testing)event name: \(user[name]) event desc: \(user[desc])"
-            // id: 1, name: Optional("Alice"), email: alice@mac.com
-        }
-//        theEventsOfLife.text = testing
-        
+        // do we still need this?
     }
    
     
