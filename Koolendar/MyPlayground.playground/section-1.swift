@@ -16,7 +16,7 @@ let comps = cal.components(flags, fromDate: date)
 
 let formatter = NSDateFormatter()
 formatter.dateFormat = "MM"
-let todayDate:Array = formatter.monthSymbols
+let todayDate = formatter.monthSymbols
 todayDate[comps.month]
 
 
