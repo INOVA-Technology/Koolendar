@@ -39,10 +39,12 @@ class EventManager {
             t.column(self.endDate)
         }
 
-        func addEvent(startDate: NSDate, endDate: NSDate, name: String, description: String) {
+        func addEvent(startDate: NSDate, endDate: NSDate, name1: String, description: String) {
             let s_timestamp: Double = Double(startDate.timeIntervalSince1970)
             let e_timestamp: Double = Double(endDate.timeIntervalSince1970)
-            events.insert(id <- events.count, self.name <- name, desc <- description, self.startDate <- s_timestamp, self.endDate <- e_timestamp)
+            if let insertId = events.insert(id <- events.count, self.name <- name, desc <- description, self.startDate <- s_timestamp, self.endDate <- e_timestamp) {
+                
+            }
         }
     }
 }
