@@ -14,7 +14,12 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     @IBOutlet var tableView: UITableView!
     
+    @IBOutlet weak var theDateText: UILabel!
+    
     var tableData: [String] = ["We", "Heart", "Swift"]
+    var currentDay: Int = 1
+    var currentMonth: String = ""
+    var currentYear: Int = 1970
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +27,10 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         self.tableView.backgroundView = UIImageView(image: UIImage(named: "SimpleBg"))
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        
+        println("faskf;lkasdf;kas \(currentMonth)")
+        
+        theDateText.text = "\(currentMonth) \(currentDay), \(currentYear)"
     }
     
     override func didReceiveMemoryWarning() {
@@ -33,6 +42,10 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         self.navigationController?.popViewControllerAnimated(true)
     }
     
+    @IBAction func eatThis(sender: UIButton) {
+        theDateText.text = "\(currentMonth) \(currentDay), \(currentYear)"
+         println("faskf;lkasdf;kas \(currentMonth)")
+    }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return EventManager().events.count

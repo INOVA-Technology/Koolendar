@@ -47,6 +47,22 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
         return calendar.rangeOfUnit(.CalendarUnitDay, inUnit: .CalendarUnitMonth, forDate: date).length
     }
     
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let dayViewController = DayViewController()
+        var comps = calendar.components(flags, fromDate: date)
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "MM"
+        let todayDate:Array = formatter.monthSymbols
+        
+        dayViewController.currentDay = indexPath.row - 1
+        dayViewController.currentMonth = todayDate[comps.month - 1] as String
+        dayViewController.currentYear = comps.year
+        
+        println("day: \(indexPath.row - 1)")
+        println("month: \(todayDate[comps.month - 1])")
+        println("year: \(comps.year)")
+    }
+    
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         var cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as MonthViewCell
         cell.theDay.text = String(indexPath.row + 1)

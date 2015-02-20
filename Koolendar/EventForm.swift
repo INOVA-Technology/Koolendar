@@ -44,6 +44,7 @@ class EventForm: UIViewController {
     }
     
     @IBAction func addEvent(sender: UIButton) {
+        println(startTimeField)
         let em = EventManager()
         em.addEvent(name: eventName.text, description: eventDesc.text, startDate: startTimeField.date, endDate: endTimeField.date, allDay: false)
         
