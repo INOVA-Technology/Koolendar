@@ -72,4 +72,35 @@ class EventManager {
             year <- startTime.year) {
         }
     }
+    
+    func getEventsForDay(day: Int, month: Int, year: Int) -> [Event] {
+        var eventList = [Event]()
+        let cal = NSCalendar.currentCalendar()
+        
+        let results = events.filter(self.day == day && self.month == month && self.year == year)
+        for result in results {
+            
+            let startComps = NSDateComponents()
+            startComps.day = day
+            startComps.month = month
+            startComps.year = year
+            startComps.hour = result[startHour]
+            startComps.minute = result[startMinute]
+            let startDate = cal.dateFromComponents(startComps)!
+            
+            let endComps = NSDateComponents()
+            endComps.day = day
+            endComps.month = month
+            endComps.year = year
+            endComps.hour = result[endHour]
+            endComps.minute = result[endMinute]
+            let endDate = cal.dateFromComponents(startComps)!
+            
+            let event = Event(name: result[name] as String, description: result[desc] as String, startDate: startDate, endDate: endDate, allDay: result[allDay] as Bool)
+            
+            eventList.append(event)
+        }
+        
+        return eventList
+    }
 }

@@ -22,7 +22,6 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         self.tableView.backgroundView = UIImageView(image: UIImage(named: "SimpleBg"))
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-        
     }
     
     override func didReceiveMemoryWarning() {
