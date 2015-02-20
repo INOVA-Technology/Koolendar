@@ -59,7 +59,7 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
         dayViewController.currentYear = comps.year
         
         println("day: \(indexPath.row - 1)")
-        println("month: \(todayDate[comps.month - 1])")
+        println("month: \(dayViewController.currentMonth)")
         println("year: \(comps.year)")
     }
     
