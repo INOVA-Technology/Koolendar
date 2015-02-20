@@ -246,8 +246,10 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="endTimeField" destination="Tl8-eY-Vlk" id="7Zm-1e-c1X"/>
                         <outlet property="eventDesc" destination="sLQ-Uq-Wje" id="1af-Jx-quG"/>
                         <outlet property="eventName" destination="9V6-Vy-59T" id="SM2-dg-KSs"/>
+                        <outlet property="startTimeField" destination="6GB-b5-YXg" id="XU8-Rl-t9w"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qv4-Xp-JY8" userLabel="First Responder" sceneMemberID="firstResponder"/>

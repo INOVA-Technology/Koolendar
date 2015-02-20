@@ -2,6 +2,7 @@
 
 import UIKit
 import SQLite
+import Foundation
 
 var str = "Hello, playground"
 
@@ -34,21 +35,9 @@ let path = NSSearchPathForDirectoriesInDomains(
 //var error: NSError?
 //fm.removeItemAtPath("\(path)/KoolendarEventsList.sqlite3", error: &error)
 
-let db = Database("\(path)/KoolendarEventsList.sqlite3")
-let events = db["events"]
-let id   = Expression<Int>("id")
-let name = Expression<String>("name")
-let desc = Expression<String>("desc")
+let time = NSDate().timeIntervalSince1970
+let data = NSDate(timeIntervalSince1970: time)
 
-db.create(table: events, ifNotExists: true) { t in
-    t.column(id)
-    t.column(name)
-    t.column(desc)
-}
 
-if let insertId = events.insert(name <- "Konnichiwa", desc <- "BLJAKAHA", id <- events.count) {
-    //            println(events.filter(name == eventName.text))
-}
 
-events.count
 

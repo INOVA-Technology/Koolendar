@@ -15,7 +15,9 @@ class EventForm: UIViewController {
     @IBOutlet weak var eventName: UITextField!
     @IBOutlet weak var eventDesc: UITextField!
     
+    @IBOutlet weak var startTimeField: UIDatePicker!
     
+    @IBOutlet weak var endTimeField: UIDatePicker!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -42,27 +44,8 @@ class EventForm: UIViewController {
     }
     
     @IBAction func addEvent(sender: UIButton) {
-        println("added event")
-        // possibly copied and pasted some of this... don't judge.
-        let path = NSSearchPathForDirectoriesInDomains(
-            .DocumentDirectory, .UserDomainMask, true
-            ).first as String
-        
-        let db = Database("\(path)/KoolendarEventsList.sqlite3")  // name is long so it has a very slim chance of being accessed by other apps
-        let events = db["events"]
-        let id   = Expression<Int>("id")
-        let name = Expression<String>("name")
-        let desc = Expression<String>("desc")
-        
-        db.create(table: events, ifNotExists: true) { t in
-            t.column(id)
-            t.column(name)
-            t.column(desc)
-        }
-        
-        if let insertId = events.insert(name <- eventName.text, desc <- eventDesc.text, id <- events.count) {
-            //            println(events.filter(name == eventName.text))
-        }
+        let em = EventManager()
+        em.addEvent(startDate: startTimeField.date, endDate: endTimeField.date, name: eventName.text, description: eventDesc.text)
         
         for user in events {
             println("name: \(user[name])")
