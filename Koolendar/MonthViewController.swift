@@ -23,6 +23,9 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
     var calendar = NSCalendar.currentCalendar()
     var date = NSDate()
     
+    var comps: NSDateComponents!
+    let formatter = NSDateFormatter()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,9 +40,10 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
         collectionView.collectionViewLayout = layout
 //        collectionView.backgroundColor = ColorScheme.background
         collectionView.backgroundView = UIImageView(image: UIImage(named: "SimpleBg"))
-        var comps = calendar.components(flags, fromDate: date)
-        let formatter = NSDateFormatter()
+        
+        comps = calendar.components(flags, fromDate: date)
         formatter.dateFormat = "MM"
+        
         let todayDate:Array = formatter.monthSymbols
         nameOfMonth.text = String(todayDate[comps.month - 1] as NSString)
     }
@@ -54,11 +58,6 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let dayViewController = DayViewController()
-        var comps = calendar.components(flags, fromDate: date)
-        let formatter = NSDateFormatter()
-        formatter.dateFormat = "MM"
-        let todayDate:Array = formatter.monthSymbols
         
         SelectedDate.day = indexPath.row + 1
         SelectedDate.month = comps.month
@@ -72,12 +71,13 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
         
         if (indexPath.row % 2 == 0 && indexPath.row != day - 1) {
             cell.backgroundColor = UIColor.clearColor()
-        } else if (indexPath.row == day - 1) {
+            cell.theDay.textColor = UIColor.blackColor()
+        } else if (indexPath.row == comps.day - 1) {
             cell.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
             cell.theDay.textColor = UIColor.whiteColor()
         } else {
             cell.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.1)
-            
+            cell.theDay.textColor = UIColor.blackColor()            
             
             
         }
