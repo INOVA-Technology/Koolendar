@@ -16,11 +16,6 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     @IBOutlet weak var theDateText: UILabel!
     
-    var tableData: [String] = ["We", "Heart", "Swift"]
-    var currentDay: Int = 1
-    var currentMonth: String = ""
-    var currentYear: Int = 1970
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.rowHeight = 70;
@@ -28,9 +23,7 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
-        println("faskf;lkasdf;kas \(currentMonth)")
-        
-        theDateText.text = "\(currentMonth) \(currentDay), \(currentYear)"
+        theDateText.text = "\(SelectedDate.month)/\(SelectedDate.day)/\(SelectedDate.year)"
     }
     
     override func didReceiveMemoryWarning() {
@@ -43,8 +36,8 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     @IBAction func eatThis(sender: UIButton) {
-        theDateText.text = "\(currentMonth) \(currentDay), \(currentYear)"
-         println("faskf;lkasdf;kas \(currentMonth)")
+        theDateText.text = "\(SelectedDate.month)/\(SelectedDate.day)/\(SelectedDate.year)"
+         println("faskf;lkasdf;kas \(SelectedDate.month)")
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

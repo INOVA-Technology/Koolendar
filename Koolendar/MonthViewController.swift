@@ -8,6 +8,12 @@
 
 import UIKit
 
+struct SelectedDate {
+    static var day: Int!
+    static var month: Int!
+    static var year: Int!
+}
+
 class MonthViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
     @IBOutlet weak var nameOfMonth: UILabel!
@@ -54,13 +60,9 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
         formatter.dateFormat = "MM"
         let todayDate:Array = formatter.monthSymbols
         
-        dayViewController.currentDay = indexPath.row - 1
-        dayViewController.currentMonth = todayDate[comps.month - 1] as String
-        dayViewController.currentYear = comps.year
-        
-        println("day: \(indexPath.row - 1)")
-        println("month: \(dayViewController.currentMonth)")
-        println("year: \(comps.year)")
+        SelectedDate.day = indexPath.row + 1
+        SelectedDate.month = comps.month
+        SelectedDate.year = comps.year
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
