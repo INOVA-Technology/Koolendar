@@ -44,8 +44,10 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <color key="backgroundColor" red="0.60601482520470984" green="0.83123988027712647" blue="0.85895040760869568" alpha="1" colorSpace="calibratedRGB"/>
+                                        <gestureRecognizers/>
                                         <connections>
                                             <outlet property="theDay" destination="KcF-xO-hgM" id="iR7-IX-7m4"/>
+                                            <outletCollection property="gestureRecognizers" destination="9EJ-uZ-PpI" appends="YES" id="WOJ-Ef-hg4"/>
                                             <segue destination="Gql-jq-uMB" kind="show" id="iL1-HC-bQK"/>
                                         </connections>
                                     </collectionViewCell>
@@ -75,6 +77,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer numberOfTapsRequired="2" id="9EJ-uZ-PpI"/>
             </objects>
             <point key="canvasLocation" x="1025.5" y="69.5"/>
         </scene>

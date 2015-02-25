@@ -18,6 +18,8 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
 
     @IBOutlet weak var nameOfMonth: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    
     let flags: NSCalendarUnit = .DayCalendarUnit | .MonthCalendarUnit | .YearCalendarUnit
 
     var calendar = NSCalendar.currentCalendar()
@@ -48,9 +50,11 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
         nameOfMonth.text = String(todayDate[comps.month - 1] as NSString)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    // MARK: Collection Cell Stuff
+    
+    // its not letting me connect this from the cell's gesture recognizer to this controller in the storyboard
+    @IBAction func previewDate(recognizer: UITapGestureRecognizer) {
+        println("double tapped a date!")
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -58,7 +62,7 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        
+        // TODO: show new DayViewController in here, instead of the storyboard
         SelectedDate.day = indexPath.row + 1
         SelectedDate.month = comps.month
         SelectedDate.year = comps.year
