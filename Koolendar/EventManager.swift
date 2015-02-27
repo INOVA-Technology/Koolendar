@@ -54,8 +54,6 @@ class EventManager {
 
     func addEvent(#name: String, description: String, date: NSDateComponents, startTime: NSDateComponents?, endTime: NSDateComponents?, allDay: Bool) {
         
-        // TODO: make startTime and endTime optionals
-        
         var da_hour_s: Int?
         var da_hour_e: Int?
         var da_min_s: Int?
@@ -108,7 +106,7 @@ class EventManager {
                 endComps.minute = result[endMinute]!
             }
 
-            let event = Event(name: result[name] as String, description: result[desc] as String, date: date, startTime: startComps, endTime: endComps, allDay: result[allDay] as Bool)
+            let event = Event(name: result[name] as String, description: result[desc] as String, date: date, startTime: startComps, endTime: endComps, allDay: result[allDay] as Bool, id: result[id])
             
             eventList.append(event)
         }

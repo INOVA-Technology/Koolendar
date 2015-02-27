@@ -16,6 +16,8 @@ struct SelectedDate {
 
 class MonthViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
+    // MARK: variables and constants
+    
     @IBOutlet weak var nameOfMonth: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -27,6 +29,8 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
     
     var comps: NSDateComponents!
     let formatter = NSDateFormatter()
+    
+    // MARK: da functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +44,6 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
         self.automaticallyAdjustsScrollViewInsets = false
         layout.itemSize = CGSize(width: sizeX/3, height: sizeY/5)
         collectionView.collectionViewLayout = layout
-//        collectionView.backgroundColor = ColorScheme.background
         collectionView.backgroundView = UIImageView(image: UIImage(named: "SimpleBg"))
         
         comps = calendar.components(flags, fromDate: date)
@@ -62,7 +65,7 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        // TODO: show new DayViewController in here, instead of the storyboard
+        // TODO: show new DayViewController in here, instead of in the storyboard
         SelectedDate.day = indexPath.row + 1
         SelectedDate.month = comps.month
         SelectedDate.year = comps.year

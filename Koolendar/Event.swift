@@ -18,7 +18,9 @@ class Event {
     let startTime: NSDateComponents?
     let endTime: NSDateComponents?
     
-    init(name: String, description: String, date: NSDateComponents, startTime: NSDateComponents?, endTime: NSDateComponents?, allDay: Bool) {
+    let id: Int
+    
+    init(name: String, description: String, date: NSDateComponents, startTime: NSDateComponents?, endTime: NSDateComponents?, allDay: Bool, id: Int) {
         
         self.name = name
         desc = description
@@ -26,5 +28,6 @@ class Event {
         self.date = date
         self.startTime = startTime
         self.endTime = endTime
+        self.id = id
     }
 }
