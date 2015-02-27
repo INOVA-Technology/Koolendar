@@ -62,6 +62,8 @@ class EventForm: UIViewController {
         em.addEvent(name: eventName.text, description: eventDesc.text, date: date, startTime: startTime, endTime: endTime, allDay: false)
         
         println("its done been saved bruh")
+        self.navigationController?.popViewControllerAnimated(true)
+
         
     }
     

@@ -75,9 +75,7 @@ class EventManager {
         
         let results = events.filter(self.day == day && self.month == month && self.year == year)
         for result in results {
-//            if !(result[self.day] == day && result[self.month] == month && result[self.year] == year) {
-//                continue
-//            }
+            
             let date = NSDateComponents()
             date.day = day
             date.month = month
