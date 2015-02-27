@@ -36,5 +36,5 @@ let path = NSSearchPathForDirectoriesInDomains(
 //var fm = NSFileManager.defaultManager()
 //var error: NSError?
 //fm.removeItemAtPath("\(path)/KoolendarEventsList.sqlite3", error: &error)
-
+//
 

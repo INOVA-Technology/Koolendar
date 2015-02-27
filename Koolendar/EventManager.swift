@@ -20,10 +20,10 @@ class EventManager {
     let desc = Expression<String>("desc")
     let allDay = Expression<Bool>("allDay")
     
-    let startHour = Expression<Int>("startHour")
-    let endHour   = Expression<Int>("endHour")
-    let startMinute = Expression<Int>("startMinute")
-    let endMinute   = Expression<Int>("endMinute")
+    let startHour = Expression<Int?>("startHour")
+    let endHour   = Expression<Int?>("endHour")
+    let startMinute = Expression<Int?>("startMinute")
+    let endMinute   = Expression<Int?>("endMinute")
     
     let day = Expression<Int>("day")
     let month = Expression<Int>("month")
@@ -52,17 +52,31 @@ class EventManager {
         }
     }
 
-    func addEvent(#name: String, description: String, date: NSDateComponents, startTime: NSDateComponents, endTime: NSDateComponents, allDay: Bool) {
+    func addEvent(#name: String, description: String, date: NSDateComponents, startTime: NSDateComponents?, endTime: NSDateComponents?, allDay: Bool) {
+        
+        // TODO: make startTime and endTime optionals
+        
+        var da_hour_s: Int?
+        var da_hour_e: Int?
+        var da_min_s: Int?
+        var da_min_e: Int?
+        
+        if allDay {
+            da_hour_s = startTime!.hour
+            da_hour_e =   endTime!.hour
+            da_min_s  = startTime!.minute
+            da_min_e  =   endTime!.minute
+        }
         
         if let insertId = events.insert(
             id <- events.count,
             self.name <- name, // self is used here because of the name conflict
             desc <- description,
             self.allDay <- allDay, // self is used here because of the name conflict
-            startHour <- startTime.hour,
-            endHour <- endTime.hour,
-            startMinute <- startTime.minute,
-            endMinute <- endTime.minute,
+            startHour <- da_hour_s,
+            endHour <- da_hour_e,
+            startMinute <- da_min_s,
+            endMinute <- da_min_e,
             day <- date.day,
             month <- date.month,
             year <- date.year) {
@@ -81,13 +95,18 @@ class EventManager {
             date.month = month
             date.year = year
             
-            let startComps = NSDateComponents()
-            startComps.hour = result[startHour]
-            startComps.minute = result[startMinute]
+            var startComps: NSDateComponents?
+            var endComps: NSDateComponents?
             
-            let endComps = NSDateComponents()
-            endComps.hour = result[endHour]
-            endComps.minute = result[endMinute]
+            if result[allDay] {
+                let startComps = NSDateComponents()
+                startComps.hour = result[startHour]!
+                startComps.minute = result[startMinute]!
+                
+                let endComps = NSDateComponents()
+                endComps.hour = result[endHour]!
+                endComps.minute = result[endMinute]!
+            }
 
             let event = Event(name: result[name] as String, description: result[desc] as String, date: date, startTime: startComps, endTime: endComps, allDay: result[allDay] as Bool)
             
