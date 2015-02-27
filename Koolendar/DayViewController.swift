@@ -15,6 +15,7 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     @IBOutlet var tableView: UITableView!
     
     @IBOutlet weak var theDateText: UILabel!
+    var events: [Event]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +23,8 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         self.tableView.backgroundView = UIImageView(image: UIImage(named: "SimpleBg"))
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        
+        events = EventManager().eventsForDay(SelectedDate.day, month: SelectedDate.month, year:SelectedDate.year)
         
         theDateText.text = "\(SelectedDate.month)/\(SelectedDate.day)/\(SelectedDate.year)"
     }
@@ -40,25 +43,29 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
          println("faskf;lkasdf;kas \(SelectedDate.month)")
     }
     
+    @IBAction func whatFreakinEvents(sender: UIButton) {
+        // do we still need this?
+    }
+    
+    // MARK: Table View Stuff
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return EventManager().events.count
+        return events.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("Cell") as UITableViewCell
         
-        let em = EventManager()
         
-        var eventsArray = Array(em.events)
-        cell.textLabel?.text = "\(eventsArray[indexPath.row][em.name]) - \(eventsArray[indexPath.row][em.desc])"
+        let event = events[indexPath.row]
+        
+        cell.textLabel?.text = "\(event.name) - \(event.desc)"
         
         if (indexPath.row % 2 == 0) {
             cell.backgroundColor = UIColor.clearColor()
         } else {
             cell.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
             cell.textLabel?.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0)
-            
-            
         }
         
         return cell
@@ -66,13 +73,6 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
         println(indexPath.row)
-    }
-    
-    
-    
-
-    @IBAction func whatFreakinEvents(sender: UIButton) {
-        // do we still need this?
     }
    
     

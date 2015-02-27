@@ -222,11 +222,6 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Run from zombies" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9V6-Vy-59T">
-                                <rect key="frame" x="16" y="95" width="343" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EFp-6a-RID">
                                 <rect key="frame" x="16" y="141" width="88" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -271,6 +266,11 @@
                                     <action selector="addEvent:" destination="G7n-lz-uBd" eventType="touchUpInside" id="nzX-0M-jq7"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Run from zombies" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9V6-Vy-59T">
+                                <rect key="frame" x="16" y="95" width="343" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>

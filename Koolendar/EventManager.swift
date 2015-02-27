@@ -52,11 +52,7 @@ class EventManager {
         }
     }
 
-    func addEvent(#name: String, description: String, startDate: NSDate, endDate: NSDate, allDay: Bool) {
-        let cal = NSCalendar.currentCalendar()
-        let units: NSCalendarUnit = .CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay | .CalendarUnitHour | .CalendarUnitMinute
-        let startTime = cal.components(units, fromDate: startDate)
-        let endTime = cal.components(units, fromDate: endDate)
+    func addEvent(#name: String, description: String, date: NSDateComponents, startTime: NSDateComponents, endTime: NSDateComponents, allDay: Bool) {
         
         if let insertId = events.insert(
             id <- events.count,
@@ -67,36 +63,35 @@ class EventManager {
             endHour <- endTime.hour,
             startMinute <- startTime.minute,
             endMinute <- endTime.minute,
-            day <- startTime.day,
-            month <- startTime.month,
-            year <- startTime.year) {
+            day <- date.day,
+            month <- date.month,
+            year <- date.year) {
         }
     }
     
-    func getEventsForDay(day: Int, month: Int, year: Int) -> [Event] {
+    func eventsForDay(day: Int, month: Int, year: Int) -> [Event] {
         var eventList = [Event]()
         let cal = NSCalendar.currentCalendar()
         
         let results = events.filter(self.day == day && self.month == month && self.year == year)
         for result in results {
+//            if !(result[self.day] == day && result[self.month] == month && result[self.year] == year) {
+//                continue
+//            }
+            let date = NSDateComponents()
+            date.day = day
+            date.month = month
+            date.year = year
             
             let startComps = NSDateComponents()
-            startComps.day = day
-            startComps.month = month
-            startComps.year = year
             startComps.hour = result[startHour]
             startComps.minute = result[startMinute]
-            let startDate = cal.dateFromComponents(startComps)!
             
             let endComps = NSDateComponents()
-            endComps.day = day
-            endComps.month = month
-            endComps.year = year
             endComps.hour = result[endHour]
             endComps.minute = result[endMinute]
-            let endDate = cal.dateFromComponents(startComps)!
-            
-            let event = Event(name: result[name] as String, description: result[desc] as String, startDate: startDate, endDate: endDate, allDay: result[allDay] as Bool)
+
+            let event = Event(name: result[name] as String, description: result[desc] as String, date: date, startTime: startComps, endTime: endComps, allDay: result[allDay] as Bool)
             
             eventList.append(event)
         }
