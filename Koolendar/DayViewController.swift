@@ -14,6 +14,8 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     @IBOutlet var tableView: UITableView!
     
+    @IBOutlet weak var koolDetails: UILabel!
+
     @IBOutlet weak var theDateText: UILabel!
     var events: [Event]!
     
@@ -27,6 +29,7 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         events = EventManager().eventsForDay(SelectedDate.day, month: SelectedDate.month, year:SelectedDate.year)
         
         theDateText.text = "\(SelectedDate.month)/\(SelectedDate.day)/\(SelectedDate.year)"
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -71,8 +74,24 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         return cell
     }
     
-    func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
-        println(indexPath.row)
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        var cell = tableView.dequeueReusableCellWithIdentifier("Cell") as UITableViewCell
+        
+        let event = events[indexPath.row]
+        
+//        koolDetails.text = event.desc  // jacks function below ⬇︎
+        
+        UIView.animateWithDuration(0.7, delay: 1.0, options: .CurveEaseOut, animations: {
+
+            var theTop = self.tableView.frame
+
+            
+            theTop.origin.y += 250
+            
+            self.tableView.frame.origin.y = theTop.origin.y
+            }, completion: { finished in
+                println("animated bruh")
+        })
     }
    
     
