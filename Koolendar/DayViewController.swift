@@ -62,14 +62,14 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("Cell") as UITableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("eventCell") as EventCell
         
         
         let event = events[indexPath.row]
         
-        cell.textLabel?.text = "\(event.name) - \(event.desc)"
-//        cell.eventTitle.text = event.name
-//        cell.eventDescription.text = event.desc
+//        cell.textLabel?.text = "\(event.name) - \(event.desc)"
+        cell.eventTitle.text = event.name
+        cell.eventDescription.text = event.desc
         
         if (indexPath.row % 2 == 0) {
             cell.backgroundColor = UIColor.clearColor()
