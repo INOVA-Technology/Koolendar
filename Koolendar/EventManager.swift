@@ -113,4 +113,34 @@ class EventManager {
         
         return eventList
     }
+    
+    var allEvents: [Event] {
+        var list = [Event]()
+        for event in events {
+            let id = event[self.id]
+            let name = event[self.name]
+            let desc = event[self.desc]
+            let allDay = event[self.allDay]
+            var startTime: NSDateComponents?
+            var endTime: NSDateComponents?
+            if !allDay {
+                startTime = NSDateComponents()
+                startTime!.hour = event[self.startHour]!
+                startTime!.minute = event[self.startMinute]!
+                
+                endTime = NSDateComponents()
+                endTime!.hour = event[self.endHour]!
+                endTime!.minute = event[self.endMinute]!
+            }
+            let date = NSDateComponents()
+            date.day = event[self.day]
+            date.month = event[self.month]
+            date.year = event[self.year]
+            
+            let event = Event(name: name, description: desc, date: date, startTime: startTime, endTime: endTime, allDay: allDay, id: id)
+            list.append(event)
+        }
+        
+        return list
+    }
 }

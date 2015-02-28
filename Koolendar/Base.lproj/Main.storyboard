@@ -265,7 +265,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="5" translatesAutoresizingMaskIntoConstraints="NO" id="6GB-b5-YXg">
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="6GB-b5-YXg">
                                 <rect key="frame" x="0.0" y="245" width="375" height="162"/>
                                 <date key="date" timeIntervalSinceReferenceDate="445289115.71414101">
                                     <!--2015-02-10 19:25:15 +0000-->
@@ -277,7 +277,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="5" translatesAutoresizingMaskIntoConstraints="NO" id="Tl8-eY-Vlk">
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Tl8-eY-Vlk">
                                 <rect key="frame" x="0.0" y="452" width="375" height="162"/>
                                 <date key="date" timeIntervalSinceReferenceDate="445289115.71414101">
                                     <!--2015-02-10 19:25:15 +0000-->

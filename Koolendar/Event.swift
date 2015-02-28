@@ -30,4 +30,20 @@ class Event {
         self.endTime = endTime
         self.id = id
     }
+    
+    var startDate: NSDate {
+        
+        let newComps = NSDateComponents()
+        newComps.day = date.day
+        newComps.month = date.month
+        newComps.year = date.year
+        
+        if allDay {
+            newComps.hour = startTime!.hour
+            newComps.minute = startTime!.minute
+        }
+        
+        let cal = NSCalendar.currentCalendar()
+        return cal.dateFromComponents(newComps)!
+    }
 }
