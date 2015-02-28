@@ -14,14 +14,17 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     @IBOutlet var tableView: UITableView!
     
-    @IBOutlet weak var koolDetails: UILabel!
 
     @IBOutlet weak var theDateText: UILabel!
     var events: [Event]!
     
+    var selectedCellIndexPath: NSIndexPath?
+    
+    let SelectedCellHeight: CGFloat = 200.0
+    let UnselectedCellHeight: CGFloat = 70.0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.rowHeight = 70;
         self.tableView.backgroundView = UIImageView(image: UIImage(named: "SimpleBg"))
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
@@ -29,6 +32,8 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         events = EventManager().eventsForDay(SelectedDate.day, month: SelectedDate.month, year:SelectedDate.year)
         
         theDateText.text = "\(SelectedDate.month)/\(SelectedDate.day)/\(SelectedDate.year)"
+        
+        
         
     }
     
@@ -63,6 +68,8 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         let event = events[indexPath.row]
         
         cell.textLabel?.text = "\(event.name) - \(event.desc)"
+//        cell.eventTitle.text = event.name
+//        cell.eventDescription.text = event.desc
         
         if (indexPath.row % 2 == 0) {
             cell.backgroundColor = UIColor.clearColor()
@@ -74,24 +81,27 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var cell = tableView.dequeueReusableCellWithIdentifier("Cell") as UITableViewCell
-        
-        let event = events[indexPath.row]
-        
-//        koolDetails.text = event.desc  // jacks function below ⬇︎
-        
-        UIView.animateWithDuration(0.7, delay: 1.0, options: .CurveEaseOut, animations: {
-
-            var theTop = self.tableView.frame
-
-            
-            theTop.origin.y += 250
-            
-            self.tableView.frame.origin.y = theTop.origin.y
-            }, completion: { finished in
-                println("animated bruh")
-        })
+    func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+        if let selectedCellIndexPath = selectedCellIndexPath {
+            if selectedCellIndexPath == indexPath {
+                self.selectedCellIndexPath = nil
+            } else {
+                self.selectedCellIndexPath = indexPath
+            }
+        } else {
+            selectedCellIndexPath = indexPath
+        }
+        tableView.beginUpdates()
+        tableView.endUpdates()
+    }
+    
+    func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
+        if let selectedCellIndexPath = selectedCellIndexPath {
+            if selectedCellIndexPath == indexPath {
+                return SelectedCellHeight
+            }
+        }
+        return UnselectedCellHeight
     }
    
     
