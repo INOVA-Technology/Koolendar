@@ -120,6 +120,12 @@
                                     <action selector="goBack:" destination="Gql-jq-uMB" eventType="touchUpInside" id="HTE-UK-5to"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chaseuary 1, 1970" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7oX-dC-OE7">
+                                <rect key="frame" x="116" y="66" width="144" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="167" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="I8X-us-dVo">
                                 <rect key="frame" x="0.0" y="103" width="375" height="564"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -130,24 +136,33 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fn1-FO-i0a" id="77J-e1-I8E">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ybR-vv-3h3">
-                                                    <rect key="frame" x="8" y="8" width="33" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ybR-vv-3h3">
+                                                    <rect key="frame" x="8" y="8" width="276" height="27"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DtU-8o-xSc">
-                                                    <rect key="frame" x="8" y="37" width="88" height="21"/>
+                                                    <rect key="frame" x="8" y="43" width="88" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12:00-12:10" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NhW-QZ-OPN">
+                                                    <rect key="frame" x="284" y="9" width="83" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="ybR-vv-3h3" firstAttribute="leading" secondItem="77J-e1-I8E" secondAttribute="leadingMargin" id="1uz-4i-Eoi"/>
+                                                <constraint firstItem="NhW-QZ-OPN" firstAttribute="trailing" secondItem="77J-e1-I8E" secondAttribute="trailingMargin" id="84V-qh-Arm"/>
                                                 <constraint firstItem="ybR-vv-3h3" firstAttribute="top" secondItem="77J-e1-I8E" secondAttribute="topMargin" id="Gwh-6W-nyP"/>
                                                 <constraint firstItem="DtU-8o-xSc" firstAttribute="top" secondItem="ybR-vv-3h3" secondAttribute="bottom" constant="8" id="HxW-AV-fNs"/>
+                                                <constraint firstItem="NhW-QZ-OPN" firstAttribute="leading" secondItem="ybR-vv-3h3" secondAttribute="trailing" id="ecQ-YG-MlT"/>
                                                 <constraint firstItem="DtU-8o-xSc" firstAttribute="leading" secondItem="77J-e1-I8E" secondAttribute="leadingMargin" id="gIB-fX-l0M"/>
+                                                <constraint firstItem="NhW-QZ-OPN" firstAttribute="top" secondItem="77J-e1-I8E" secondAttribute="topMargin" constant="1" id="weE-ch-a74"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -161,12 +176,6 @@
                                     <outlet property="delegate" destination="Gql-jq-uMB" id="cBF-5a-iF2"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chaseuary 1, 1970" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7oX-dC-OE7">
-                                <rect key="frame" x="116" y="66" width="144" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -191,7 +200,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EZr-GR-SYe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1631.5" y="109.5"/>
+            <point key="canvasLocation" x="1631.5" y="107.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="YD6-tG-x0B">
