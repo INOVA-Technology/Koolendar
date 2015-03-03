@@ -38,7 +38,7 @@ class Event {
         newComps.month = date.month
         newComps.year = date.year
         
-        if allDay {
+        if !allDay {
             newComps.hour = startTime!.hour
             newComps.minute = startTime!.minute
         }

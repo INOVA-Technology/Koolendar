@@ -44,7 +44,6 @@ class EventForm: UIViewController {
     }
     
     @IBAction func addEvent(sender: UIButton) {
-        println(startTimeField)
         let em = EventManager()
         
         let units: NSCalendarUnit = .CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay | .CalendarUnitHour | .CalendarUnitMinute
@@ -64,7 +63,6 @@ class EventForm: UIViewController {
         
         em.addEvent(name: eventName.text, description: eventDesc.text, date: date, startTime: startTime, endTime: endTime, allDay: false)
         
-        println("its done been saved bruh")
         self.navigationController?.popViewControllerAnimated(true)
 
         

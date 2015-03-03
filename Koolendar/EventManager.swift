@@ -58,18 +58,13 @@ class EventManager {
         var da_hour_e: Int?
         var da_min_s: Int?
         var da_min_e: Int?
-        println(startTime!.hour)
-        println(startTime!.minute)
-        if allDay == false {
-            println("yes")
+        
+        if !allDay {
             da_hour_s = startTime!.hour
             da_hour_e =   endTime!.hour
             da_min_s  = startTime!.minute
             da_min_e  =   endTime!.minute
-        } else {
-            println("no")
         }
-        println("sjdflksndflkandflkaslfdknalksdflkadflkasdf;lkasdklfas\(da_min_s)")
         
         if let insertId = events.insert(
             id <- events.count,
@@ -84,12 +79,6 @@ class EventManager {
             month <- date.month,
             year <- date.year) {
         }
-        for event in events {
-            println("allday?:\(event[self.allDay])")
-            println("start times?: \(event[startHour]!)")
-            
-        }
-        println("lets hope it works\(startTime?.hour)")
     }
     
     func eventsForDay(day: Int, month: Int, year: Int) -> [Event] {
@@ -107,14 +96,14 @@ class EventManager {
             var startComps: NSDateComponents?
             var endComps: NSDateComponents?
             
-            if result[allDay] {
-                let startComps = NSDateComponents()
-                startComps.hour = result[startHour]!
-                startComps.minute = result[startMinute]!
+            if !result[allDay] {
+                startComps = NSDateComponents()
+                startComps!.hour = result[startHour]!
+                startComps!.minute = result[startMinute]!
                 
-                let endComps = NSDateComponents()
-                endComps.hour = result[endHour]!
-                endComps.minute = result[endMinute]!
+                endComps = NSDateComponents()
+                endComps!.hour = result[endHour]!
+                endComps!.minute = result[endMinute]!
             }
 
             let event = Event(name: result[name] as String, description: result[desc] as String, date: date, startTime: startComps, endTime: endComps, allDay: result[allDay] as Bool, id: result[id])

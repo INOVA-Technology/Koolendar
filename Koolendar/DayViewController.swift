@@ -48,7 +48,6 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     @IBAction func eatThis(sender: UIButton) {
         theDateText.text = "\(SelectedDate.month)/\(SelectedDate.day)/\(SelectedDate.year)"
-         println("faskf;lkasdf;kas \(SelectedDate.month)")
     }
     
     @IBAction func whatFreakinEvents(sender: UIButton) {
@@ -69,9 +68,11 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         cell.eventTitle.text = event.name
         cell.eventDescription.text = event.desc
-        cell.eventTime.text = "\(event.startTime?.hour):\(event.startTime?.minute)-\(event.endTime?.hour):\(event.endTime?.minute)"
-        println("my super duper cool life\(event.startTime?.hour)")
-
+        if event.allDay {
+            cell.eventTime.text = "All day"
+        } else {
+            cell.eventTime.text = "\(event.startTime!.hour):\(event.startTime!.minute)-\(event.endTime!.hour):\(event.endTime!.minute)"
+        }
         
         if (indexPath.row % 2 == 0) {
             cell.backgroundColor = UIColor.clearColor()

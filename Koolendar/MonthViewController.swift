@@ -51,11 +51,12 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
         
         let todayDate:Array = formatter.monthSymbols
         nameOfMonth.text = String(todayDate[comps.month - 1] as NSString)
-    
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "scheduleNotifications", name: "scheduleNotifications", object: nil)
     }
     
     func scheduleNotifications() {
+        // TODO: get notifications working
         let em = EventManager()
         for event in em.allEvents {
             let notification = UILocalNotification()
