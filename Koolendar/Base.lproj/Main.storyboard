@@ -167,6 +167,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="eventDescription" destination="DtU-8o-xSc" id="Lrh-v3-QyH"/>
+                                            <outlet property="eventTime" destination="NhW-QZ-OPN" id="EOJ-Qr-NJN"/>
                                             <outlet property="eventTitle" destination="ybR-vv-3h3" id="TPw-A4-0jl"/>
                                         </connections>
                                     </tableViewCell>

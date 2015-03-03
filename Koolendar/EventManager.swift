@@ -58,27 +58,38 @@ class EventManager {
         var da_hour_e: Int?
         var da_min_s: Int?
         var da_min_e: Int?
-        
-        if allDay {
+        println(startTime!.hour)
+        println(startTime!.minute)
+        if allDay == false {
+            println("yes")
             da_hour_s = startTime!.hour
             da_hour_e =   endTime!.hour
             da_min_s  = startTime!.minute
             da_min_e  =   endTime!.minute
+        } else {
+            println("no")
         }
+        println("sjdflksndflkandflkaslfdknalksdflkadflkasdf;lkasdklfas\(da_min_s)")
         
         if let insertId = events.insert(
             id <- events.count,
             self.name <- name, // self is used here because of the name conflict
             desc <- description,
             self.allDay <- allDay, // self is used here because of the name conflict
-            startHour <- da_hour_s,
+            self.startHour <- da_hour_s,
             endHour <- da_hour_e,
-            startMinute <- da_min_s,
+            self.startMinute <- da_min_s,
             endMinute <- da_min_e,
             day <- date.day,
             month <- date.month,
             year <- date.year) {
         }
+        for event in events {
+            println("allday?:\(event[self.allDay])")
+            println("start times?: \(event[startHour]!)")
+            
+        }
+        println("lets hope it works\(startTime?.hour)")
     }
     
     func eventsForDay(day: Int, month: Int, year: Int) -> [Event] {
@@ -123,10 +134,12 @@ class EventManager {
             let allDay = event[self.allDay]
             var startTime: NSDateComponents?
             var endTime: NSDateComponents?
+            
             if !allDay {
                 startTime = NSDateComponents()
                 startTime!.hour = event[self.startHour]!
                 startTime!.minute = event[self.startMinute]!
+                
                 
                 endTime = NSDateComponents()
                 endTime!.hour = event[self.endHour]!
@@ -139,6 +152,7 @@ class EventManager {
             
             let event = Event(name: name, description: desc, date: date, startTime: startTime, endTime: endTime, allDay: allDay, id: id)
             list.append(event)
+            
         }
         
         return list

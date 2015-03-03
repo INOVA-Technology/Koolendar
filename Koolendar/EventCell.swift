@@ -12,5 +12,6 @@ class EventCell: UITableViewCell {
 
     @IBOutlet weak var eventTitle: UILabel!
     @IBOutlet weak var eventDescription: UILabel!
-
+    @IBOutlet weak var eventTime: UILabel!
+    
 }

@@ -54,6 +54,9 @@ class EventForm: UIViewController {
         let startTime = cal.components(units, fromDate: startTimeField.date)
         let endTime   = cal.components(units, fromDate:   endTimeField.date)
         
+        println("life:\(startTime.minute)")
+
+        
         let date = NSDateComponents()
         date.day = SelectedDate.day
         date.month = SelectedDate.month

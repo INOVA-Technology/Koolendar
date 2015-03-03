@@ -33,7 +33,7 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         theDateText.text = "\(SelectedDate.month)/\(SelectedDate.day)/\(SelectedDate.year)"
         
-        
+        self.tableView.reloadData()
         
     }
     
@@ -67,9 +67,11 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         let event = events[indexPath.row]
         
-//        cell.textLabel?.text = "\(event.name) - \(event.desc)"
         cell.eventTitle.text = event.name
         cell.eventDescription.text = event.desc
+        cell.eventTime.text = "\(event.startTime?.hour):\(event.startTime?.minute)-\(event.endTime?.hour):\(event.endTime?.minute)"
+        println("my super duper cool life\(event.startTime?.hour)")
+
         
         if (indexPath.row % 2 == 0) {
             cell.backgroundColor = UIColor.clearColor()
