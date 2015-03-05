@@ -31,7 +31,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidEnterBackground(application: UIApplication) {
-        NSNotificationCenter.defaultCenter().postNotificationName("scheduleNotifications", object: nil)
     }
     
     func applicationWillEnterForeground(application: UIApplication) {

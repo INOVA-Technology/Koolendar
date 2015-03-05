@@ -21,6 +21,16 @@ class EventForm: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let comps = NSDateComponents()
+        comps.day = SelectedDate.day
+        comps.month = SelectedDate.month
+        comps.year = SelectedDate.year
+        
+        let cal = NSCalendar.currentCalendar()
+        let date = cal.dateFromComponents(comps)!
+        
+        startTimeField.date = date
+        endTimeField.date = date
         // Do any additional setup after loading the view.
     }
     
@@ -44,28 +54,11 @@ class EventForm: UIViewController {
     }
     
     @IBAction func addEvent(sender: UIButton) {
-        let em = EventManager()
+        let em = EventManager.sharedInstance
         
-        let units: NSCalendarUnit = .CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay | .CalendarUnitHour | .CalendarUnitMinute
-        
-        let cal = NSCalendar.currentCalendar()
-        
-        let startTime = cal.components(units, fromDate: startTimeField.date)
-        let endTime   = cal.components(units, fromDate:   endTimeField.date)
-        
-        println("life:\(startTime.minute)")
-
-        
-        let date = NSDateComponents()
-        date.day = SelectedDate.day
-        date.month = SelectedDate.month
-        date.year = SelectedDate.year
-        
-        em.addEvent(name: eventName.text, description: eventDesc.text, date: date, startTime: startTime, endTime: endTime, allDay: false)
+        em.addEvent(title: eventName.text, notes: eventDesc.text, startDate: startTimeField.date, endDate: endTimeField.date)
         
         self.navigationController?.popViewControllerAnimated(true)
-
-        
     }
     
 }

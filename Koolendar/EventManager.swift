@@ -7,143 +7,65 @@
 //
 
 import Foundation
-import SQLite
+import EventKit
 
 class EventManager {
     
-    let db: Database
-    let events: Query
+    let store = EKEventStore()
+    let access: EKAuthorizationStatus
     
-    let id   = Expression<Int>("id")
-    let name = Expression<String>("name")
-    
-    let desc = Expression<String>("desc")
-    let allDay = Expression<Bool>("allDay")
-    
-    let startHour = Expression<Int?>("startHour")
-    let endHour   = Expression<Int?>("endHour")
-    let startMinute = Expression<Int?>("startMinute")
-    let endMinute   = Expression<Int?>("endMinute")
-    
-    let day = Expression<Int>("day")
-    let month = Expression<Int>("month")
-    let year = Expression<Int>("year")
+    class var sharedInstance: EventManager {
+        struct Static {
+            static let instance: EventManager = EventManager()
+        }
+        return Static.instance
+    }
     
     init() {
-        
-        let path = NSSearchPathForDirectoriesInDomains(
-            .DocumentDirectory, .UserDomainMask, true).first as String
-        
-        db = Database("\(path)/KoolendarEventsList.sqlite3")
-        events = db["events"]
-        
-        db.create(table: events, ifNotExists: true) { t in
-            t.column(self.id)
-            t.column(self.name)
-            t.column(self.desc)
-            t.column(self.allDay)
-            t.column(self.startHour)
-            t.column(self.endHour)
-            t.column(self.startMinute)
-            t.column(self.endMinute)
-            t.column(self.day)
-            t.column(self.month)
-            t.column(self.year)
+        access = EKEventStore.authorizationStatusForEntityType(EKEntityTypeEvent)
+        if access == .NotDetermined {
+            store.requestAccessToEntityType(EKEntityTypeEvent, completion: {
+                gotAccess, error in
+            })
         }
     }
 
-    func addEvent(#name: String, description: String, date: NSDateComponents, startTime: NSDateComponents?, endTime: NSDateComponents?, allDay: Bool) {
+    func addEvent(#title: String, notes: String?, startDate: NSDate, endDate: NSDate?) {
+        let event = EKEvent(eventStore: store)
+        event.calendar = store.defaultCalendarForNewEvents
+        event.startDate = startDate
+        event.title = title
         
-        var da_hour_s: Int?
-        var da_hour_e: Int?
-        var da_min_s: Int?
-        var da_min_e: Int?
-        
-        if !allDay {
-            da_hour_s = startTime!.hour
-            da_hour_e =   endTime!.hour
-            da_min_s  = startTime!.minute
-            da_min_e  =   endTime!.minute
+        if notes != nil {
+            event.notes = notes
         }
         
-        if let insertId = events.insert(
-            id <- events.count,
-            self.name <- name, // self is used here because of the name conflict
-            desc <- description,
-            self.allDay <- allDay, // self is used here because of the name conflict
-            self.startHour <- da_hour_s,
-            endHour <- da_hour_e,
-            self.startMinute <- da_min_s,
-            endMinute <- da_min_e,
-            day <- date.day,
-            month <- date.month,
-            year <- date.year) {
+        if endDate != nil {
+            event.endDate = endDate
         }
+        
+        store.saveEvent(event, span: EKSpanThisEvent, commit: true, error: nil)
     }
     
-    func eventsForDay(day: Int, month: Int, year: Int) -> [Event] {
-        var eventList = [Event]()
+    func eventsForDay(day: Int, month: Int, year: Int) -> [EKEvent]? {
         let cal = NSCalendar.currentCalendar()
         
-        let results = events.filter(self.day == day && self.month == month && self.year == year)
-        for result in results {
-            
-            let date = NSDateComponents()
-            date.day = day
-            date.month = month
-            date.year = year
-            
-            var startComps: NSDateComponents?
-            var endComps: NSDateComponents?
-            
-            if !result[allDay] {
-                startComps = NSDateComponents()
-                startComps!.hour = result[startHour]!
-                startComps!.minute = result[startMinute]!
-                
-                endComps = NSDateComponents()
-                endComps!.hour = result[endHour]!
-                endComps!.minute = result[endMinute]!
-            }
-
-            let event = Event(name: result[name] as String, description: result[desc] as String, date: date, startTime: startComps, endTime: endComps, allDay: result[allDay] as Bool, id: result[id])
-            
-            eventList.append(event)
+        let startComps = NSDateComponents()
+        startComps.day = day
+        startComps.month = month
+        startComps.year = year
+        let startDate = cal.dateFromComponents(startComps)
+        
+        if startDate == nil {
+            return nil
         }
         
-        return eventList
-    }
-    
-    var allEvents: [Event] {
-        var list = [Event]()
-        for event in events {
-            let id = event[self.id]
-            let name = event[self.name]
-            let desc = event[self.desc]
-            let allDay = event[self.allDay]
-            var startTime: NSDateComponents?
-            var endTime: NSDateComponents?
-            
-            if !allDay {
-                startTime = NSDateComponents()
-                startTime!.hour = event[self.startHour]!
-                startTime!.minute = event[self.startMinute]!
-                
-                
-                endTime = NSDateComponents()
-                endTime!.hour = event[self.endHour]!
-                endTime!.minute = event[self.endMinute]!
-            }
-            let date = NSDateComponents()
-            date.day = event[self.day]
-            date.month = event[self.month]
-            date.year = event[self.year]
-            
-            let event = Event(name: name, description: desc, date: date, startTime: startTime, endTime: endTime, allDay: allDay, id: id)
-            list.append(event)
-            
-        }
+        let endComps = NSDateComponents()
+        endComps.day = 1
+        let endDate = cal.dateByAddingComponents(endComps, toDate: startDate!, options: nil)
         
-        return list
+        let predicate = store.predicateForEventsWithStartDate(startDate!, endDate: endDate!, calendars: nil)
+        
+        return store.eventsMatchingPredicate(predicate) as? [EKEvent]
     }
 }

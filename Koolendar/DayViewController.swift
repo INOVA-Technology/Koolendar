@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreData
-import SQLite
+import EventKit
 
 class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -16,7 +16,7 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
 
     @IBOutlet weak var theDateText: UILabel!
-    var events: [Event]!
+    var events = [EKEvent]()
     
     var selectedCellIndexPath: NSIndexPath?
     
@@ -29,7 +29,7 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
-        events = EventManager().eventsForDay(SelectedDate.day, month: SelectedDate.month, year:SelectedDate.year)
+        events = EventManager.sharedInstance.eventsForDay(SelectedDate.day, month: SelectedDate.month, year: SelectedDate.year)!
         
         theDateText.text = "\(SelectedDate.month)/\(SelectedDate.day)/\(SelectedDate.year)"
         
@@ -67,12 +67,18 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         let event = events[indexPath.row]
         
-        cell.eventTitle.text = event.name
-        cell.eventDescription.text = event.desc
+        cell.eventTitle.text = event.title
+        cell.eventDescription.text = event.notes
         if event.allDay {
             cell.eventTime.text = "All day"
         } else {
-            cell.eventTime.text = "\(event.startTime!.hour):\(event.startTime!.minute)-\(event.endTime!.hour):\(event.endTime!.minute)"
+            let cal = NSCalendar.currentCalendar()
+            let units: NSCalendarUnit = .HourCalendarUnit | .MinuteCalendarUnit
+            
+            let startComps = cal.components(units, fromDate: event.startDate)
+            let endComps = cal.components(units, fromDate: event.endDate)
+            
+            cell.eventTime.text = "\(startComps.hour):\(startComps.minute)-\(endComps.hour):\(endComps.minute)"
         }
         
         if (indexPath.row % 2 == 0) {

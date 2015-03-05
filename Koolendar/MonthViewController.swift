@@ -51,9 +51,6 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
         
         let todayDate:Array = formatter.monthSymbols
         nameOfMonth.text = String(todayDate[comps.month - 1] as NSString)
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "scheduleNotifications", name: "scheduleNotifications", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateCellSizes", name: UIDeviceOrientationDidChangeNotification, object: nil)
     }
     
     override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
@@ -65,32 +62,6 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
         layout.itemSize = CGSize(width: sizeX / 7, height: sizeY / 7)
         
         layout.invalidateLayout()
-    }
-    
-    func updateCellSizes() {
-//        let screenSize = UIScreen.mainScreen().bounds
-//        let sizeX = screenSize.width
-//        let sizeY = screenSize.height
-//        
-//        let layout = collectionView.collectionViewLayout as UICollectionViewFlowLayout
-//        layout.itemSize = CGSize(width: sizeX / 7, height: sizeY / 7)
-//        
-//        layout.invalidateLayout()
-    }
-    
-    func scheduleNotifications() {
-        // TODO: get notifications working
-        let em = EventManager()
-        for event in em.allEvents {
-            let notification = UILocalNotification()
-            
-            notification.alertBody = event.name
-            notification.fireDate = event.startDate
-            notification.timeZone = NSTimeZone.defaultTimeZone()
-            notification.soundName = UILocalNotificationDefaultSoundName
-            
-            UIApplication.sharedApplication().scheduleLocalNotification(notification)
-        }
     }
     
     // MARK: Collection Cell Stuff
