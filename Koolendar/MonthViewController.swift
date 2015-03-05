@@ -42,7 +42,7 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
         self.automaticallyAdjustsScrollViewInsets = false
-        layout.itemSize = CGSize(width: sizeX/3, height: sizeY/5)
+        layout.itemSize = CGSize(width: sizeX/7, height: sizeX/7)
         collectionView.collectionViewLayout = layout
         collectionView.backgroundView = UIImageView(image: UIImage(named: "SimpleBg"))
         

@@ -52,6 +52,7 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     @IBAction func whatFreakinEvents(sender: UIButton) {
         // do we still need this?
+        // no
     }
     
     // MARK: Table View Stuff
