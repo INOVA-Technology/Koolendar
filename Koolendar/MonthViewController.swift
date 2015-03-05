@@ -53,6 +53,29 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
         nameOfMonth.text = String(todayDate[comps.month - 1] as NSString)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "scheduleNotifications", name: "scheduleNotifications", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateCellSizes", name: UIDeviceOrientationDidChangeNotification, object: nil)
+    }
+    
+    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
+        let screenSize = UIScreen.mainScreen().bounds
+        let sizeX = screenSize.width
+        let sizeY = screenSize.height
+        
+        let layout = collectionView.collectionViewLayout as UICollectionViewFlowLayout
+        layout.itemSize = CGSize(width: sizeX / 7, height: sizeY / 7)
+        
+        layout.invalidateLayout()
+    }
+    
+    func updateCellSizes() {
+//        let screenSize = UIScreen.mainScreen().bounds
+//        let sizeX = screenSize.width
+//        let sizeY = screenSize.height
+//        
+//        let layout = collectionView.collectionViewLayout as UICollectionViewFlowLayout
+//        layout.itemSize = CGSize(width: sizeX / 7, height: sizeY / 7)
+//        
+//        layout.invalidateLayout()
     }
     
     func scheduleNotifications() {
