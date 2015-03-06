@@ -105,6 +105,16 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         tableView.endUpdates()
     }
     
+    func tableView(tableView: UITableView!, canEditRowAtIndexPath indexPath: NSIndexPath!) -> Bool {
+        return true
+    }
+    
+    func tableView(tableView: UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath!) {
+        if (editingStyle == UITableViewCellEditingStyle.Delete) {
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        }
+    }
+    
     func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
         if let selectedCellIndexPath = selectedCellIndexPath {
             if selectedCellIndexPath == indexPath {

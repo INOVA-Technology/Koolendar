@@ -61,11 +61,15 @@ class EventManager {
         }
         
         let endComps = NSDateComponents()
-        endComps.day = 1
+        endComps.day = day + 1
         let endDate = cal.dateByAddingComponents(endComps, toDate: startDate!, options: nil)
+ 
+        if endDate == nil {
+            return nil
+        }
         
-        let predicate = store.predicateForEventsWithStartDate(startDate!, endDate: endDate!, calendars: nil)
-        
+        let predicate = store.predicateForEventsWithStartDate(startDate, endDate: endDate, calendars: nil)
+        println(predicate)
         return store.eventsMatchingPredicate(predicate) as? [EKEvent]
     }
 }
