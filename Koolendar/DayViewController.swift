@@ -29,7 +29,11 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
-        events = EventManager.sharedInstance.eventsForDay(SelectedDate.day, month: SelectedDate.month, year: SelectedDate.year)!
+        if let results = EventManager.sharedInstance.eventsForDay(SelectedDate.day, month: SelectedDate.month, year: SelectedDate.year) {
+            events = results
+        } else {
+            events = []
+        }
         
         theDateText.text = "\(SelectedDate.month)/\(SelectedDate.day)/\(SelectedDate.year)"
         
