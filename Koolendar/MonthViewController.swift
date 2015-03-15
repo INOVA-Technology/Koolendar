@@ -44,8 +44,8 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
         self.automaticallyAdjustsScrollViewInsets = false
         layout.itemSize = CGSize(width: sizeX/7, height: sizeX/7)
         collectionView.collectionViewLayout = layout
-        collectionView.backgroundView = UIImageView(image: UIImage(named: "SimpleBg"))
-        
+//        collectionView.backgroundView = UIImageView(image: UIImage(named: "SimpleBg"))
+        collectionView.backgroundColor = ColorScheme.background
         comps = calendar.components(flags, fromDate: date)
         formatter.dateFormat = "MM"
         
@@ -88,13 +88,13 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
         let day = calendar.components(.DayCalendarUnit, fromDate: date).day
         
         if (indexPath.row % 2 == 0 && indexPath.row != day - 1) {
-            cell.backgroundColor = UIColor.clearColor()
-            cell.theDay.textColor = UIColor.blackColor()
+            cell.backgroundColor = ColorScheme.dayCell
+            cell.theDay.textColor = UIColor.whiteColor()
         } else if (indexPath.row == comps.day - 1) {
-            cell.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
+            cell.backgroundColor = ColorScheme.currentDayCell
             cell.theDay.textColor = UIColor.whiteColor()
         } else {
-            cell.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.1)
+            cell.backgroundColor = ColorScheme.dayCell2
             cell.theDay.textColor = UIColor.blackColor()            
             
             

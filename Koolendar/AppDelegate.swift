@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        ColorScheme.currentTheme = .Blue
+        ColorScheme.currentTheme = .Dark
         
         let settings = UIUserNotificationSettings(forTypes: .Alert | .Sound | .Badge, categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(settings)

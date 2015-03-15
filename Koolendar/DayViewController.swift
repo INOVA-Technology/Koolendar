@@ -25,7 +25,7 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.backgroundView = UIImageView(image: UIImage(named: "SimpleBg"))
+        self.tableView.backgroundColor = ColorScheme.background
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         

@@ -10,12 +10,12 @@ import Foundation
 import UIKit
 
 enum ColorForScheme {
-    case Blue
+    case Dark
 }
 
 struct ColorScheme {
     
-    static var currentTheme: ColorForScheme = .Blue
+    static var currentTheme: ColorForScheme = .Dark
 
     
     // change these awful colors to something aestheticly pleasing
@@ -23,22 +23,29 @@ struct ColorScheme {
     
     static var background: UIColor {
         switch currentTheme {
-        case .Blue:
-            return UIColor.darkGrayColor()
+        case .Dark:
+            return UIColor.blackColor().colorWithAlphaComponent(0.9)
         }
     }
     
     static var dayCell: UIColor {
         switch currentTheme {
-        case .Blue:
-            return UIColor.cyanColor()
+        case .Dark:
+            return UIColor.blackColor().colorWithAlphaComponent(0.4)
+        }
+    }
+    
+    static var dayCell2: UIColor {
+        switch currentTheme {
+        case .Dark:
+            return UIColor.whiteColor().colorWithAlphaComponent(0.1)
         }
     }
     
     static var currentDayCell: UIColor {
         switch currentTheme {
-        case .Blue:
-            return UIColor.blueColor()
+        case .Dark:
+            return UIColor(red: 128/255, green: 219/255, blue: 255/255, alpha: 0.7)
         }
     }
     
