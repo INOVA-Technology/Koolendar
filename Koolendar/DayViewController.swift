@@ -127,6 +127,5 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         }
         return UnselectedCellHeight
     }
-   
     
 }

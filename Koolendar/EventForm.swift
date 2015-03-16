@@ -53,12 +53,18 @@ class EventForm: UIViewController {
         self.view.endEditing(true)
     }
     
+    
+    
     @IBAction func addEvent(sender: UIButton) {
         let em = EventManager.sharedInstance
         
         em.addEvent(title: eventName.text, notes: eventDesc.text, startDate: startTimeField.date, endDate: endTimeField.date)
         
-        self.navigationController?.popViewControllerAnimated(true)
+//        self.navigationController?.presentViewController(MonthViewController(), animated: true, completion: nil)
+        if let resultController = storyboard?.instantiateViewControllerWithIdentifier("DayView") as? DayViewController {
+            presentViewController(resultController, animated: true, completion: nil)
+        }
+        
     }
     
 }

@@ -8,7 +8,7 @@
         <!--Month View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="MonthViewController" customModule="Koolendar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MonthView" id="vXZ-lx-hvc" customClass="MonthViewController" customModule="Koolendar" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -93,12 +93,12 @@
         <!--Day View Controller-->
         <scene sceneID="7Zr-D8-xR7">
             <objects>
-                <viewController id="Gql-jq-uMB" customClass="DayViewController" customModule="Koolendar" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DayView" id="Gql-jq-uMB" customClass="DayViewController" customModule="Koolendar" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="sQZ-YO-Res"/>
                         <viewControllerLayoutGuide type="bottom" id="lRX-F1-Nyf"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="vSI-ZL-EEW">
+                    <view key="view" contentMode="scaleToFill" restorationIdentifier="DayView" id="vSI-ZL-EEW">
                         <rect key="frame" x="1" y="93" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -117,7 +117,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="goBack:" destination="Gql-jq-uMB" eventType="touchUpInside" id="HTE-UK-5to"/>
+                                    <segue destination="vXZ-lx-hvc" kind="show" id="B4R-80-oTB"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chaseuary 1, 1970" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7oX-dC-OE7">
@@ -201,7 +201,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EZr-GR-SYe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1631.5" y="107.5"/>
+            <point key="canvasLocation" x="1559.5" y="48.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="YD6-tG-x0B">
@@ -376,4 +376,7 @@
             <point key="canvasLocation" x="2257.5" y="153.5"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="B4R-80-oTB"/>
+    </inferredMetricsTieBreakers>
 </document>
