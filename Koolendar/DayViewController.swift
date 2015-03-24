@@ -86,9 +86,9 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         }
         
         if (indexPath.row % 2 == 0) {
-            cell.backgroundColor = UIColor.clearColor()
+            cell.backgroundColor = ColorScheme.dayCell
         } else {
-            cell.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
+            cell.backgroundColor = ColorScheme.dayCell2
             cell.textLabel?.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0)
         }
         

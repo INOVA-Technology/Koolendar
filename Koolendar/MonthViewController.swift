@@ -30,6 +30,8 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
     var comps: NSDateComponents!
     let formatter = NSDateFormatter()
     
+    var firstWeek:Int!
+    var daysInMonth:Int!
     // MARK: da functions
     
     override func viewDidLoad() {
@@ -51,6 +53,27 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
         
         let todayDate:Array = formatter.monthSymbols
         nameOfMonth.text = String(todayDate[comps.month - 1] as NSString)
+        
+        // Getting first day of month
+        let calendarForMessingUp = NSCalendar.currentCalendar()
+        let dateForMessingUp = NSDate()
+        let componentsForMessingUp = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitMonth, fromDate: dateForMessingUp)
+        
+        componentsForMessingUp.year = comps.year
+        componentsForMessingUp.day = 1
+        let firstDateOfMonth: NSDate = calendarForMessingUp.dateFromComponents(componentsForMessingUp)!
+        componentsForMessingUp.month  += 1
+        componentsForMessingUp.day     = 0
+        let lastDateOfMonth: NSDate = calendarForMessingUp.dateFromComponents(componentsForMessingUp)!
+        var unitFlags = NSCalendarUnit.WeekOfMonthCalendarUnit |
+            NSCalendarUnit.WeekdayCalendarUnit     |
+            NSCalendarUnit.CalendarUnitDay
+        
+        let firstDateComponents = calendarForMessingUp.components(unitFlags, fromDate: firstDateOfMonth)
+        let lastDateComponents  = calendarForMessingUp.components(unitFlags, fromDate: lastDateOfMonth)
+        firstWeek = firstDateComponents.weekday
+        daysInMonth = lastDateComponents.day
+        println(daysInMonth)
     }
     
     override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
@@ -72,7 +95,10 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return calendar.rangeOfUnit(.CalendarUnitDay, inUnit: .CalendarUnitMonth, forDate: date).length
+        let myWeekday = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitWeekday, fromDate: date).weekday
+        
+//        return calendar.rangeOfUnit(.CalendarUnitDay, inUnit: .CalendarUnitMonth, forDate: date).length + firstWeek - 1
+        return 35
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
@@ -84,20 +110,25 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         var cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as MonthViewCell
-        cell.theDay.text = String(indexPath.row + 1)
+        let myWeekday = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitWeekday, fromDate: date).weekday
         let day = calendar.components(.DayCalendarUnit, fromDate: date).day
         
-        if (indexPath.row % 2 == 0 && indexPath.row != day - 1) {
+        if (indexPath.row % 2 == 0) {
             cell.backgroundColor = ColorScheme.dayCell
-            cell.theDay.textColor = UIColor.whiteColor()
-        } else if (indexPath.row == comps.day - 1) {
-            cell.backgroundColor = ColorScheme.currentDayCell
             cell.theDay.textColor = UIColor.whiteColor()
         } else {
             cell.backgroundColor = ColorScheme.dayCell2
-            cell.theDay.textColor = UIColor.blackColor()            
-            
-            
+            cell.theDay.textColor = UIColor.blackColor()
+        }
+        if (indexPath.row == comps.day - 1) {
+            cell.backgroundColor = ColorScheme.currentDayCell
+            cell.theDay.textColor = UIColor.whiteColor()
+        }
+        if (indexPath.row >= firstWeek - 1 && indexPath.row + 1 < daysInMonth + firstWeek) {
+            cell.theDay.text = String(indexPath.row + 2 - firstWeek)
+//            cell.theDay.text = String(indexPath.row)
+        } else {
+            cell.theDay.text = ""
         }
         
         return cell

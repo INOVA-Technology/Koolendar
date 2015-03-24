@@ -19,10 +19,12 @@ formatter.dateFormat = "MM"
 let todayDate = formatter.monthSymbols
 todayDate[comps.month]
 
-
+let myWeekday = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitWeekday, fromDate: date).weekday
 
 
 comps.month
+
+comps.weekday
 
 cal.rangeOfUnit(.CalendarUnitDay, inUnit: .CalendarUnitMonth, forDate: date)
 
@@ -37,4 +39,28 @@ let path = NSSearchPathForDirectoriesInDomains(
 //var error: NSError?
 //fm.removeItemAtPath("\(path)/KoolendarEventsList.sqlite3", error: &error)
 //
+
+let calendarForMessingUp = NSCalendar.currentCalendar()
+
+// Set up date object
+let dateForMessingUp = NSDate()
+
+let components = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitMonth, fromDate: dateForMessingUp)
+
+// Getting the First and Last date of the month
+components.day = 1
+components.year = 2015
+let firstDateOfMonth: NSDate = calendarForMessingUp.dateFromComponents(components)!
+
+components.month  += 1
+components.day     = 0
+let lastDateOfMonth: NSDate = calendarForMessingUp.dateFromComponents(components)!
+var unitFlags = NSCalendarUnit.WeekOfMonthCalendarUnit |
+    NSCalendarUnit.WeekdayCalendarUnit     |
+    NSCalendarUnit.CalendarUnitDay
+
+let firstDateComponents = calendarForMessingUp.components(unitFlags, fromDate: firstDateOfMonth)
+let lastDateComponents  = calendarForMessingUp.components(unitFlags, fromDate: lastDateOfMonth)
+
+firstDateComponents.weekday
 
