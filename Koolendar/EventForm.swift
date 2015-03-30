@@ -59,8 +59,10 @@ class EventForm: UIViewController {
         let em = EventManager.sharedInstance
         
         em.addEvent(title: eventName.text, notes: eventDesc.text, startDate: startTimeField.date, endDate: endTimeField.date)
+        navigationController?.popViewControllerAnimated(true)
         
-        self.navigationController?.presentViewController(DayViewController(), animated: true, completion: nil)
+//        self.navigationController?.presentViewController(DayViewController(), animated: true, completion: nil)
+        
 //        if let resultController = storyboard?.instantiateViewControllerWithIdentifier("DayView") as? DayViewController {
 //            presentViewController(resultController, animated: true, completion: nil)
 //        }

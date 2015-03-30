@@ -48,15 +48,11 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     @IBAction func goBack(sender: UIButton) {
         self.navigationController?.popViewControllerAnimated(true)
+        println("test")
     }
     
     @IBAction func eatThis(sender: UIButton) {
         theDateText.text = "\(SelectedDate.month)/\(SelectedDate.day)/\(SelectedDate.year)"
-    }
-    
-    @IBAction func whatFreakinEvents(sender: UIButton) {
-        // do we still need this?
-        // no
     }
     
     // MARK: Table View Stuff
