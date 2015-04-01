@@ -11,12 +11,14 @@ import SQLite
 
 class EventForm: UIViewController {
     
+    @IBOutlet weak var dateFieldStarting: UITextField!
+    @IBOutlet weak var dateFieldEnding: UITextField!
     
     @IBOutlet weak var eventName: UITextField!
     @IBOutlet weak var eventDesc: UITextField!
     
-    @IBOutlet weak var startTimeField: UIDatePicker!
-    @IBOutlet weak var endTimeField: UIDatePicker!
+    var startDateLegit: NSDate!
+    var endDateLegit:NSDate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,9 +30,6 @@ class EventForm: UIViewController {
         
         let cal = NSCalendar.currentCalendar()
         let date = cal.dateFromComponents(comps)!
-        
-        startTimeField.date = date
-        endTimeField.date = date
         // Do any additional setup after loading the view.
     }
     
@@ -53,12 +52,47 @@ class EventForm: UIViewController {
         self.view.endEditing(true)
     }
     
+    @IBAction func dateFieldStart(sender: UITextField) {
+        
+        var datePickerView  : UIDatePicker = UIDatePicker()
+        datePickerView.datePickerMode = UIDatePickerMode.Time
+        sender.inputView = datePickerView
+        
+        datePickerView.addTarget(self, action: Selector("handleDatePickerStart:"), forControlEvents: UIControlEvents.ValueChanged)
+        
+    }
     
+    func handleDatePickerStart(sender: UIDatePicker) {
+        var timeFormatter = NSDateFormatter()
+        timeFormatter.dateStyle = .NoStyle
+        timeFormatter.timeStyle = .ShortStyle
+        dateFieldStarting.text = timeFormatter.stringFromDate(sender.date)
+        startDateLegit = sender.date
+    }
+    
+    // Oh shut up... u know its not efficient. i couldnt think of a simpler way to.
+    @IBAction func dateFieldEnd(sender: UITextField) {
+        
+        var datePickerView  : UIDatePicker = UIDatePicker()
+        datePickerView.datePickerMode = UIDatePickerMode.Time
+        sender.inputView = datePickerView
+        
+        datePickerView.addTarget(self, action: Selector("handleDatePickerEnd:"), forControlEvents: UIControlEvents.ValueChanged)
+        
+    }
+    
+    func handleDatePickerEnd(sender: UIDatePicker) {
+        var timeFormatter = NSDateFormatter()
+        timeFormatter.dateStyle = .NoStyle
+        timeFormatter.timeStyle = .ShortStyle
+        dateFieldEnding.text = timeFormatter.stringFromDate(sender.date)
+        endDateLegit = sender.date
+    }
     
     @IBAction func addEvent(sender: UIButton) {
         let em = EventManager.sharedInstance
         
-        em.addEvent(title: eventName.text, notes: eventDesc.text, startDate: startTimeField.date, endDate: endTimeField.date)
+        em.addEvent(title: eventName.text, notes: eventDesc.text, startDate: startDateLegit, endDate: endDateLegit)
         navigationController?.popViewControllerAnimated(true)
         
 //        self.navigationController?.presentViewController(DayViewController(), animated: true, completion: nil)
