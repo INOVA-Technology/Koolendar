@@ -30,7 +30,6 @@ class EventForm: UIViewController {
         
         let cal = NSCalendar.currentCalendar()
         let date = cal.dateFromComponents(comps)!
-        // Do any additional setup after loading the view.
     }
     
     override func didReceiveMemoryWarning() {
@@ -54,12 +53,11 @@ class EventForm: UIViewController {
     
     @IBAction func dateFieldStart(sender: UITextField) {
         
-        var datePickerView  : UIDatePicker = UIDatePicker()
-        datePickerView.datePickerMode = UIDatePickerMode.Time
-        sender.inputView = datePickerView
+        var datePickerStartView  : UIDatePicker = UIDatePicker()
+        datePickerStartView.datePickerMode = UIDatePickerMode.Time
+        sender.inputView = datePickerStartView
         
-        datePickerView.addTarget(self, action: Selector("handleDatePickerStart:"), forControlEvents: UIControlEvents.ValueChanged)
-        
+        datePickerStartView.addTarget(self, action: Selector("handleDatePickerStart:"), forControlEvents: UIControlEvents.ValueChanged)
     }
     
     func handleDatePickerStart(sender: UIDatePicker) {
