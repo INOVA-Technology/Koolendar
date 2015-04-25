@@ -73,7 +73,17 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
         let lastDateComponents  = calendarForMessingUp.components(unitFlags, fromDate: lastDateOfMonth)
         firstWeek = firstDateComponents.weekday
         daysInMonth = lastDateComponents.day
-        println(firstWeek)
+        
+        let layout2 = UICollectionViewFlowLayout()
+        layout2.minimumInteritemSpacing = 0
+        layout2.minimumLineSpacing = 0
+        // ugh, we can't hard code 30 in, but I don't feel like doing it another way right now
+        layout2.itemSize = CGSize(width: 30, height: sizeX/7)
+        daysOfTheWeekCollection.collectionViewLayout = layout2
+        daysOfTheWeekCollection.dataSource = self
+        daysOfTheWeekCollection.delegate = self
+        daysOfTheWeekCollection.allowsSelection = false
+        daysOfTheWeekCollection.scrollEnabled = false
     }
     
     override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
@@ -84,7 +94,11 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
         let layout = collectionView.collectionViewLayout as UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: sizeX / 7, height: sizeY / 7)
         
+        let layout2 = daysOfTheWeekCollection.collectionViewLayout as UICollectionViewFlowLayout
+        layout2.itemSize = CGSize(width: 30, height: sizeX/7)
+        
         layout.invalidateLayout()
+        layout2.invalidateLayout()
     }
     
     // MARK: Collection Cell Stuff
@@ -106,36 +120,49 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        // TODO: show new DayViewController in here, instead of in the storyboard
-        SelectedDate.day = indexPath.row - firstWeek + 2
-        SelectedDate.month = comps.month
-        SelectedDate.year = comps.year
+        
+        if collectionView == self.collectionView {
+            // TODO: show new DayViewController in here, instead of in the storyboard
+            SelectedDate.day = indexPath.row - firstWeek + 2
+            SelectedDate.month = comps.month
+            SelectedDate.year = comps.year
+        }
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        var cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as MonthViewCell
-        let myWeekday = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitWeekday, fromDate: date).weekday
-        let day = calendar.components(.DayCalendarUnit, fromDate: date).day
-        
-        if (indexPath.row % 2 == 0) {
-            cell.backgroundColor = ColorScheme.dayCell
-            cell.theDay.textColor = UIColor.whiteColor()
+        if collectionView == self.collectionView {
+            var cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as MonthViewCell
+            let myWeekday = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitWeekday, fromDate: date).weekday
+            let day = calendar.components(.DayCalendarUnit, fromDate: date).day
+            
+            if (indexPath.row % 2 == 0) {
+                cell.backgroundColor = ColorScheme.dayCell
+                cell.theDay.textColor = UIColor.whiteColor()
+            } else {
+                cell.backgroundColor = ColorScheme.dayCell2
+                cell.theDay.textColor = UIColor.blackColor()
+            }
+            if (indexPath.row - firstWeek + 1 == comps.day - 1) {
+                cell.backgroundColor = ColorScheme.currentDayCell
+                cell.theDay.textColor = UIColor.whiteColor()
+            }
+            if (indexPath.row >= firstWeek - 1 && indexPath.row + 1 < daysInMonth + firstWeek) {
+                cell.theDay.text = String(indexPath.row - firstWeek + 2)
+    //            cell.theDay.text = String(indexPath.row)
+            } else {
+                cell.theDay.text = ""
+            }
+            
+            return cell
         } else {
-            cell.backgroundColor = ColorScheme.dayCell2
-            cell.theDay.textColor = UIColor.blackColor()
+            let cell = daysOfTheWeekCollection.dequeueReusableCellWithReuseIdentifier("dayOfTheWeekCell", forIndexPath: indexPath) as DayOfTheWeekCell
+            
+            let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+            
+            cell.dayName.text = days[indexPath.row]
+//            
+            return cell
         }
-        if (indexPath.row - firstWeek + 1 == comps.day - 1) {
-            cell.backgroundColor = ColorScheme.currentDayCell
-            cell.theDay.textColor = UIColor.whiteColor()
-        }
-        if (indexPath.row >= firstWeek - 1 && indexPath.row + 1 < daysInMonth + firstWeek) {
-            cell.theDay.text = String(indexPath.row - firstWeek + 2)
-//            cell.theDay.text = String(indexPath.row)
-        } else {
-            cell.theDay.text = ""
-        }
-        
-        return cell
     }
 
     /*
