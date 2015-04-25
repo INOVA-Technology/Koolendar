@@ -73,7 +73,7 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
         let lastDateComponents  = calendarForMessingUp.components(unitFlags, fromDate: lastDateOfMonth)
         firstWeek = firstDateComponents.weekday
         daysInMonth = lastDateComponents.day
-        println(daysInMonth)
+        println(firstWeek)
     }
     
     override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
@@ -103,7 +103,7 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         // TODO: show new DayViewController in here, instead of in the storyboard
-        SelectedDate.day = indexPath.row + 1
+        SelectedDate.day = indexPath.row - firstWeek + 2
         SelectedDate.month = comps.month
         SelectedDate.year = comps.year
     }
@@ -120,12 +120,12 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
             cell.backgroundColor = ColorScheme.dayCell2
             cell.theDay.textColor = UIColor.blackColor()
         }
-        if (indexPath.row == comps.day - 1) {
+        if (indexPath.row - firstWeek + 1 == comps.day - 1) {
             cell.backgroundColor = ColorScheme.currentDayCell
             cell.theDay.textColor = UIColor.whiteColor()
         }
         if (indexPath.row >= firstWeek - 1 && indexPath.row + 1 < daysInMonth + firstWeek) {
-            cell.theDay.text = String(indexPath.row + 2 - firstWeek)
+            cell.theDay.text = String(indexPath.row - firstWeek + 2)
 //            cell.theDay.text = String(indexPath.row)
         } else {
             cell.theDay.text = ""

@@ -276,7 +276,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="dateFieldStart:" destination="G7n-lz-uBd" eventType="editingDidEnd" id="JMp-St-sFQ"/>
+                                    <action selector="dateFieldStart:" destination="G7n-lz-uBd" eventType="editingDidBegin" id="Jqk-a8-9b9"/>
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="End Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hoR-bJ-kfG">
@@ -290,7 +290,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="dateFieldEnd:" destination="G7n-lz-uBd" eventType="editingDidEnd" id="F9S-Mg-Wc7"/>
+                                    <action selector="dateFieldEnd:" destination="G7n-lz-uBd" eventType="editingDidBegin" id="717-a6-DgT"/>
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cI2-Yx-NgJ">
