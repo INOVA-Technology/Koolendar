@@ -20,7 +20,7 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
     
     @IBOutlet weak var nameOfMonth: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
-    
+    @IBOutlet weak var daysOfTheWeekCollection: UICollectionView!
     
     let flags: NSCalendarUnit = .DayCalendarUnit | .MonthCalendarUnit | .YearCalendarUnit
 
@@ -98,7 +98,11 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
         let myWeekday = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitWeekday, fromDate: date).weekday
         
 //        return calendar.rangeOfUnit(.CalendarUnitDay, inUnit: .CalendarUnitMonth, forDate: date).length + firstWeek - 1
-        return 35
+        if collectionView == self.collectionView {
+            return 35
+        } else {
+            return 7
+        }
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
