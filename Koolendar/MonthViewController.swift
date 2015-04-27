@@ -78,7 +78,7 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
         layout2.minimumInteritemSpacing = 0
         layout2.minimumLineSpacing = 0
         // ugh, we can't hard code 30 in, but I don't feel like doing it another way right now
-        layout2.itemSize = CGSize(width: 30, height: sizeX/7)
+        layout2.itemSize = CGSize(width: sizeX/7, height: 30)
         daysOfTheWeekCollection.collectionViewLayout = layout2
         daysOfTheWeekCollection.dataSource = self
         daysOfTheWeekCollection.delegate = self
