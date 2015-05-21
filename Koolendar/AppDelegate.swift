@@ -21,6 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let settings = UIUserNotificationSettings(forTypes: .Alert | .Sound | .Badge, categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+
+        // we may want to move these, or use threads
+        Event.requestEventKitPermission()
+        Event.initDB()
         
         return true
     }

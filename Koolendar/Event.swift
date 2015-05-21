@@ -8,6 +8,7 @@
 
 import Foundation
 import EventKit
+import SQLite
 
 class Event {
     
@@ -49,14 +50,21 @@ class Event {
     }
     
     func save() {
-        self.id = Event.all.count // this may not be compatable with EKEvents, idk
-        
+        // save what we can in an EKEvent, and put the rest into the db
+        self.id = Event.all.count
         Event.eventStore.saveEvent(self.ekEvent, span: EKSpanThisEvent, commit: true, error: nil)
         
-        // save what we can in an EKEvent, and put the rest into the db
-    }
+        let eventId = Expression<Int>("eventId")
+        let ekEventId = Expression<String>("ekEventId")
+        
+        let results = Event.db["ids"].filter(self.id! == eventId)
+        if let result = results.first {
+            // update the row
+        } else {
+            Event.db["ids"].insert(eventId <- self.id!, ekEventId <- self.ekEvent.eventIdentifier)
+        }
     
-    // ugly workaround for class vars below
+    }
     
     class func requestEventKitPermission() {
         Event.eventStoreAccess = EKEventStore.authorizationStatusForEntityType(EKEntityTypeEvent)
@@ -67,10 +75,30 @@ class Event {
         }
     }
     
+    class func initDB() {
+        let ids = self.db["ids"]
+        
+        let eventId = Expression<Int>("eventId")
+        let ekEventId = Expression<String>("ekEventId")
+        
+        self.db.create(table: ids, ifNotExists: true) { t in
+            t.column(eventId)
+            t.column(ekEventId)
+        }
+    }
+    
+    
+    
+    // ugly workaround for class vars below
+    
     private struct ClassVariables {
         static var all: [Event] = []
         static let eventStore = EKEventStore()
         static var eventStoreAccess: EKAuthorizationStatus!
+        static let dbDir = NSSearchPathForDirectoriesInDomains(
+            .DocumentDirectory, .UserDomainMask, true).first as String
+        static let dbPath = "\(dbDir)/KoolendarDB.sqlite3"
+        static let db = Database(dbPath)
     }
     
     class var all: [Event] {
@@ -85,6 +113,18 @@ class Event {
     class var eventStoreAccess: EKAuthorizationStatus {
         get { return ClassVariables.eventStoreAccess }
         set { ClassVariables.eventStoreAccess = newValue }
+    }
+    
+    class var dbDir: String {
+        get { return ClassVariables.dbDir }
+    }
+    
+    class var dbPath: String {
+        get { return ClassVariables.dbPath }
+    }
+    
+    class var db: Database {
+        get { return ClassVariables.db }
     }
     
 }
