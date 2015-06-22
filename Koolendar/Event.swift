@@ -51,17 +51,20 @@ class Event {
     
     func save() {
         // save what we can in an EKEvent, and put the rest into the db
-        self.id = Event.all.count
         Event.eventStore.saveEvent(self.ekEvent, span: EKSpanThisEvent, commit: true, error: nil)
         
         let eventId = Expression<Int>("eventId")
         let ekEventId = Expression<String>("ekEventId")
         
-        let results = Event.db["ids"].filter(self.id! == eventId)
-        if let result = results.first {
-            // update the row
+        if let id = self.id {
+            let results = Event.db["ids"].filter(self.id! == eventId)
+            if let result = results.first {
+                // update the row, including the ekEventId which I think will have changed
+            }
         } else {
-            Event.db["ids"].insert(eventId <- self.id!, ekEventId <- self.ekEvent.eventIdentifier)
+            self.id = Event.nextId
+            Event.nextId++
+            Event.db["ids"].insert(eventId <- self.id!, ekEventId <- self.ekEvent.eventIdentifier)!
         }
     
     }
@@ -82,7 +85,7 @@ class Event {
         let ekEventId = Expression<String>("ekEventId")
         
         self.db.create(table: ids, ifNotExists: true) { t in
-            t.column(eventId)
+            t.column(eventId, primaryKey: true)
             t.column(ekEventId)
         }
     }
@@ -99,6 +102,7 @@ class Event {
             .DocumentDirectory, .UserDomainMask, true).first as String
         static let dbPath = "\(dbDir)/KoolendarDB.sqlite3"
         static let db = Database(dbPath)
+        static var nextId = 0
     }
     
     class var all: [Event] {
@@ -125,6 +129,11 @@ class Event {
     
     class var db: Database {
         get { return ClassVariables.db }
+    }
+    
+    class var nextId: Int {
+        get { return ClassVariables.nextId }
+        set { ClassVariables.nextId = newValue }
     }
     
 }
