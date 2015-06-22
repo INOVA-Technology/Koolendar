@@ -29,11 +29,13 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
-        if let results = EventManager.sharedInstance.eventsForDay(SelectedDate.day, month: SelectedDate.month, year: SelectedDate.year) {
-            events = results
-        } else {
-            events = []
-        }
+        let cal = NSCalendar.currentCalendar()
+        let comps = NSDateComponents()
+        comps.day = SelectedDate.day
+        comps.month = SelectedDate.month
+        comps.year = SelectedDate.year
+        let day = cal.dateFromComponents(comps)!
+        let events = Event.eventsOn(day)
         
         theDateText.text = "\(SelectedDate.month)/\(SelectedDate.day)/\(SelectedDate.year)"
         
@@ -68,7 +70,7 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         let event = events[indexPath.row]
         
         cell.eventTitle.text = event.title
-        cell.eventDescription.text = event.notes
+        cell.eventDescription.text = "Placeholder"
         if event.allDay {
             cell.eventTime.text = "All day"
         } else {

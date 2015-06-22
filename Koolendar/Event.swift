@@ -37,7 +37,6 @@ class Event {
     var id: Int?
     
     init(title: String, startDate: NSDate, endDate: NSDate?) {
-        
         self.title = title
         self.startDate = startDate
         if let endDate = endDate {
@@ -53,18 +52,20 @@ class Event {
         // save what we can in an EKEvent, and put the rest into the db
         Event.eventStore.saveEvent(self.ekEvent, span: EKSpanThisEvent, commit: true, error: nil)
         
-        let eventId = Expression<Int>("eventId")
+        let eventId = Expression<Int>("id")
         let ekEventId = Expression<String>("ekEventId")
         
         if let id = self.id {
-            let results = Event.db["ids"].filter(self.id! == eventId)
+            let results = Event.db["events"].filter(id == eventId)
             if let result = results.first {
                 // update the row, including the ekEventId which I think will have changed
+            } else {
+                // if this point is reached, then we have a problem
             }
         } else {
             self.id = Event.nextId
             Event.nextId++
-            Event.db["ids"].insert(eventId <- self.id!, ekEventId <- self.ekEvent.eventIdentifier)!
+            Event.db["events"].insert(eventId <- self.id!, ekEventId <- self.ekEvent.eventIdentifier)!
         }
     
     }
@@ -79,16 +80,63 @@ class Event {
     }
     
     class func initDB() {
-        let ids = self.db["ids"]
         
-        let eventId = Expression<Int>("eventId")
+        // finds an EKEvent by using the Event id, or vice versa
+        // I think this table is unnecessary
+        let ids = self.db["events"]
+        
+        let eventId = Expression<Int>("id")
         let ekEventId = Expression<String>("ekEventId")
         
         self.db.create(table: ids, ifNotExists: true) { t in
             t.column(eventId, primaryKey: true)
-            t.column(ekEventId)
+            t.column(ekEventId, unique: true)
         }
     }
+    
+    class func eventsOn(date: NSDate) -> [Event] {
+        // TODO: make this async, as well as other things
+        var events = [Event]()
+        
+        let cal = NSCalendar.currentCalendar()
+        var comps = cal.components(.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay, fromDate: date)
+        
+        let daStartDate = cal.dateFromComponents(comps)!
+        
+        var aDay = NSDateComponents()
+        aDay.day = 1
+        var daEndDate = cal.dateByAddingComponents(aDay, toDate: daStartDate, options: .allZeros)!
+        daEndDate = daEndDate.dateByAddingTimeInterval(-1)!
+        
+        let p = Event.eventStore.predicateForEventsWithStartDate(daStartDate, endDate: daEndDate, calendars: [Event.eventStore.defaultCalendarForNewEvents])
+        let ekEvents = Event.eventStore.eventsMatchingPredicate(p)
+        
+        let ekEventId = Expression<String>("ekEventId")
+        let eventId = Expression<Int>("id")
+        
+        for ekEvent in ekEvents as [EKEvent] {
+            // This is dangerous, I think. Specificly the !'s
+            let daEventId = Event.db["events"].filter(ekEventId == ekEvent.eventIdentifier).select(eventId).first![eventId]
+            events.append(Event.eventWithId(daEventId)!)
+        }
+        
+        return events
+    }
+    
+    class func eventWithId(id: Int) -> Event? {
+        let eventId = Expression<Int>("id")
+        let ekEventId = Expression<String>("ekEventId")
+        
+        if let eventFromDb = Event.db["events"].filter(eventId == id).first {
+            let daEkEventId = eventFromDb[ekEventId]
+            let ekEvent = Event.eventStore.eventWithIdentifier(daEkEventId)
+            return Event(title: ekEvent.title, startDate: ekEvent.startDate, endDate: ekEvent.endDate)
+        } else {
+            return nil
+        }
+    }
+    
+    
     
     
     

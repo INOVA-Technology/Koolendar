@@ -8,6 +8,7 @@
 
 import UIKit
 
+// TODO: make this an NSDateComponets
 struct SelectedDate {
     static var day: Int!
     static var month: Int!

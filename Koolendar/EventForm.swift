@@ -88,9 +88,8 @@ class EventForm: UIViewController {
     }
     
     @IBAction func addEvent(sender: UIButton) {
-        let em = EventManager.sharedInstance
-        
-        em.addEvent(title: eventName.text, notes: eventDesc.text, startDate: startDateLegit, endDate: endDateLegit)
+        let event = Event(title: eventName.text, startDate: startDateLegit, endDate: endDateLegit)
+        event.save()
         navigationController?.popViewControllerAnimated(true)
         
 //        self.navigationController?.presentViewController(DayViewController(), animated: true, completion: nil)
