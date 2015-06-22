@@ -98,23 +98,30 @@ class Event {
         // TODO: make this async, as well as other things
         var events = [Event]()
         
-        let cal = NSCalendar.currentCalendar()
-        var comps = cal.components(.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay, fromDate: date)
+        var ekEvents = [EKEvent]()
         
-        let daStartDate = cal.dateFromComponents(comps)!
-        
-        var aDay = NSDateComponents()
-        aDay.day = 1
-        var daEndDate = cal.dateByAddingComponents(aDay, toDate: daStartDate, options: .allZeros)!
-        daEndDate = daEndDate.dateByAddingTimeInterval(-1)!
-        
-        let p = Event.eventStore.predicateForEventsWithStartDate(daStartDate, endDate: daEndDate, calendars: [Event.eventStore.defaultCalendarForNewEvents])
-        let ekEvents = Event.eventStore.eventsMatchingPredicate(p)
-        
+        Event.eventStoreAccess = EKEventStore.authorizationStatusForEntityType(EKEntityTypeEvent)
+        if Event.eventStoreAccess == .NotDetermined {
+            Event.eventStore.requestAccessToEntityType(EKEntityTypeEvent, completion: {
+                gotAccess, error in
+                let cal = NSCalendar.currentCalendar()
+                var comps = cal.components(.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay, fromDate: date)
+                
+                let daStartDate = cal.dateFromComponents(comps)!
+                
+                var aDay = NSDateComponents()
+                aDay.day = 1
+                var daEndDate = cal.dateByAddingComponents(aDay, toDate: daStartDate, options: .allZeros)!
+                daEndDate = daEndDate.dateByAddingTimeInterval(-1)!
+                
+                let p = Event.eventStore.predicateForEventsWithStartDate(daStartDate, endDate: daEndDate, calendars: [Event.eventStore.defaultCalendarForNewEvents])
+                ekEvents = Event.eventStore.eventsMatchingPredicate(p) as [EKEvent]
+            })
+        }
         let ekEventId = Expression<String>("ekEventId")
         let eventId = Expression<Int>("id")
         
-        for ekEvent in ekEvents as [EKEvent] {
+        for ekEvent in ekEvents {
             // This is dangerous, I think. Specificly the !'s
             let daEventId = Event.db["events"].filter(ekEventId == ekEvent.eventIdentifier).select(eventId).first![eventId]
             events.append(Event.eventWithId(daEventId)!)
