@@ -12,7 +12,7 @@ import SQLite
 
 class Event {
     
-    let ekEvent = EKEvent()
+    let ekEvent = EKEvent(eventStore: Event.eventStore)
     
     var title: String {
         get { return self.ekEvent.title }
@@ -65,7 +65,9 @@ class Event {
         } else {
             self.id = Event.nextId
             Event.nextId++
-            Event.db["events"].insert(eventId <- self.id!, ekEventId <- self.ekEvent.eventIdentifier)!
+            if let e = Event.db["events"].insert(eventId <- self.id!, ekEventId <- self.ekEvent.eventIdentifier) {
+            
+            }
         }
     
     }
