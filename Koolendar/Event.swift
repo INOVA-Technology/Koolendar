@@ -49,25 +49,32 @@ class Event {
     }
     
     func save() {
-        // save what we can in an EKEvent, and put the rest into the db
-        Event.eventStore.saveEvent(self.ekEvent, span: EKSpanThisEvent, commit: true, error: nil)
-        
-        let eventId = Expression<Int>("id")
-        let ekEventId = Expression<String>("ekEventId")
-        
-        if let id = self.id {
-            let results = Event.db["events"].filter(id == eventId)
-            if let result = results.first {
-                // update the row, including the ekEventId which I think will have changed
-            } else {
-                // if this point is reached, then we have a problem
-            }
-        } else {
-            self.id = Event.nextId
-            Event.nextId++
-            if let e = Event.db["events"].insert(eventId <- self.id!, ekEventId <- self.ekEvent.eventIdentifier) {
-            
-            }
+        if Event.eventStoreAccess == .NotDetermined {
+            Event.eventStore.requestAccessToEntityType(EKEntityTypeEvent, completion: {
+                gotAccess, error in
+                // save what we can in an EKEvent, and put the rest into the db
+                var error : NSError? = nil
+                
+                Event.eventStore.saveEvent(self.ekEvent, span: EKSpanThisEvent, commit: true, error: &error)
+                
+                let eventId = Expression<Int>("id")
+                let ekEventId = Expression<String>("ekEventId")
+                
+                if let id = self.id {
+                    let results = Event.db["events"].filter(id == eventId)
+                    if let result = results.first {
+                        // update the row, including the ekEventId which I think will have changed
+                    } else {
+                        // if this point is reached, then we have a problem
+                    }
+                } else {
+                    self.id = Event.nextId
+                    Event.nextId++
+                    if let e = Event.db["events"].insert(eventId <- self.id!, ekEventId <- self.ekEvent.eventIdentifier) {
+                    
+                    }
+                }
+            })
         }
     
     }
@@ -77,6 +84,7 @@ class Event {
         if Event.eventStoreAccess == .NotDetermined {
             Event.eventStore.requestAccessToEntityType(EKEntityTypeEvent, completion: {
                 gotAccess, error in
+                
             })
         }
     }

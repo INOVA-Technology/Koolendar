@@ -68,7 +68,7 @@ class EventForm: UIViewController {
         startDateLegit = sender.date
     }
     
-    // Oh shut up... u know its not efficient. i couldnt think of a simpler way to.
+    // Oh shut up... I know its not efficient. i couldnt think of a simpler way to.
     @IBAction func dateFieldEnd(sender: UITextField) {
         
         var datePickerView  : UIDatePicker = UIDatePicker()
