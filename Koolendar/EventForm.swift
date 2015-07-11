@@ -9,7 +9,7 @@
 import UIKit
 import SQLite
 
-class EventForm: UIViewController {
+class EventForm: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var dateFieldStarting: UITextField!
     @IBOutlet weak var dateFieldEnding: UITextField!
@@ -19,6 +19,9 @@ class EventForm: UIViewController {
     
     var startDateLegit: NSDate!
     var endDateLegit:NSDate!
+    
+    var hasClickedStart: dispatch_once_t = 0
+    var hasClickedEnd: dispatch_once_t = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +33,9 @@ class EventForm: UIViewController {
         
         let cal = NSCalendar.currentCalendar()
         let date = cal.dateFromComponents(comps)!
+        
+//        dateFieldStarting.
+//        dateFieldEnding.
     }
     
     override func didReceiveMemoryWarning() {
@@ -58,6 +64,22 @@ class EventForm: UIViewController {
         sender.inputView = datePickerStartView
         
         datePickerStartView.addTarget(self, action: Selector("handleDatePickerStart:"), forControlEvents: UIControlEvents.ValueChanged)
+        
+        let theDate = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute, fromDate: theDate)
+        let hour = components.hour
+        let minutes = components.minute
+        
+        var timeFormatter = NSDateFormatter()
+        timeFormatter.dateStyle = .NoStyle
+        timeFormatter.timeStyle = .ShortStyle
+        
+        dispatch_once(&hasClickedStart) {
+            self.dateFieldStarting.text = timeFormatter.stringFromDate(theDate)
+            
+            self.startDateLegit = theDate
+        }
     }
     
     func handleDatePickerStart(sender: UIDatePicker) {
@@ -76,6 +98,22 @@ class EventForm: UIViewController {
         sender.inputView = datePickerView
         
         datePickerView.addTarget(self, action: Selector("handleDatePickerEnd:"), forControlEvents: UIControlEvents.ValueChanged)
+        
+        let theDate = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute, fromDate: theDate)
+        let hour = components.hour
+        let minutes = components.minute
+        
+        var timeFormatter = NSDateFormatter()
+        timeFormatter.dateStyle = .NoStyle
+        timeFormatter.timeStyle = .ShortStyle
+        
+        dispatch_once(&hasClickedEnd) {
+            self.dateFieldEnding.text = timeFormatter.stringFromDate(theDate)
+            
+            self.endDateLegit = theDate
+        }
         
     }
     
