@@ -16,7 +16,7 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
 
     @IBOutlet weak var theDateText: UILabel!
-    var events = [EKEvent]()
+    var events = [Event]()
     
     var selectedCellIndexPath: NSIndexPath?
     
@@ -41,7 +41,9 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         self.tableView.reloadData()
         
+
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -3,64 +3,34 @@
 import UIKit
 // import SQLite
 import Foundation
-
-var str = "Hello, playground"
-
-let languages:[String] = NSLocale.preferredLanguages() as [String]
-
-let flags: NSCalendarUnit = .DayCalendarUnit | .MonthCalendarUnit | .YearCalendarUnit
-let date = NSDate()
-let cal = NSCalendar.currentCalendar()
-
-let comps = cal.components(flags, fromDate: date)
-
-let formatter = NSDateFormatter()
-formatter.dateFormat = "MM"
-let todayDate = formatter.monthSymbols
-todayDate[comps.month]
-
-let myWeekday = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitWeekday, fromDate: date).weekday
+import SQLite
 
 
-comps.month
+let dbDir = NSSearchPathForDirectoriesInDomains(
+    .DocumentDirectory, .UserDomainMask, true).first as String
+let dbPath = "\(dbDir)/KoolendarDB.sqlite3"
 
-comps.weekday
+//NSFileManager.defaultManager().removeItemAtPath(dbPath, error: nil)
 
-cal.rangeOfUnit(.CalendarUnitDay, inUnit: .CalendarUnitMonth, forDate: date)
-
-(1, 31)
-
-let path = NSSearchPathForDirectoriesInDomains(
-    .DocumentDirectory, .UserDomainMask, true
-    ).first as String
-
-// removes db:
-//var fm = NSFileManager.defaultManager()
-//var error: NSError?
-//fm.removeItemAtPath("\(path)/KoolendarEventsList.sqlite3", error: &error)
+//let db = Database(dbPath)
 //
+//let ids = db["events"]
+//
+//let eventId = Expression<Int>("id")
+//let ekEventId = Expression<String>("ekEventId")
+//
+//db.create(table: ids, ifNotExists: true) { t in
+//    t.column(eventId, primaryKey: true)
+//    t.column(ekEventId, unique: true)
+//}
 
-let calendarForMessingUp = NSCalendar.currentCalendar()
+//ids.count
 
-// Set up date object
-let dateForMessingUp = NSDate()
+//ids.filter(eventId == 1)
 
-let components = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitMonth, fromDate: dateForMessingUp)
+//ids.first[ids[eventId]]
+//
+//db["events"].insert(eventId <- 5, ekEventId <- "BLArqeHdqefagsgseqfffqwefq")!
+//db["events"].insert(eventId <- 6, ekEventId <- "BLrerAHrqfggag")!
 
-// Getting the First and Last date of the month
-components.day = 1
-components.year = 2015
-let firstDateOfMonth: NSDate = calendarForMessingUp.dateFromComponents(components)!
-
-components.month  += 1
-components.day     = 0
-let lastDateOfMonth: NSDate = calendarForMessingUp.dateFromComponents(components)!
-var unitFlags = NSCalendarUnit.WeekOfMonthCalendarUnit |
-    NSCalendarUnit.WeekdayCalendarUnit     |
-    NSCalendarUnit.CalendarUnitDay
-
-let firstDateComponents = calendarForMessingUp.components(unitFlags, fromDate: firstDateOfMonth)
-let lastDateComponents  = calendarForMessingUp.components(unitFlags, fromDate: lastDateOfMonth)
-
-firstDateComponents.weekday
-
+//ids.count

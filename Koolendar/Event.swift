@@ -49,34 +49,32 @@ class Event {
     }
     
     func save() {
-        if Event.eventStoreAccess == .NotDetermined {
-            Event.eventStore.requestAccessToEntityType(EKEntityTypeEvent, completion: {
-                gotAccess, error in
-                // save what we can in an EKEvent, and put the rest into the db
-                var error : NSError? = nil
-                
-                Event.eventStore.saveEvent(self.ekEvent, span: EKSpanThisEvent, commit: true, error: &error)
-                
-                let eventId = Expression<Int>("id")
-                let ekEventId = Expression<String>("ekEventId")
-                
-                if let id = self.id {
-                    let results = Event.db["events"].filter(id == eventId)
-                    if let result = results.first {
-                        // update the row, including the ekEventId which I think will have changed
-                    } else {
-                        // if this point is reached, then we have a problem
-                    }
+        Event.eventStore.requestAccessToEntityType(EKEntityTypeEvent, completion: {
+            gotAccess, error in
+            // save what we can in an EKEvent, and put the rest into the db
+            var error : NSError? = nil
+            
+            self.ekEvent.calendar = Event.eventStore.defaultCalendarForNewEvents
+            Event.eventStore.saveEvent(self.ekEvent, span: EKSpanThisEvent, commit: true, error: &error)
+            
+            let eventId = Expression<Int>("id")
+            let ekEventId = Expression<String>("ekEventId")
+            
+            if let id = self.id {
+                let results = Event.db["events"].filter(id == eventId)
+                if let result = results.first {
+                    // update the row, including the ekEventId which I think will have changed
                 } else {
-                    self.id = Event.nextId
-                    Event.nextId++
-                    if let e = Event.db["events"].insert(eventId <- self.id!, ekEventId <- self.ekEvent.eventIdentifier) {
-                    
-                    }
+                    // if this point is reached, then we have a problem
                 }
-            })
-        }
-    
+            } else {
+                self.id = Event.nextId
+                Event.nextId++
+                if let idk = Event.db["events"].insert(eventId <- self.id!, ekEventId <- self.ekEvent.eventIdentifier) {
+                    Event.all.append(self)
+                }
+            }
+        })
     }
     
     class func requestEventKitPermission() {
@@ -102,6 +100,18 @@ class Event {
             t.column(eventId, primaryKey: true)
             t.column(ekEventId, unique: true)
         }
+        
+        let settings = self.db["settings"]
+        
+        let settingsId = Expression<Int>("id")
+        let key = Expression<String>("key")
+        let values = Expression<String>("value")
+        
+        self.db.create(table: settings, ifNotExists: true) { t in
+            t.column(settingsId, primaryKey: true)
+            t.column(key, unique: true)
+            t.column(values)
+        }
     }
     
     class func eventsOn(date: NSDate) -> [Event] {
@@ -109,25 +119,25 @@ class Event {
         var events = [Event]()
         
         var ekEvents = [EKEvent]()
-        
-        Event.eventStoreAccess = EKEventStore.authorizationStatusForEntityType(EKEntityTypeEvent)
-        if Event.eventStoreAccess == .NotDetermined {
-            Event.eventStore.requestAccessToEntityType(EKEntityTypeEvent, completion: {
-                gotAccess, error in
-                let cal = NSCalendar.currentCalendar()
-                var comps = cal.components(.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay, fromDate: date)
-                
-                let daStartDate = cal.dateFromComponents(comps)!
-                
-                var aDay = NSDateComponents()
-                aDay.day = 1
-                var daEndDate = cal.dateByAddingComponents(aDay, toDate: daStartDate, options: .allZeros)!
-                daEndDate = daEndDate.dateByAddingTimeInterval(-1)!
-                
-                let p = Event.eventStore.predicateForEventsWithStartDate(daStartDate, endDate: daEndDate, calendars: [Event.eventStore.defaultCalendarForNewEvents])
-                ekEvents = Event.eventStore.eventsMatchingPredicate(p) as [EKEvent]
-            })
-        }
+
+        Event.eventStore.requestAccessToEntityType(EKEntityTypeEvent, completion: {
+            gotAccess, error in
+            let cal = NSCalendar.currentCalendar()
+            var comps = cal.components(.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay, fromDate: date)
+            
+            let daStartDate = cal.dateFromComponents(comps)!
+            
+            var aDay = NSDateComponents()
+            aDay.day = 1
+            var daEndDate = cal.dateByAddingComponents(aDay, toDate: daStartDate, options: .allZeros)!
+            daEndDate = daEndDate.dateByAddingTimeInterval(-1)!
+            
+            let p = Event.eventStore.predicateForEventsWithStartDate(daStartDate, endDate: daEndDate, calendars: [Event.eventStore.defaultCalendarForNewEvents])
+            let tmp = Event.eventStore.eventsMatchingPredicate(p)
+            if let _ = tmp {
+                ekEvents = tmp as [EKEvent]
+            }
+        })
         let ekEventId = Expression<String>("ekEventId")
         let eventId = Expression<Int>("id")
         
@@ -167,7 +177,6 @@ class Event {
             .DocumentDirectory, .UserDomainMask, true).first as String
         static let dbPath = "\(dbDir)/KoolendarDB.sqlite3"
         static let db = Database(dbPath)
-        static var nextId = 0
     }
     
     class var all: [Event] {
@@ -197,8 +206,30 @@ class Event {
     }
     
     class var nextId: Int {
-        get { return ClassVariables.nextId }
-        set { ClassVariables.nextId = newValue }
+        get {
+            let table = self.db["settings"]
+            let key = Expression<String>("key")
+            let value = Expression<String>("value")
+        
+            if let first = table.filter(key == "nextId").first {
+                return first.get(value).toInt()!
+            } else {
+                table.insert(key <- "nextId", value <- "0")!
+                return 0
+            }
+        }
+        
+        set {
+            let table = self.db["settings"]
+            let key = Expression<String>("key")
+            let value = Expression<String>("value")
+            
+            if let first = table.filter(key == "nextId").first {
+                table.filter(key == "nextId").update(value <- String(newValue))!
+            } else {
+                table.insert(key <- "nextId", value <- String(newValue))!
+            }
+        }
     }
     
 }
