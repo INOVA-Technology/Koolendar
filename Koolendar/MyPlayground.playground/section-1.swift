@@ -10,21 +10,21 @@ let dbDir = NSSearchPathForDirectoriesInDomains(
     .DocumentDirectory, .UserDomainMask, true).first as String
 let dbPath = "\(dbDir)/KoolendarDB.sqlite3"
 
-//NSFileManager.defaultManager().removeItemAtPath(dbPath, error: nil)
+////NSFileManager.defaultManager().removeItemAtPath(dbPath, error: nil)
 
-//let db = Database(dbPath)
-//
-//let ids = db["events"]
-//
-//let eventId = Expression<Int>("id")
-//let ekEventId = Expression<String>("ekEventId")
-//
-//db.create(table: ids, ifNotExists: true) { t in
-//    t.column(eventId, primaryKey: true)
-//    t.column(ekEventId, unique: true)
-//}
+let db = Database(dbPath)
 
-//ids.count
+let ids = db["events"]
+
+let eventId = Expression<Int>("id")
+let ekEventId = Expression<String>("ekEventId")
+
+db.create(table: ids, ifNotExists: true) { t in
+    t.column(eventId, primaryKey: true)
+    t.column(ekEventId, unique: true)
+}
+
+ids.count
 
 //ids.filter(eventId == 1)
 

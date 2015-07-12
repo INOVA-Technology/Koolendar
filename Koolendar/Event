@@ -10,8 +10,6 @@ import Foundation
 import EventKit
 import SQLite
 
-var eventsOnHelperVar = [EKEvent]()
-
 class Event {
     
     let ekEvent = EKEvent(eventStore: Event.eventStore)
@@ -122,9 +120,7 @@ class Event {
         
         var ekEvents = [EKEvent]()
         
-        var dispatch_group = dispatch_group_create()
-        
-        dispatch_group_enter(dispatch_group)
+        var i = 0
 
         Event.eventStore.requestAccessToEntityType(EKEntityTypeEvent, completion: {
             gotAccess, error in
@@ -148,32 +144,22 @@ class Event {
             if let idk = tmp {
                 ekEvents = tmp!
             }
-            
-            dispatch_group_leave(dispatch_group)
+
+            Event.eventsOnHelper = 
         })
-        
-        let queue = dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.value), 0)
-        
-        dispatch_group_notify(dispatch_group, queue) {
-            println(ekEvents)
-            
-            let ekEventId = Expression<String>("ekEventId")
-            let eventId = Expression<Int>("id")
-            
-            for ekEvent in ekEvents {
-                // This is dangerous, I think. Specificly the !'s
-                let daEventId = Event.db["events"].filter(ekEventId == ekEvent.eventIdentifier).select(eventId).first![eventId]
-                events.append(Event.eventWithId(daEventId)!)
-            }
-            
-            eventsOnHelperVar = ekEvents
+
+        let ekEventId = Expression<String>("ekEventId")
+        let eventId = Expression<Int>("id")
+
+        for ekEvent in ekEvents {
+        // This is dangerous, I think. Specificly the !'s
+        let daEventId = Event.db["events"].filter(ekEventId == ekEvent.eventIdentifier).select(eventId).first![eventId]
+        events.append(Event.eventWithId(daEventId)!)
         }
+
+        return events
     }
-    
-    class func eventsOnHelper(ekEvents: [EKEvent]) {
-        eventsOnHelperVar = ekEvents
-    }
-    
+
     class func eventWithId(id: Int) -> Event? {
         let eventId = Expression<Int>("id")
         let ekEventId = Expression<String>("ekEventId")
@@ -230,10 +216,10 @@ class Event {
         get { return ClassVariables.db }
     }
     
-//    class var eventsOnHelper: [EKEvent] {
-//        get { return ClassVariables.eventsOnHelper }
-//        set { ClassVariables.eventsOnHelper = newValue }
-//    }
+    class var eventsOnHelper: [EKEvent] {
+        get { return ClassVariables.eventsOnHelper }
+        set { ClassVariables.eventsOnHelper = newValue }
+    }
     
     class var nextId: Int {
         get {
