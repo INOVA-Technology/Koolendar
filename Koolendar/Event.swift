@@ -119,59 +119,50 @@ class Event {
     class func eventsOn(date: NSDate) -> [Event] {
         // TODO: make this async, as well as other things
         var events = [Event]()
-        
         var ekEvents = [EKEvent]()
         
-        var dispatch_group = dispatch_group_create()
-        
-        dispatch_group_enter(dispatch_group)
-
-        Event.eventStore.requestAccessToEntityType(EKEntityTypeEvent, completion: {
-            gotAccess, error in
-            let cal = NSCalendar.currentCalendar()
-            var comps = cal.components(.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay, fromDate: date)
-            
-            let aFewHoursAgo = NSDateComponents()
-            aFewHoursAgo.hour = -5
-            
-            var daStartDate = cal.dateFromComponents(comps)!
-            daStartDate = cal.dateByAddingComponents(aFewHoursAgo, toDate: daStartDate, options: .allZeros)!
-            
-            var aDay = NSDateComponents()
-            aDay.day = 1
-            
-            var daEndDate = cal.dateByAddingComponents(aDay, toDate: daStartDate, options: .allZeros)!
-            daEndDate = daEndDate.dateByAddingTimeInterval(-1)!
-            
-            let p = Event.eventStore.predicateForEventsWithStartDate(daStartDate, endDate: daEndDate, calendars: [Event.eventStore.defaultCalendarForNewEvents])
-            let tmp = Event.eventStore.eventsMatchingPredicate(p) as [EKEvent]?
-            if let idk = tmp {
-                ekEvents = tmp!
-            }
-            
-            dispatch_group_leave(dispatch_group)
-        })
-        
         let queue = dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.value), 0)
-        
-        dispatch_group_notify(dispatch_group, queue) {
-            println(ekEvents)
-            
-            let ekEventId = Expression<String>("ekEventId")
-            let eventId = Expression<Int>("id")
-            
-            for ekEvent in ekEvents {
-                // This is dangerous, I think. Specificly the !'s
-                let daEventId = Event.db["events"].filter(ekEventId == ekEvent.eventIdentifier).select(eventId).first![eventId]
-                events.append(Event.eventWithId(daEventId)!)
-            }
-            
-            eventsOnHelperVar = ekEvents
-        }
-    }
-    
-    class func eventsOnHelper(ekEvents: [EKEvent]) {
-        eventsOnHelperVar = ekEvents
+
+        dispatch_sync(queue, { () -> Void in
+            Event.eventStore.requestAccessToEntityType(EKEntityTypeEvent, completion: {
+                gotAccess, error in
+                let cal = NSCalendar.currentCalendar()
+                var comps = cal.components(.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay, fromDate: date)
+                
+                let aFewHoursAgo = NSDateComponents()
+                aFewHoursAgo.hour = -5
+                
+                var daStartDate = cal.dateFromComponents(comps)!
+                daStartDate = cal.dateByAddingComponents(aFewHoursAgo, toDate: daStartDate, options: .allZeros)!
+                
+                var aDay = NSDateComponents()
+                aDay.day = 1
+                
+                var daEndDate = cal.dateByAddingComponents(aDay, toDate: daStartDate, options: .allZeros)!
+                daEndDate = daEndDate.dateByAddingTimeInterval(-1)!
+                
+                let p = Event.eventStore.predicateForEventsWithStartDate(daStartDate, endDate: daEndDate, calendars: [Event.eventStore.defaultCalendarForNewEvents])
+                let tmp = Event.eventStore.eventsMatchingPredicate(p) as [EKEvent]?
+                if let idk = tmp {
+                    ekEvents = tmp!
+                }
+                
+                let ekEventId = Expression<String>("ekEventId")
+                let eventId = Expression<Int>("id")
+                
+                for ekEvent in ekEvents {
+                    let evnt = Event.db["events"]
+                    // This is dangerous, I think. Specificly the !'s
+                    var daEventId:AnyObject!
+                    daEventId = evnt.filter(ekEventId == ekEvent.eventIdentifier).first![evnt[eventId]]
+//                    events.append(Event.eventWithId(daEventId)!)
+                    println(daEventId)
+                    
+                }
+            })
+        })
+
+        return events
     }
     
     class func eventWithId(id: Int) -> Event? {
