@@ -181,51 +181,16 @@ class Event {
     
     
     
-    // ugly workaround for class vars below
+    static var all: [Event] = []
+    static let eventStore = EKEventStore()
+    static var eventStoreAccess: EKAuthorizationStatus!
+    static let dbDir = NSSearchPathForDirectoriesInDomains(
+        .DocumentDirectory, .UserDomainMask, true).first as! String
+    static let dbPath = "\(dbDir)/KoolendarDB.sqlite3"
+    static let db = Database(dbPath)
+    static var eventsOnHelper = [EKEvent]()
     
-    private struct ClassVariables {
-        static var all: [Event] = []
-        static let eventStore = EKEventStore()
-        static var eventStoreAccess: EKAuthorizationStatus!
-        static let dbDir = NSSearchPathForDirectoriesInDomains(
-            .DocumentDirectory, .UserDomainMask, true).first as! String
-        static let dbPath = "\(dbDir)/KoolendarDB.sqlite3"
-        static let db = Database(dbPath)
-        static var eventsOnHelper = [EKEvent]()
-    }
-    
-    class var all: [Event] {
-        get { return ClassVariables.all }
-        set { ClassVariables.all = newValue }
-    }
-    
-    class var eventStore: EKEventStore {
-        get { return ClassVariables.eventStore }
-    }
-    
-    class var eventStoreAccess: EKAuthorizationStatus {
-        get { return ClassVariables.eventStoreAccess }
-        set { ClassVariables.eventStoreAccess = newValue }
-    }
-    
-    class var dbDir: String {
-        get { return ClassVariables.dbDir }
-    }
-    
-    class var dbPath: String {
-        get { return ClassVariables.dbPath }
-    }
-    
-    class var db: Database {
-        get { return ClassVariables.db }
-    }
-    
-//    class var eventsOnHelper: [EKEvent] {
-//        get { return ClassVariables.eventsOnHelper }
-//        set { ClassVariables.eventsOnHelper = newValue }
-//    }
-    
-    class var nextId: Int {
+    static var nextId: Int {
         get {
             let table = self.db["settings"]
             let key = Expression<String>("key")
