@@ -72,9 +72,8 @@ class Event {
             } else {
                 self.id = Event.nextId
                 Event.nextId++
-                if let idk = Event.db["events"].insert(eventId <- self.id!, ekEventId <- self.ekEvent.eventIdentifier) {
-                    Event.all.append(self)
-                }
+                Event.db["events"].insert(eventId <- self.id!, ekEventId <- self.ekEvent.eventIdentifier)
+                Event.all.append(self)
             }
         })
     }
@@ -139,10 +138,10 @@ class Event {
                 aDay.day = 1
                 
                 var daEndDate = cal.dateByAddingComponents(aDay, toDate: daStartDate, options: .allZeros)!
-                daEndDate = daEndDate.dateByAddingTimeInterval(-1)!
+                daEndDate = daEndDate.dateByAddingTimeInterval(-1)
                 
                 let p = Event.eventStore.predicateForEventsWithStartDate(daStartDate, endDate: daEndDate, calendars: [Event.eventStore.defaultCalendarForNewEvents])
-                let tmp = Event.eventStore.eventsMatchingPredicate(p) as [EKEvent]?
+                let tmp = Event.eventStore.eventsMatchingPredicate(p) as? [EKEvent]
                 if let idk = tmp {
                     ekEvents = tmp!
                 }
@@ -189,7 +188,7 @@ class Event {
         static let eventStore = EKEventStore()
         static var eventStoreAccess: EKAuthorizationStatus!
         static let dbDir = NSSearchPathForDirectoriesInDomains(
-            .DocumentDirectory, .UserDomainMask, true).first as String
+            .DocumentDirectory, .UserDomainMask, true).first as! String
         static let dbPath = "\(dbDir)/KoolendarDB.sqlite3"
         static let db = Database(dbPath)
         static var eventsOnHelper = [EKEvent]()
@@ -235,7 +234,7 @@ class Event {
             if let first = table.filter(key == "nextId").first {
                 return first.get(value).toInt()!
             } else {
-                table.insert(key <- "nextId", value <- "0")!
+                table.insert(key <- "nextId", value <- "0")
                 return 0
             }
         }
@@ -246,9 +245,9 @@ class Event {
             let value = Expression<String>("value")
             
             if let first = table.filter(key == "nextId").first {
-                table.filter(key == "nextId").update(value <- String(newValue))!
+                table.filter(key == "nextId").update(value <- String(newValue))
             } else {
-                table.insert(key <- "nextId", value <- String(newValue))!
+                table.insert(key <- "nextId", value <- String(newValue))
             }
         }
     }

@@ -66,7 +66,7 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("eventCell") as EventCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("eventCell") as! EventCell
         
         
         let event = events[indexPath.row]
