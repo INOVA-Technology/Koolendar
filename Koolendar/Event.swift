@@ -75,4 +75,37 @@ class Event {
         events.insert(title_e <- self.title, startTime_e <- self.startTime, endTime_e <- self.endTime)
     }
     
+    class func eventsOnDate(date: NSDate) {
+        let id_e = Expression<Int>("id")
+        let title_e = Expression<String>("title")
+        let startTime_e = Expression<NSDate>("startTime")
+        let endTime_e = Expression<NSDate>("endTime")
+        
+        let dbDir = NSSearchPathForDirectoriesInDomains(
+            .DocumentDirectory, .UserDomainMask, true).first as! String
+        let db = Database("\(dbDir)/KoolendarDB.sqlite3")
+        
+        let events = db["events"]
+        
+        db.create(table: events, ifNotExists: true) { t in
+            t.column(id_e, primaryKey: true)
+            t.column(title_e)
+            t.column(startTime_e)
+            t.column(endTime_e)
+        }
+        
+        let units: NSCalendarUnit = .CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay | .CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitSecond
+        let comps = NSCalendar.currentCalendar().components(units, fromDate: date)
+        comps.hour = 0
+        comps.minute = 0
+        comps.second = 0
+        let startOfDay = NSCalendar.currentCalendar().dateFromComponents(comps)!
+        
+        let results = events.filter(startTime_e <= startOfDay).order(startTime_e)
+        
+        if let event = results.first {
+            println(event[events[title_e]])
+        }
+    }
+    
 }

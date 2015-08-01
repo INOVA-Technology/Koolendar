@@ -35,7 +35,7 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         comps.month = SelectedDate.month
         comps.year = SelectedDate.year
         let day = cal.dateFromComponents(comps)!
-        let events = Event.eventsOn(day)
+        let events = Event.eventsOnDate(day)
         
         theDateText.text = "\(SelectedDate.month)/\(SelectedDate.day)/\(SelectedDate.year)"
         
@@ -61,11 +61,11 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     // MARK: Table View Stuff
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(UITableView, numberOfRowsInSection section: Int) -> Int {
         return events.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("eventCell") as! EventCell
         
         
@@ -77,10 +77,10 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             cell.eventTime.text = "All day"
         } else {
             let cal = NSCalendar.currentCalendar()
-            let units: NSCalendarUnit = .HourCalendarUnit | .MinuteCalendarUnit
+            let units: NSCalendarUnit = .CalendarUnitHour | .CalendarUnitMinute
             
-            let startComps = cal.components(units, fromDate: event.startDate)
-            let endComps = cal.components(units, fromDate: event.endDate)
+            let startComps = cal.components(units, fromDate: event.startTime)
+            let endComps = cal.components(units, fromDate: event.endTime)
             
             cell.eventTime.text = "\(startComps.hour):\(startComps.minute)-\(endComps.hour):\(endComps.minute)"
         }
@@ -95,7 +95,7 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         return cell
     }
     
-    func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+    func tableView(UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if let selectedCellIndexPath = selectedCellIndexPath {
             if selectedCellIndexPath == indexPath {
                 self.selectedCellIndexPath = nil
@@ -109,17 +109,17 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         tableView.endUpdates()
     }
     
-    func tableView(tableView: UITableView!, canEditRowAtIndexPath indexPath: NSIndexPath!) -> Bool {
+    func tableView(UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
     
-    func tableView(tableView: UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath!) {
+    func tableView(UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.Delete) {
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
     }
     
-    func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
+    func tableView(UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if let selectedCellIndexPath = selectedCellIndexPath {
             if selectedCellIndexPath == indexPath {
                 return SelectedCellHeight
