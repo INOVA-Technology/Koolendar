@@ -9,6 +9,26 @@
 import Foundation
 import SQLite
 
+extension NSDate: Value {
+    public class var declaredDatatype: String {
+        return String.declaredDatatype
+    }
+    public class func fromDatatypeValue(stringValue: String) -> NSDate {
+        return SQLDateFormatter.dateFromString(stringValue)!
+    }
+    public var datatypeValue: String {
+        return SQLDateFormatter.stringFromDate(self)
+    }
+}
+
+let SQLDateFormatter: NSDateFormatter = {
+    let formatter = NSDateFormatter()
+    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
+    formatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+    formatter.timeZone = NSTimeZone(forSecondsFromGMT: 0)
+    return formatter
+}()
+
 class Event {
     
     var title: String
@@ -31,6 +51,28 @@ class Event {
         self.title = title
         self.startTime = startTime
         self.endTime = endTime
+    }
+    
+    func save() {
+        let id_e = Expression<Int>("id")
+        let title_e = Expression<String>("title")
+        let startTime_e = Expression<NSDate>("startTime")
+        let endTime_e = Expression<NSDate>("endTime")
+        
+        let dbDir = NSSearchPathForDirectoriesInDomains(
+            .DocumentDirectory, .UserDomainMask, true).first as! String
+        let db = Database("\(dbDir)/KoolendarDB.sqlite3")
+        
+        let events = db["events"]
+        
+        db.create(table: events, ifNotExists: true) { t in
+            t.column(id_e, primaryKey: true)
+            t.column(title_e)
+            t.column(startTime_e)
+            t.column(endTime_e)
+        }
+        
+        events.insert(title_e <- self.title, startTime_e <- self.startTime, endTime_e <- self.endTime)
     }
     
 }
