@@ -11,7 +11,6 @@
 		2E39009F1B0E4B05005B4E6E /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E39009E1B0E4B05005B4E6E /* Event.swift */; };
 		2E74A3EC1B66910100C9CA15 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E74A3E31B66906400C9CA15 /* SQLite.framework */; };
 		2E74A3ED1B66911600C9CA15 /* SQLite.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2E74A3E31B66906400C9CA15 /* SQLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2E74A3EE1B66911600C9CA15 /* SQLite.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2E74A3E71B66906400C9CA15 /* SQLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2E76222B1A6DB16200EAB134 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 2E76222A1A6DB16200EAB134 /* README.md */; };
 		2ED290141A70AED000DF4356 /* MonthViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED290131A70AED000DF4356 /* MonthViewCell.swift */; };
 		2ED290161A70B10500DF4356 /* DayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED290151A70B10500DF4356 /* DayViewController.swift */; };
@@ -76,7 +75,6 @@
 			dstSubfolderSpec = 7;
 			files = (
 				2E74A3ED1B66911600C9CA15 /* SQLite.framework in CopyFiles */,
-				2E74A3EE1B66911600C9CA15 /* SQLite.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

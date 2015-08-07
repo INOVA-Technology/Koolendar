@@ -75,7 +75,7 @@ class Event {
         events.insert(title_e <- self.title, startTime_e <- self.startTime, endTime_e <- self.endTime)
     }
     
-    class func eventsOnDate(date: NSDate) {
+    class func eventsOnDate(date: NSDate) -> [Event] {
         let id_e = Expression<Int>("id")
         let title_e = Expression<String>("title")
         let startTime_e = Expression<NSDate>("startTime")
@@ -100,12 +100,19 @@ class Event {
         comps.minute = 0
         comps.second = 0
         let startOfDay = NSCalendar.currentCalendar().dateFromComponents(comps)!
+        comps.day += 1
+        let endOfDay = NSCalendar.currentCalendar().dateFromComponents(comps)!
         
-        let results = events.filter(startTime_e <= startOfDay).order(startTime_e)
+        let results = events.filter(startTime_e >= startOfDay).filter(endTime_e <= endOfDay).order(startTime_e)
         
-        if let event = results.first {
-            println(event[events[title_e]])
+        // don't even ask why
+        var evvents = [Event]()
+        for res in results {
+            let e = Event(title: res.get(title_e), startTime: res.get(startTime_e), endTime: res.get(endTime_e))
+            evvents.append(e)
         }
+        
+        return evvents
     }
     
 }
