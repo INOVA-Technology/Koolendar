@@ -34,6 +34,8 @@ class EventForm: UIViewController, UITextFieldDelegate {
         let cal = NSCalendar.currentCalendar()
         let date = cal.dateFromComponents(comps)!
         
+        
+        
 //        dateFieldStarting.
 //        dateFieldEnding.
     }
@@ -53,13 +55,15 @@ class EventForm: UIViewController, UITextFieldDelegate {
         return true;
     }
     
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         self.view.endEditing(true)
     }
     
     @IBAction func dateFieldStart(sender: UITextField) {
         
         var datePickerStartView  : UIDatePicker = UIDatePicker()
+        datePickerStartView.timeZone = NSCalendar.currentCalendar().timeZone
+        datePickerStartView.calendar = NSCalendar.currentCalendar()
         datePickerStartView.datePickerMode = UIDatePickerMode.Time
         sender.inputView = datePickerStartView
         
@@ -94,6 +98,8 @@ class EventForm: UIViewController, UITextFieldDelegate {
     @IBAction func dateFieldEnd(sender: UITextField) {
         
         var datePickerView  : UIDatePicker = UIDatePicker()
+        datePickerView.timeZone = NSCalendar.currentCalendar().timeZone
+        datePickerView.calendar = NSCalendar.currentCalendar()
         datePickerView.datePickerMode = UIDatePickerMode.Time
         sender.inputView = datePickerView
         
@@ -126,7 +132,7 @@ class EventForm: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func addEvent(sender: UIButton) {
-        let event = Event(title: eventName.text, startDate: startDateLegit, endDate: endDateLegit)
+        let event = Event(title: eventName.text, startTime: startDateLegit, endTime: endDateLegit)
         event.save()
         navigationController?.popViewControllerAnimated(true)
         

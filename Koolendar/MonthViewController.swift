@@ -53,7 +53,7 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
         formatter.dateFormat = "MM"
         
         let todayDate:Array = formatter.monthSymbols
-        nameOfMonth.text = String(todayDate[comps.month - 1] as NSString)
+        nameOfMonth.text = String(todayDate[comps.month - 1] as! NSString)
         
         // Getting first day of month
         let calendarForMessingUp = NSCalendar.currentCalendar()
@@ -92,10 +92,10 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
         let sizeX = screenSize.width
         let sizeY = screenSize.height
         
-        let layout = collectionView.collectionViewLayout as UICollectionViewFlowLayout
+        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: sizeX / 7, height: sizeY / 7)
         
-        let layout2 = daysOfTheWeekCollection.collectionViewLayout as UICollectionViewFlowLayout
+        let layout2 = daysOfTheWeekCollection.collectionViewLayout as! UICollectionViewFlowLayout
         layout2.itemSize = CGSize(width: 30, height: sizeX/7)
         
         layout.invalidateLayout()
@@ -132,7 +132,7 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         if collectionView == self.collectionView {
-            var cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as MonthViewCell
+            var cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! MonthViewCell
             let myWeekday = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitWeekday, fromDate: date).weekday
             let day = calendar.components(.DayCalendarUnit, fromDate: date).day
             
@@ -156,7 +156,7 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
             
             return cell
         } else {
-            let cell = daysOfTheWeekCollection.dequeueReusableCellWithReuseIdentifier("dayOfTheWeekCell", forIndexPath: indexPath) as DayOfTheWeekCell
+            let cell = daysOfTheWeekCollection.dequeueReusableCellWithReuseIdentifier("dayOfTheWeekCell", forIndexPath: indexPath) as! DayOfTheWeekCell
             
             let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
             
