@@ -35,7 +35,8 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         comps.month = SelectedDate.month
         comps.year = SelectedDate.year
         let day = cal.dateFromComponents(comps)!
-        let events = Event.eventsOnDate(day)
+        var events = Event.eventsOnDate(day)
+        println(events.count)
         
         theDateText.text = "\(SelectedDate.month)/\(SelectedDate.day)/\(SelectedDate.year)"
         
@@ -62,14 +63,30 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     // MARK: Table View Stuff
     
     func tableView(UITableView, numberOfRowsInSection section: Int) -> Int {
+//        println("aight \(events)")
+        let cal = NSCalendar.currentCalendar()
+        let comps = NSDateComponents()
+        comps.day = SelectedDate.day
+        comps.month = SelectedDate.month
+        comps.year = SelectedDate.year
+        let day = cal.dateFromComponents(comps)!
+        var events = Event.eventsOnDate(day)
         return events.count
     }
     
     func tableView(UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("eventCell") as! EventCell
         
+        let cal = NSCalendar.currentCalendar()
+        let comps = NSDateComponents()
+        comps.day = SelectedDate.day
+        comps.month = SelectedDate.month
+        comps.year = SelectedDate.year
+        let day = cal.dateFromComponents(comps)!
+        var events = Event.eventsOnDate(day)
         
         let event = events[indexPath.row]
+        println("name: \(event.title)")
         
         cell.eventTitle.text = event.title
         cell.eventDescription.text = "Placeholder"

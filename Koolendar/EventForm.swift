@@ -134,6 +134,7 @@ class EventForm: UIViewController, UITextFieldDelegate {
     @IBAction func addEvent(sender: UIButton) {
         let event = Event(title: eventName.text, startTime: startDateLegit, endTime: endDateLegit)
         event.save()
+        println("saved")
         navigationController?.popViewControllerAnimated(true)
         
 //        self.navigationController?.presentViewController(DayViewController(), animated: true, completion: nil)
