@@ -35,14 +35,12 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         comps.month = SelectedDate.month
         comps.year = SelectedDate.year
         let day = cal.dateFromComponents(comps)!
-        var events = Event.eventsOnDate(day)
+        self.events = Event.eventsOnDate(day)
         println(events.count)
         
         theDateText.text = "\(SelectedDate.month)/\(SelectedDate.day)/\(SelectedDate.year)"
         
         self.tableView.reloadData()
-        
-
     }
     
     
@@ -63,27 +61,11 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     // MARK: Table View Stuff
     
     func tableView(UITableView, numberOfRowsInSection section: Int) -> Int {
-//        println("aight \(events)")
-        let cal = NSCalendar.currentCalendar()
-        let comps = NSDateComponents()
-        comps.day = SelectedDate.day
-        comps.month = SelectedDate.month
-        comps.year = SelectedDate.year
-        let day = cal.dateFromComponents(comps)!
-        var events = Event.eventsOnDate(day)
         return events.count
     }
     
     func tableView(UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("eventCell") as! EventCell
-        
-        let cal = NSCalendar.currentCalendar()
-        let comps = NSDateComponents()
-        comps.day = SelectedDate.day
-        comps.month = SelectedDate.month
-        comps.year = SelectedDate.year
-        let day = cal.dateFromComponents(comps)!
-        var events = Event.eventsOnDate(day)
         
         let event = events[indexPath.row]
         println("name: \(event.title)")
@@ -99,7 +81,6 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             let startComps = cal.components(units, fromDate: event.startTime)
             let endComps = cal.components(units, fromDate: event.endTime)
             
-//            cell.eventTime.text = "\(startComps.hour):\(startComps.minute)-\(endComps.hour):\(endComps.minute)"
             let formatter = NSDateFormatter()
             formatter.dateStyle = .NoStyle
             formatter.timeStyle = .ShortStyle
