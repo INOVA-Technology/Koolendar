@@ -99,7 +99,11 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             let startComps = cal.components(units, fromDate: event.startTime)
             let endComps = cal.components(units, fromDate: event.endTime)
             
-            cell.eventTime.text = "\(startComps.hour):\(startComps.minute)-\(endComps.hour):\(endComps.minute)"
+//            cell.eventTime.text = "\(startComps.hour):\(startComps.minute)-\(endComps.hour):\(endComps.minute)"
+            let formatter = NSDateFormatter()
+            formatter.dateStyle = .NoStyle
+            formatter.timeStyle = .ShortStyle
+            cell.eventTime.text = formatter.stringFromDate(event.startTime)
         }
         
         if (indexPath.row % 2 == 0) {
