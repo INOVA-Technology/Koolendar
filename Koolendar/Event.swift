@@ -46,11 +46,22 @@ class Event {
         }
         // TODO: add `set { ... }`
     }
+    
+    // in seconds
+    var notificationTimeOffset: NSTimeInterval
+    var notificationTime: NSDate {
+        return self.startTime.dateByAddingTimeInterval(-notificationTimeOffset)
+    }
 
-    init(title: String, startTime: NSDate, endTime: NSDate) {
+    init(title: String, startTime: NSDate, endTime: NSDate, notificationTimeOffset: NSTimeInterval) {
         self.title = title
         self.startTime = startTime
         self.endTime = endTime
+        self.notificationTimeOffset = notificationTimeOffset
+    }
+    
+    convenience init(title: String, startTime: NSDate, endTime: NSDate) {
+        self.init(title: title, startTime: startTime, endTime: endTime, notificationTimeOffset: 0)
     }
     
     func save() {
@@ -113,6 +124,34 @@ class Event {
         }
         
         return evvents
+    }
+    
+    class func each(block: (Event -> ())) {
+        let id_e = Expression<Int>("id")
+        let title_e = Expression<String>("title")
+        let startTime_e = Expression<NSDate>("startTime")
+        let endTime_e = Expression<NSDate>("endTime")
+        
+        let dbDir = NSSearchPathForDirectoriesInDomains(
+            .DocumentDirectory, .UserDomainMask, true).first as! String
+        let db = Database("\(dbDir)/KoolendarDB.sqlite3")
+        
+        let events = db["events"]
+        
+        db.create(table: events, ifNotExists: true) { t in
+            t.column(id_e, primaryKey: true)
+            t.column(title_e)
+            t.column(startTime_e)
+            t.column(endTime_e)
+        }
+        
+        
+        
+        for e in events {
+            let event = Event(title: e.get(title_e), startTime: e.get(startTime_e), endTime: e.get(endTime_e))
+            block(event)
+        }
+
     }
     
 }

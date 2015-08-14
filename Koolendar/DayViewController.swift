@@ -43,12 +43,6 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         self.tableView.reloadData()
     }
     
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     @IBAction func goBack(sender: UIButton) {
         self.navigationController?.popViewControllerAnimated(true)
         println("test")
