@@ -196,6 +196,9 @@
                                                     <state key="normal" title="Edit">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="editEvent:" destination="fn1-FO-i0a" eventType="touchUpInside" id="873-5m-hgN"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -271,7 +274,7 @@
         <!--Event Form-->
         <scene sceneID="Zrd-QY-zXt">
             <objects>
-                <viewController id="G7n-lz-uBd" customClass="EventForm" customModule="Koolendar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="eventForm" id="G7n-lz-uBd" customClass="EventForm" customModule="Koolendar" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7Ml-KC-IRt"/>
                         <viewControllerLayoutGuide type="bottom" id="R42-2U-2bM"/>

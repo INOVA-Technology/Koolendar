@@ -23,6 +23,8 @@ class EventForm: UIViewController, UITextFieldDelegate {
     var hasClickedStart: dispatch_once_t = 0
     var hasClickedEnd: dispatch_once_t = 0
     
+    var eventBeingEdited: Event?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -134,8 +136,7 @@ class EventForm: UIViewController, UITextFieldDelegate {
     @IBAction func addEvent(sender: UIButton) {
         let event = Event(title: eventName.text, startTime: startDateLegit, endTime: endDateLegit)
         event.save()
-        println("saved")
-        navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.popViewControllerAnimated(true)
         
 //        self.navigationController?.presentViewController(DayViewController(), animated: true, completion: nil)
         

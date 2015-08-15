@@ -41,7 +41,13 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         theDateText.text = "\(SelectedDate.month)/\(SelectedDate.day)/\(SelectedDate.year)"
         
         self.tableView.reloadData()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "showEditMenu", name: "showEditMenu", object: nil)
     }
+    
+//    override func viewDidUnload() {
+//        NSNotificationCenter.defaultCenter().removeObserver(self)
+//    }
     
     @IBAction func goBack(sender: UIButton) {
         self.navigationController?.popViewControllerAnimated(true)
@@ -60,6 +66,7 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func tableView(UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("eventCell") as! EventCell
+        cell.rowIndex = indexPath.row
         
         let event = events[indexPath.row]
         println("name: \(event.title)")
@@ -122,6 +129,12 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             }
         }
         return UnselectedCellHeight
+    }
+    
+    func showEditView(notif: NSNotification) {
+        let eventForm = self.storyboard!.instantiateViewControllerWithIdentifier("eventForm") as! EventForm
+        eventForm.eventBeingEdited = self.events[notif.object as! Int]
+        self.navigationController!.pushViewController(eventForm, animated: true)
     }
     
 }
