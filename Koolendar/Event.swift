@@ -72,8 +72,8 @@ class Event {
         self.init(title: title, startTime: startTime, endTime: endTime, notificationTimeOffset: 0, id: nil)
     }
     
-    convenience init(title: String, startTime: NSDate, endTime: NSDate, id: Int) {
-        self.init(title: title, startTime: startTime, endTime: endTime, notificationTimeOffset: 0, id: id)
+    convenience init(row: Row) {
+        self.init(title: row.get(title_e), startTime: row.get(startTime_e), endTime: row.get(endTime_e), notificationTimeOffset: 0, id: row.get(id_e))
     }
     
     func save() {
@@ -123,8 +123,7 @@ class Event {
             let results = events.filter(startTime_e >= startOfDay).filter(endTime_e <= endOfDay).order(startTime_e)
             
             for res in results {
-                let e = Event(title: res.get(title_e), startTime: res.get(startTime_e), endTime: res.get(endTime_e), id: res.get(id_e))
-                evvents.append(e)
+                evvents.append(Event(row: res))
             }
         }
         
@@ -134,8 +133,7 @@ class Event {
     class func each(block: (Event -> ())) { 
         Event.events() { events in
             for e in events {
-                let event = Event(title: e.get(title_e), startTime: e.get(startTime_e), endTime: e.get(endTime_e), id: e.get(id_e))
-                block(event)
+                block(Event(row: e))
             }
         }
 
