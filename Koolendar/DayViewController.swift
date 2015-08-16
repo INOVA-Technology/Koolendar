@@ -42,7 +42,7 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         self.tableView.reloadData()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "showEditMenu", name: "showEditMenu", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "showEditMenu:", name: "showEditMenu", object: nil)
     }
     
 //    override func viewDidUnload() {
@@ -116,6 +116,8 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         return true
     }
     
+    
+    // wait this method declaration is really weird, idk how it even works
     func tableView(UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.Delete) {
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
@@ -131,7 +133,7 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         return UnselectedCellHeight
     }
     
-    func showEditView(notif: NSNotification) {
+    func showEditMenu(notif: NSNotification) {
         let eventForm = self.storyboard!.instantiateViewControllerWithIdentifier("eventForm") as! EventForm
         eventForm.eventBeingEdited = self.events[notif.object as! Int]
         self.navigationController!.pushViewController(eventForm, animated: true)

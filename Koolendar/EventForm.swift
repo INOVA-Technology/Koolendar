@@ -35,11 +35,6 @@ class EventForm: UIViewController, UITextFieldDelegate {
         
         let cal = NSCalendar.currentCalendar()
         let date = cal.dateFromComponents(comps)!
-        
-        
-        
-//        dateFieldStarting.
-//        dateFieldEnding.
     }
     
     override func didReceiveMemoryWarning() {
@@ -134,8 +129,15 @@ class EventForm: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func addEvent(sender: UIButton) {
-        let event = Event(title: eventName.text, startTime: startDateLegit, endTime: endDateLegit)
-        event.save()
+        if let event = eventBeingEdited {
+            event.title = eventName.text
+            event.startTime = startDateLegit
+            event.endTime = endDateLegit
+            event.save()
+        } else {
+            let event = Event(title: eventName.text, startTime: startDateLegit, endTime: endDateLegit)
+            event.save()
+        }
         self.navigationController?.popViewControllerAnimated(true)
         
 //        self.navigationController?.presentViewController(DayViewController(), animated: true, completion: nil)

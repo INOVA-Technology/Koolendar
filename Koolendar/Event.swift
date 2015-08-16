@@ -40,6 +40,8 @@ class Event {
     var startTime: NSDate
     var endTime: NSDate
     
+    var id: Int?
+    
     var allDay: Bool {
         get {
             let cal = NSCalendar.currentCalendar()
@@ -58,21 +60,33 @@ class Event {
         return self.startTime.dateByAddingTimeInterval(-notificationTimeOffset)
     }
 
-    init(title: String, startTime: NSDate, endTime: NSDate, notificationTimeOffset: NSTimeInterval) {
+    init(title: String, startTime: NSDate, endTime: NSDate, notificationTimeOffset: NSTimeInterval, id: Int?) {
         self.title = title
         self.startTime = startTime
         self.endTime = endTime
         self.notificationTimeOffset = notificationTimeOffset
+        self.id = id
     }
     
     convenience init(title: String, startTime: NSDate, endTime: NSDate) {
-        self.init(title: title, startTime: startTime, endTime: endTime, notificationTimeOffset: 0)
+        self.init(title: title, startTime: startTime, endTime: endTime, notificationTimeOffset: 0, id: nil)
+    }
+    
+    convenience init(title: String, startTime: NSDate, endTime: NSDate, id: Int) {
+        self.init(title: title, startTime: startTime, endTime: endTime, notificationTimeOffset: 0, id: id)
     }
     
     func save() {
         Event.events() { events in
-            events.insert(title_e <- self.title, startTime_e <- self.startTime, endTime_e <- self.endTime)
+            if let id = self.id {
+                events.filter(id_e == id).update(title_e <- self.title, startTime_e <- self.startTime, endTime_e <- self.endTime)
+            } else if let id = events.insert(title_e <- self.title, startTime_e <- self.startTime, endTime_e <- self.endTime).rowid {
+                self.id = Int(id)
+            } else {
+                println("couldn't save the event 😞")
+            }
         }
+        
     }
     
     class private func events(block: (Query -> Void)) {
@@ -109,7 +123,7 @@ class Event {
             let results = events.filter(startTime_e >= startOfDay).filter(endTime_e <= endOfDay).order(startTime_e)
             
             for res in results {
-                let e = Event(title: res.get(title_e), startTime: res.get(startTime_e), endTime: res.get(endTime_e))
+                let e = Event(title: res.get(title_e), startTime: res.get(startTime_e), endTime: res.get(endTime_e), id: res.get(id_e))
                 evvents.append(e)
             }
         }
@@ -117,10 +131,10 @@ class Event {
         return evvents
     }
     
-    class func each(block: (Event -> ())) {
+    class func each(block: (Event -> ())) { 
         Event.events() { events in
             for e in events {
-                let event = Event(title: e.get(title_e), startTime: e.get(startTime_e), endTime: e.get(endTime_e))
+                let event = Event(title: e.get(title_e), startTime: e.get(startTime_e), endTime: e.get(endTime_e), id: e.get(id_e))
                 block(event)
             }
         }
