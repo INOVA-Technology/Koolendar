@@ -51,7 +51,6 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     @IBAction func goBack(sender: UIButton) {
         self.navigationController?.popViewControllerAnimated(true)
-        println("test")
     }
     
     @IBAction func eatThis(sender: UIButton) {

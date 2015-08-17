@@ -23,7 +23,13 @@ class EventForm: UIViewController, UITextFieldDelegate {
     var hasClickedStart: dispatch_once_t = 0
     var hasClickedEnd: dispatch_once_t = 0
     
+    var _hasClickedStart: dispatch_once_t = 0
+    var _hasClickedEnd: dispatch_once_t = 0
+    
     var eventBeingEdited: Event?
+    
+    var datePickerStartView: UIDatePicker = UIDatePicker()
+    var datePickerEndView: UIDatePicker = UIDatePicker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +43,16 @@ class EventForm: UIViewController, UITextFieldDelegate {
         let date = cal.dateFromComponents(comps)!
         
         if let eventBeingEdited = eventBeingEdited { loadEvent(eventBeingEdited) }
+        
+        datePickerStartView.timeZone = NSCalendar.currentCalendar().timeZone
+        datePickerStartView.calendar = NSCalendar.currentCalendar()
+        datePickerStartView.datePickerMode = UIDatePickerMode.Time
+        datePickerStartView.addTarget(self, action: Selector("handleDatePickerStart:"), forControlEvents: UIControlEvents.ValueChanged)
+        
+        datePickerEndView.timeZone = NSCalendar.currentCalendar().timeZone
+        datePickerEndView.calendar = NSCalendar.currentCalendar()
+        datePickerEndView.datePickerMode = UIDatePickerMode.Time
+        datePickerEndView.addTarget(self, action: Selector("handleDatePickerEnd:"), forControlEvents: UIControlEvents.ValueChanged)
     }
     
     override func didReceiveMemoryWarning() {
@@ -78,14 +94,13 @@ class EventForm: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func dateFieldStart(sender: UITextField) {
+        if let eventBeingEdited = eventBeingEdited {
+            dispatch_once(&_hasClickedStart) {
+                self.datePickerStartView.date = eventBeingEdited.startTime
+            }
+        }
         
-        var datePickerStartView  : UIDatePicker = UIDatePicker()
-        datePickerStartView.timeZone = NSCalendar.currentCalendar().timeZone
-        datePickerStartView.calendar = NSCalendar.currentCalendar()
-        datePickerStartView.datePickerMode = UIDatePickerMode.Time
-        sender.inputView = datePickerStartView
-        
-        datePickerStartView.addTarget(self, action: Selector("handleDatePickerStart:"), forControlEvents: UIControlEvents.ValueChanged)
+        sender.inputView = self.datePickerStartView
         
         let timeFormatter = NSDateFormatter()
         timeFormatter.dateStyle = .NoStyle
@@ -105,31 +120,23 @@ class EventForm: UIViewController, UITextFieldDelegate {
         dateFieldStarting.text = timeFormatter.stringFromDate(sender.date)
         startDateLegit = sender.date
     }
-    
-    // Oh shut up... I know its not efficient. i couldnt think of a simpler way to.
+
     @IBAction func dateFieldEnd(sender: UITextField) {
+        if let eventBeingEdited = eventBeingEdited {
+            dispatch_once(&_hasClickedEnd) {
+                self.datePickerEndView.date = eventBeingEdited.endTime
+            }
+        }
         
-        var datePickerView  : UIDatePicker = UIDatePicker()
-        datePickerView.timeZone = NSCalendar.currentCalendar().timeZone
-        datePickerView.calendar = NSCalendar.currentCalendar()
-        datePickerView.datePickerMode = UIDatePickerMode.Time
-        sender.inputView = datePickerView
-        
-        datePickerView.addTarget(self, action: Selector("handleDatePickerEnd:"), forControlEvents: UIControlEvents.ValueChanged)
-        
-        let theDate = NSDate()
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute, fromDate: theDate)
-        let hour = components.hour
-        let minutes = components.minute
+        sender.inputView = datePickerEndView
         
         var timeFormatter = NSDateFormatter()
         timeFormatter.dateStyle = .NoStyle
         timeFormatter.timeStyle = .ShortStyle
         
         dispatch_once(&hasClickedEnd) {
+            let theDate = NSDate()
             self.dateFieldEnding.text = timeFormatter.stringFromDate(theDate)
-            
             self.endDateLegit = theDate
         }
         
