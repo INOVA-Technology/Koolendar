@@ -13,6 +13,7 @@ private let id_e = Expression<Int>("id")
 private let title_e = Expression<String>("title")
 private let startTime_e = Expression<NSDate>("startTime")
 private let endTime_e = Expression<NSDate>("endTime")
+private let description_e = Expression<String>("description")
 
 extension NSDate: Value {
     public class var declaredDatatype: String {
@@ -37,6 +38,7 @@ let SQLDateFormatter: NSDateFormatter = {
 class Event {
     
     var title: String
+    var description: String
     var startTime: NSDate
     var endTime: NSDate
     
@@ -60,27 +62,28 @@ class Event {
         return self.startTime.dateByAddingTimeInterval(-notificationTimeOffset)
     }
 
-    init(title: String, startTime: NSDate, endTime: NSDate, notificationTimeOffset: NSTimeInterval, id: Int?) {
+    init(title: String, description: String, startTime: NSDate, endTime: NSDate, notificationTimeOffset: NSTimeInterval, id: Int?) {
         self.title = title
+        self.description = description
         self.startTime = startTime
         self.endTime = endTime
         self.notificationTimeOffset = notificationTimeOffset
         self.id = id
     }
     
-    convenience init(title: String, startTime: NSDate, endTime: NSDate) {
-        self.init(title: title, startTime: startTime, endTime: endTime, notificationTimeOffset: 0, id: nil)
+    convenience init(title: String, description: String, startTime: NSDate, endTime: NSDate) {
+        self.init(title: title, description: description, startTime: startTime, endTime: endTime, notificationTimeOffset: 0, id: nil)
     }
     
     convenience init(row: Row) {
-        self.init(title: row.get(title_e), startTime: row.get(startTime_e), endTime: row.get(endTime_e), notificationTimeOffset: 0, id: row.get(id_e))
+        self.init(title: row.get(title_e), description: row.get(description_e), startTime: row.get(startTime_e), endTime: row.get(endTime_e), notificationTimeOffset: 0, id: row.get(id_e))
     }
     
     func save() {
         Event.events() { events in
             if let id = self.id {
-                events.filter(id_e == id).update(title_e <- self.title, startTime_e <- self.startTime, endTime_e <- self.endTime)
-            } else if let id = events.insert(title_e <- self.title, startTime_e <- self.startTime, endTime_e <- self.endTime).rowid {
+                events.filter(id_e == id).update(title_e <- self.title, description_e <- self.description, startTime_e <- self.startTime, endTime_e <- self.endTime)
+            } else if let id = events.insert(title_e <- self.title, description_e <- self.description, startTime_e <- self.startTime, endTime_e <- self.endTime).rowid {
                 self.id = Int(id)
             } else {
                 println("couldn't save the event 😞")
@@ -99,6 +102,7 @@ class Event {
         db.create(table: events, ifNotExists: true) { t in
             t.column(id_e, primaryKey: true)
             t.column(title_e)
+            t.column(description_e)
             t.column(startTime_e)
             t.column(endTime_e)
         }

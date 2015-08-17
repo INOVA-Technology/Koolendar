@@ -35,6 +35,8 @@ class EventForm: UIViewController, UITextFieldDelegate {
         
         let cal = NSCalendar.currentCalendar()
         let date = cal.dateFromComponents(comps)!
+        
+        if let eventBeingEdited = eventBeingEdited { loadEvent(eventBeingEdited) }
     }
     
     override func didReceiveMemoryWarning() {
@@ -56,6 +58,25 @@ class EventForm: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
     }
     
+    func loadEvent(event: Event) {
+        let timeFormatter = NSDateFormatter()
+        timeFormatter.dateStyle = .NoStyle
+        timeFormatter.timeStyle = .ShortStyle
+        
+        dispatch_once(&hasClickedStart) {
+            self.dateFieldStarting.text = timeFormatter.stringFromDate(event.startTime)
+            self.startDateLegit = event.startTime
+        }
+        
+        dispatch_once(&hasClickedEnd) {
+            self.dateFieldEnding.text = timeFormatter.stringFromDate(event.endTime)
+            self.endDateLegit = event.endTime
+        }
+        
+        self.eventName.text = event.title
+        self.eventDesc.text = event.description
+    }
+    
     @IBAction func dateFieldStart(sender: UITextField) {
         
         var datePickerStartView  : UIDatePicker = UIDatePicker()
@@ -66,19 +87,13 @@ class EventForm: UIViewController, UITextFieldDelegate {
         
         datePickerStartView.addTarget(self, action: Selector("handleDatePickerStart:"), forControlEvents: UIControlEvents.ValueChanged)
         
-        let theDate = NSDate()
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute, fromDate: theDate)
-        let hour = components.hour
-        let minutes = components.minute
-        
-        var timeFormatter = NSDateFormatter()
+        let timeFormatter = NSDateFormatter()
         timeFormatter.dateStyle = .NoStyle
         timeFormatter.timeStyle = .ShortStyle
         
         dispatch_once(&hasClickedStart) {
-            self.dateFieldStarting.text = timeFormatter.stringFromDate(theDate)
-            
+            let theDate = NSDate()
+            self.dateFieldStarting.text = timeFormatter.stringFromDate(NSDate())
             self.startDateLegit = theDate
         }
     }
@@ -135,7 +150,7 @@ class EventForm: UIViewController, UITextFieldDelegate {
             event.endTime = endDateLegit
             event.save()
         } else {
-            let event = Event(title: eventName.text, startTime: startDateLegit, endTime: endDateLegit)
+            let event = Event(title: eventName.text, description: eventDesc.text, startTime: startDateLegit, endTime: endDateLegit)
             event.save()
         }
         self.navigationController?.popViewControllerAnimated(true)

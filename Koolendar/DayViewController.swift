@@ -72,7 +72,8 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         println("name: \(event.title)")
         
         cell.eventTitle.text = event.title
-        cell.eventDescription.text = "Placeholder"
+        cell.eventDescription.text = event.description
+        
         if event.allDay {
             cell.eventTime.text = "All day"
         } else {
