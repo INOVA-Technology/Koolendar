@@ -23,7 +23,7 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var daysOfTheWeekCollection: UICollectionView!
     
-    let flags: NSCalendarUnit = .DayCalendarUnit | .MonthCalendarUnit | .YearCalendarUnit
+    let flags: NSCalendarUnit = .CalendarUnitDay | .CalendarUnitMonth | .CalendarUnitYear
 
     var calendar = NSCalendar.currentCalendar()
     var date = NSDate()
@@ -66,9 +66,7 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
         componentsForMessingUp.month  += 1
         componentsForMessingUp.day     = 0
         let lastDateOfMonth: NSDate = calendarForMessingUp.dateFromComponents(componentsForMessingUp)!
-        var unitFlags = NSCalendarUnit.WeekOfMonthCalendarUnit |
-            NSCalendarUnit.WeekdayCalendarUnit     |
-            NSCalendarUnit.CalendarUnitDay
+        var unitFlags: NSCalendarUnit = .CalendarUnitWeekOfMonth | .CalendarUnitWeekday | .CalendarUnitDay
         
         let firstDateComponents = calendarForMessingUp.components(unitFlags, fromDate: firstDateOfMonth)
         let lastDateComponents  = calendarForMessingUp.components(unitFlags, fromDate: lastDateOfMonth)
@@ -134,7 +132,7 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
         if collectionView == self.collectionView {
             var cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! MonthViewCell
             let myWeekday = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitWeekday, fromDate: date).weekday
-            let day = calendar.components(.DayCalendarUnit, fromDate: date).day
+            let day = calendar.components(.CalendarUnitDay, fromDate: date).day
             
             if (indexPath.row % 2 == 0) {
                 cell.backgroundColor = ColorScheme.dayCell
