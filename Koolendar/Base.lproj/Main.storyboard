@@ -102,7 +102,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="showSidebar:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="9xU-rE-CdB"/>
+                                    <action selector="showSidebar:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="GI1-0c-DhI"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -129,7 +129,6 @@
                         <outlet property="collectionView" destination="Itz-8b-Mzg" id="hgY-dz-Ton"/>
                         <outlet property="daysOfTheWeekCollection" destination="2QP-Fh-3HC" id="fVd-ff-yex"/>
                         <outlet property="nameOfMonth" destination="iEv-S5-E6f" id="mgG-Jj-ZhI"/>
-                        <outlet property="showSidebar" destination="34M-9Q-8M9" id="5dv-rc-Kn1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
