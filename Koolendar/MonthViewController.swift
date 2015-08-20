@@ -15,10 +15,10 @@ struct SelectedDate {
     static var year: Int!
 }
 
-class MonthViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class MonthViewController: CenterViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
     // MARK: variables and constants
-    
+   
     @IBOutlet weak var nameOfMonth: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var daysOfTheWeekCollection: UICollectionView!
@@ -164,6 +164,9 @@ class MonthViewController: UIViewController, UICollectionViewDataSource, UIColle
         }
     }
 
+    @IBAction func showSidebar(sender: AnyObject) {
+        delegate?.toggleLeftPanel?()
+    }
     /*
     // MARK: - Navigation
 

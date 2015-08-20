@@ -96,6 +96,15 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="34M-9Q-8M9">
+                                <rect key="frame" x="16" y="20" width="53" height="30"/>
+                                <state key="normal" title="Sidebar">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showSidebar:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="9xU-rE-CdB"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -120,12 +129,13 @@
                         <outlet property="collectionView" destination="Itz-8b-Mzg" id="hgY-dz-Ton"/>
                         <outlet property="daysOfTheWeekCollection" destination="2QP-Fh-3HC" id="fVd-ff-yex"/>
                         <outlet property="nameOfMonth" destination="iEv-S5-E6f" id="mgG-Jj-ZhI"/>
+                        <outlet property="showSidebar" destination="34M-9Q-8M9" id="5dv-rc-Kn1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer numberOfTapsRequired="2" id="9EJ-uZ-PpI"/>
             </objects>
-            <point key="canvasLocation" x="1047.5" y="130.5"/>
+            <point key="canvasLocation" x="1047.5" y="92.5"/>
         </scene>
         <!--Day View Controller-->
         <scene sceneID="7Zr-D8-xR7">
@@ -416,6 +426,56 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qv4-Xp-JY8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2304.75" y="-111.5"/>
+        </scene>
+        <!--Side Panel View Controller-->
+        <scene sceneID="ChA-8j-bfV">
+            <objects>
+                <viewController id="kaH-0L-MRh" customClass="SidePanelViewController" customModule="LeftViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xYQ-7E-dl6"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZEL-OC-Z8h"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lA7-MN-Xk0">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="TYj-Vi-lBt">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Yw0-Vl-Eff">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Yw0-Vl-Eff" id="itQ-5V-ADf">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Item 1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xUS-B5-YQB">
+                                                    <rect key="frame" x="8" y="11" width="48" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="TYj-Vi-lBt" firstAttribute="top" secondItem="xYQ-7E-dl6" secondAttribute="bottom" id="RO2-qf-hWP"/>
+                            <constraint firstAttribute="trailing" secondItem="TYj-Vi-lBt" secondAttribute="trailing" id="RdJ-HC-YZW"/>
+                            <constraint firstAttribute="bottom" secondItem="TYj-Vi-lBt" secondAttribute="bottom" id="TGP-FC-p2N"/>
+                            <constraint firstItem="TYj-Vi-lBt" firstAttribute="leading" secondItem="lA7-MN-Xk0" secondAttribute="leading" id="rX2-tj-a9T"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="TYj-Vi-lBt" id="FH7-zh-yFh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yeM-BF-sUw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2740" y="121"/>
         </scene>
     </scenes>
 </document>

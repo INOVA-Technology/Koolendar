@@ -9,6 +9,8 @@
 import UIKit
 import SQLite
 
+// THIS IS A MESS, proceed with caution
+
 class EventForm: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var dateFieldStarting: UITextField!
