@@ -34,24 +34,6 @@ class ContainerViewController: UIViewController, CenterViewControllerDelegate {
         centerNavigationController.didMoveToParentViewController(self)
     }
     
-    func animateLeftPanel(shouldExpand: Bool) {
-        if shouldExpand {
-            currentState = .LeftPanelExpanded
-            animateCenterPanelXPosition(targetPosition: CGRectGetWidth(centerNavigationController.view.frame) - centerPanelExpandOffset)
-        } else {
-            animateCenterPanelXPosition(targetPosition: 0) { finished in
-                self.currentState = .BothCollapsed
-                self.leftViewController!.view.removeFromSuperview()
-                self.leftViewController = nil
-            }
-        }
-    }
-    
-    func animateCenterPanelXPosition(#targetPosition: CGFloat, completion: ((Bool) -> Void)! = nil) {
-        UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: {
-            self.centerNavigationController.view.frame.origin.x = targetPosition
-        }, completion: completion)
-    }
 }
 
 extension ContainerViewController: CenterViewControllerDelegate {
@@ -83,6 +65,22 @@ extension ContainerViewController: CenterViewControllerDelegate {
     }
     
     func animateLeftPanel(#shouldExpand: Bool) {
+        if shouldExpand {
+            currentState = .LeftPanelExpanded
+            animateCenterPanelXPosition(targetPosition: CGRectGetWidth(centerNavigationController.view.frame) - centerPanelExpandOffset)
+        } else {
+            animateCenterPanelXPosition(targetPosition: 0) { finished in
+                self.currentState = .BothCollapsed
+                self.leftViewController!.view.removeFromSuperview()
+                self.leftViewController = nil
+            }
+        }
+    }
+    
+    func animateCenterPanelXPosition(#targetPosition: CGFloat, completion: ((Bool) -> Void)! = nil) {
+        UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: {
+            self.centerNavigationController.view.frame.origin.x = targetPosition
+        }, completion: completion)
     }
     
 }

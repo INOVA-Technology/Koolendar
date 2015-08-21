@@ -15,7 +15,7 @@ struct SelectedDate {
     static var year: Int!
 }
 
-class MonthViewController: CenterViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class MonthViewController: CenterViewController, UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate {
 
     // MARK: variables and constants
    
@@ -83,6 +83,35 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
         daysOfTheWeekCollection.delegate = self
         daysOfTheWeekCollection.allowsSelection = false
         daysOfTheWeekCollection.scrollEnabled = false
+        
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: "handleCellTap:")
+        gestureRecognizer.delegate = self
+        self.collectionView.addGestureRecognizer(gestureRecognizer)
+    }
+    
+    func handleCellTap(recognizer: UITapGestureRecognizer) {
+        println(1)
+//        if recognizer.state == .Ended {
+//            println(4)
+//            return
+//        }
+        
+        let point = recognizer.locationInView(self.collectionView)
+        
+        let indexPath = self.collectionView.indexPathForItemAtPoint(point)
+        if indexPath == nil {
+            println(3)
+            return
+        } else {
+            println(2)
+            SelectedDate.day = indexPath!.row - firstWeek + 2
+            SelectedDate.month = comps.month
+            SelectedDate.year = comps.year
+            
+            let vc = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("DayView") as! DayViewController
+            
+            self.navigationController!.pushViewController(vc, animated: true)
+        }
     }
     
     override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
@@ -119,12 +148,9 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        
         if collectionView == self.collectionView {
             // TODO: show new DayViewController in here, instead of in the storyboard
-            SelectedDate.day = indexPath.row - firstWeek + 2
-            SelectedDate.month = comps.month
-            SelectedDate.year = comps.year
+            
         }
     }
     

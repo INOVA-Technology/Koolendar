@@ -54,8 +54,6 @@
                                         <gestureRecognizers/>
                                         <connections>
                                             <outlet property="theDay" destination="KcF-xO-hgM" id="iR7-IX-7m4"/>
-                                            <outletCollection property="gestureRecognizers" destination="9EJ-uZ-PpI" appends="YES" id="WOJ-Ef-hg4"/>
-                                            <segue destination="Gql-jq-uMB" kind="show" id="iL1-HC-bQK"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -132,7 +130,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer numberOfTapsRequired="2" id="9EJ-uZ-PpI"/>
             </objects>
             <point key="canvasLocation" x="1047.5" y="92.5"/>
         </scene>
@@ -273,12 +270,31 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="UOJ-tp-eYn"/>
+                        <segue destination="GWv-k6-fcu" kind="relationship" relationship="rootViewController" id="Uqt-Dl-her"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FdB-kW-b75" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="335" y="70"/>
+            <point key="canvasLocation" x="-275" y="93"/>
+        </scene>
+        <!--Container View Controller-->
+        <scene sceneID="ySG-AU-2Ve">
+            <objects>
+                <viewController id="GWv-k6-fcu" customClass="ContainerViewController" customModule="Koolendar" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YhI-Es-jDt"/>
+                        <viewControllerLayoutGuide type="bottom" id="2Y9-Ry-Qig"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="RId-U1-28q">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="gu3-qh-aWK"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5z3-kw-Oo0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="457" y="141"/>
         </scene>
         <!--Event Form-->
         <scene sceneID="Zrd-QY-zXt">
@@ -429,7 +445,7 @@
         <!--Side Panel View Controller-->
         <scene sceneID="ChA-8j-bfV">
             <objects>
-                <viewController id="kaH-0L-MRh" customClass="SidePanelViewController" customModule="LeftViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LeftViewController" id="kaH-0L-MRh" customClass="SidePanelViewController" customModule="Koolendar" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xYQ-7E-dl6"/>
                         <viewControllerLayoutGuide type="bottom" id="ZEL-OC-Z8h"/>
@@ -474,7 +490,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yeM-BF-sUw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2740" y="121"/>
+            <point key="canvasLocation" x="2952" y="215"/>
         </scene>
     </scenes>
 </document>
