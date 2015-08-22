@@ -12,15 +12,8 @@ class SidePanelViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    struct TableView {
-        struct CellIdentifiers {
-            static let SidebarItemCell = "SidebarItemCell"
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableView.reloadData()
     }
 
@@ -37,7 +30,7 @@ extension SidePanelViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(TableView.CellIdentifiers.SidebarItemCell, forIndexPath: indexPath) as! SidebarItemCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("SidebarItemCell", forIndexPath: indexPath) as! UITableViewCell
         return cell
     }
     
