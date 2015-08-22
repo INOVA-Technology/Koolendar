@@ -40,7 +40,7 @@ class ContainerViewController: UIViewController, CenterViewControllerDelegate {
         addChildViewController(centerNavigationController)
         
         centerNavigationController.didMoveToParentViewController(self)
-        self.centerPanelExpandOffset = centerNavigationController.view.frame.width / 2
+        self.centerPanelExpandOffset = centerNavigationController.view.frame.width / 3
     }
     
 }

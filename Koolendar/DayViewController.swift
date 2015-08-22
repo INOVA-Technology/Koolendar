@@ -41,12 +41,6 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         theDateText.text = "\(SelectedDate.month)/\(SelectedDate.day)/\(SelectedDate.year)"
         
         self.tableView.reloadData()
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "showEditMenu:", name: "showEditMenu", object: nil)
-    }
-    
-    deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     @IBAction func goBack(sender: UIButton) {
@@ -65,7 +59,6 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func tableView(UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("eventCell") as! EventCell
-        cell.rowIndex = indexPath.row
         
         let event = events[indexPath.row]
         println("name: \(event.title)")
@@ -127,8 +120,7 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
        
         var editAction =  UITableViewRowAction(style: .Normal, title: "Edit") { (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
-            println("you have decided to edit: \(self.events[indexPath.row].title)")
-
+            self.editEventWithIndex(indexPath.row)
         }
         
         editAction.backgroundColor = UIColor.blueColor()
@@ -146,9 +138,9 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         return UnselectedCellHeight
     }
     
-    func showEditMenu(notif: NSNotification) {
+    func editEventWithIndex(index: Int) {
         let eventForm = self.storyboard!.instantiateViewControllerWithIdentifier("EventFormViewController") as! EventForm
-        eventForm.event = self.events[notif.object as! Int]
+        eventForm.event = self.events[index]
         self.navigationController!.pushViewController(eventForm, animated: true)
     }
     

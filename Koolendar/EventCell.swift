@@ -14,10 +14,4 @@ class EventCell: UITableViewCell {
     @IBOutlet weak var eventDescription: UILabel!
     @IBOutlet weak var eventTime: UILabel!
     
-    var rowIndex: Int!
-    
-    @IBAction func editEvent(sender: AnyObject) {
-        NSNotificationCenter.defaultCenter().postNotificationName("showEditMenu", object: self.rowIndex)
-    }
-    
 }
