@@ -101,6 +101,16 @@ class Event {
         
     }
     
+    func delete() {
+        if let id = self.id {
+            Event.events() { events in
+                events.filter(id_e == id).delete()
+            }
+        } else {
+            println("counld delete an event that hasn't been saved")
+        }
+    }
+    
     class private func events(block: (Query -> Void)) {
         let dbDir = NSSearchPathForDirectoriesInDomains(
             .DocumentDirectory, .UserDomainMask, true).first as! String

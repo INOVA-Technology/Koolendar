@@ -23,6 +23,8 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     let SelectedCellHeight: CGFloat = 200.0
     let UnselectedCellHeight: CGFloat = 70.0
     
+    var day: NSDate!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.backgroundColor = ColorScheme.background
@@ -34,7 +36,7 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         comps.day = SelectedDate.day
         comps.month = SelectedDate.month
         comps.year = SelectedDate.year
-        let day = cal.dateFromComponents(comps)!
+        self.day = cal.dateFromComponents(comps)!
         self.events = Event.eventsOnDate(day)
         println(events.count)
         
@@ -119,14 +121,24 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
        
-        var editAction =  UITableViewRowAction(style: .Normal, title: "Edit") { (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
+        var editAction = UITableViewRowAction(style: .Normal, title: "Edit") { (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
             self.editEventWithIndex(indexPath.row)
         }
         
-        editAction.backgroundColor = UIColor.blueColor()
+        var deleteAction = UITableViewRowAction(style: .Normal, title: "Delete") { action, indexPath in
+            self.deleteEventWithIndex(indexPath.row)
+        }
         
-        return [editAction]
+        editAction.backgroundColor = UIColor.lightGrayColor()
+        deleteAction.backgroundColor = UIColor.redColor()
         
+        return [deleteAction, editAction]
+        
+    }
+    
+    func reloadEvents() {
+        self.events = Event.eventsOnDate(self.day)
+        self.tableView.reloadData()
     }
     
     func tableView(UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -136,6 +148,17 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             }
         }
         return UnselectedCellHeight
+    }
+    
+    func deleteEventWithIndex(index: Int) {
+        self.events[index].delete()
+        
+        UIView.animateWithDuration(0.4, animations: {
+            let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0))
+            cell?.alpha = 0
+        }, completion: { _ in
+            self.reloadEvents()
+        })
     }
     
     func editEventWithIndex(index: Int) {
