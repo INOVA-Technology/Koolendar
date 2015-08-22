@@ -8,7 +8,7 @@
         <!--Month View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController storyboardIdentifier="MonthView" id="vXZ-lx-hvc" customClass="MonthViewController" customModule="Koolendar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MonthViewController" id="vXZ-lx-hvc" customClass="MonthViewController" customModule="Koolendar" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -138,7 +138,7 @@
         <!--Day View Controller-->
         <scene sceneID="7Zr-D8-xR7">
             <objects>
-                <viewController storyboardIdentifier="DayView" id="Gql-jq-uMB" customClass="DayViewController" customModule="Koolendar" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DayViewController" id="Gql-jq-uMB" customClass="DayViewController" customModule="Koolendar" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="sQZ-YO-Res"/>
                         <viewControllerLayoutGuide type="bottom" id="lRX-F1-Nyf"/>
@@ -428,7 +428,7 @@
         <!--Side Panel View Controller-->
         <scene sceneID="ChA-8j-bfV">
             <objects>
-                <viewController storyboardIdentifier="LeftViewController" id="kaH-0L-MRh" customClass="SidePanelViewController" customModule="Koolendar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SidebarViewController" id="kaH-0L-MRh" customClass="SidePanelViewController" customModule="Koolendar" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xYQ-7E-dl6"/>
                         <viewControllerLayoutGuide type="bottom" id="ZEL-OC-Z8h"/>
@@ -504,7 +504,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yeM-BF-sUw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="826" y="831"/>
+            <point key="canvasLocation" x="504" y="815"/>
         </scene>
     </scenes>
 </document>

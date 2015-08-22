@@ -106,10 +106,10 @@ private extension UIStoryboard {
     class func mainStoryboard() -> UIStoryboard { return UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()) }
     
     class func leftViewController() -> SidePanelViewController? {
-        return mainStoryboard().instantiateViewControllerWithIdentifier("LeftViewController") as? SidePanelViewController
+        return mainStoryboard().instantiateViewControllerWithIdentifier("SidebarViewController") as? SidePanelViewController
     }
     
     class func monthViewController() -> CenterViewController? {
-        return mainStoryboard().instantiateViewControllerWithIdentifier("MonthView") as? MonthViewController
+        return mainStoryboard().instantiateViewControllerWithIdentifier("MonthViewController") as? MonthViewController
     }
 }

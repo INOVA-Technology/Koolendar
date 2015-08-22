@@ -76,8 +76,7 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
         let layout2 = UICollectionViewFlowLayout()
         layout2.minimumInteritemSpacing = 0
         layout2.minimumLineSpacing = 0
-        // ugh, we can't hard code 30 in, but I don't feel like doing it another way right now
-        layout2.itemSize = CGSize(width: sizeX/7, height: 30)
+        layout2.itemSize = CGSize(width: sizeX/7, height: sizeX/7)
         daysOfTheWeekCollection.collectionViewLayout = layout2
         daysOfTheWeekCollection.dataSource = self
         daysOfTheWeekCollection.delegate = self
@@ -100,7 +99,7 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
             SelectedDate.month = comps.month
             SelectedDate.year = comps.year
             
-            let vc = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("DayView") as! DayViewController
+            let vc = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("DayViewController") as! DayViewController
             
             self.navigationController!.pushViewController(vc, animated: true)
         }
