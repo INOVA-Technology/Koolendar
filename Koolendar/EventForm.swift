@@ -84,11 +84,13 @@ class EventForm: UIViewController, UITextFieldDelegate {
         dispatch_once(&hasClickedStart) {
             self.dateFieldStarting.text = timeFormatter.stringFromDate(self.event.startTime)
             self.startDateLegit = self.event.startTime
+            self.datePickerStartView.date = self.event.startTime
         }
         
         dispatch_once(&hasClickedEnd) {
             self.dateFieldEnding.text = timeFormatter.stringFromDate(self.event.endTime)
             self.endDateLegit = self.event.endTime
+            self.datePickerEndView.date = self.event.endTime
         }
         
         self.eventName.text = event.title
@@ -96,15 +98,7 @@ class EventForm: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func dateFieldStart(sender: UITextField) {
-        dispatch_once(&_hasClickedStart) {
-            self.datePickerStartView.date = self.event.startTime
-        }
-        
         sender.inputView = self.datePickerStartView
-        
-        let timeFormatter = NSDateFormatter()
-        timeFormatter.dateStyle = .NoStyle
-        timeFormatter.timeStyle = .ShortStyle
     }
     
     func handleDatePickerStart(sender: UIDatePicker) {
@@ -116,15 +110,8 @@ class EventForm: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func dateFieldEnd(sender: UITextField) {
-        dispatch_once(&_hasClickedEnd) {
-            self.datePickerEndView.date = self.event.endTime
-        }
-        
         sender.inputView = datePickerEndView
-        
-        var timeFormatter = NSDateFormatter()
-        timeFormatter.dateStyle = .NoStyle
-        timeFormatter.timeStyle = .ShortStyle
+
     }
     
     func handleDatePickerEnd(sender: UIDatePicker) {

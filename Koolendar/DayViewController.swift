@@ -45,9 +45,9 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "showEditMenu:", name: "showEditMenu", object: nil)
     }
     
-//    override func viewDidUnload() {
-//        NSNotificationCenter.defaultCenter().removeObserver(self)
-//    }
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
     
     @IBAction func goBack(sender: UIButton) {
         self.navigationController?.popViewControllerAnimated(true)
