@@ -119,9 +119,22 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     // wait this method declaration is really weird, idk how it even works
     func tableView(UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if (editingStyle == UITableViewCellEditingStyle.Delete) {
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+//        if (editingStyle == UITableViewCellEditingStyle.Delete) {
+//            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+//        }
+    }
+    
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
+       
+        var editAction =  UITableViewRowAction(style: .Normal, title: "Edit") { (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
+            println("you have decided to edit: \(self.events[indexPath.row].title)")
+
         }
+        
+        editAction.backgroundColor = UIColor.blueColor()
+        
+        return [editAction]
+        
     }
     
     func tableView(UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
