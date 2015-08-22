@@ -17,7 +17,13 @@ class ContainerViewController: UIViewController, CenterViewControllerDelegate {
     var centerNavigationController: UINavigationController!
     var centerViewController: CenterViewController!
     
-    var currentState: SlideOutState = .BothCollapsed
+    var currentState: SlideOutState = .BothCollapsed {
+        didSet {
+            let shouldShowShadow = currentState != .BothCollapsed
+            showShadowForCenterViewController(shouldShowShadow)
+        }
+    }
+    
     var leftViewController: SidePanelViewController?
     
     // TODO: make this value dynamic
@@ -84,6 +90,14 @@ extension ContainerViewController: CenterViewControllerDelegate {
         UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: {
             self.centerNavigationController.view.frame.origin.x = targetPosition
         }, completion: completion)
+    }
+    
+    func showShadowForCenterViewController(shouldShowShadow: Bool) {
+        if shouldShowShadow {
+            centerNavigationController.view.layer.shadowOpacity = 0.8
+        } else {
+            centerNavigationController.view.layer.shadowOpacity = 0.0
+        }
     }
     
 }
