@@ -90,20 +90,12 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
     }
     
     func handleCellTap(recognizer: UITapGestureRecognizer) {
-        println(1)
-//        if recognizer.state == .Ended {
-//            println(4)
-//            return
-//        }
-        
         let point = recognizer.locationInView(self.collectionView)
         
         let indexPath = self.collectionView.indexPathForItemAtPoint(point)
         if indexPath == nil {
-            println(3)
             return
         } else {
-            println(2)
             SelectedDate.day = indexPath!.row - firstWeek + 2
             SelectedDate.month = comps.month
             SelectedDate.year = comps.year

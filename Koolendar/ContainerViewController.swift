@@ -20,7 +20,8 @@ class ContainerViewController: UIViewController, CenterViewControllerDelegate {
     var currentState: SlideOutState = .BothCollapsed
     var leftViewController: SidePanelViewController?
     
-    let centerPanelExpandOffset: CGFloat = 60
+    // TODO: make this value dynamic
+    var centerPanelExpandOffset: CGFloat!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,10 +29,12 @@ class ContainerViewController: UIViewController, CenterViewControllerDelegate {
         centerViewController.delegate = self
         
         centerNavigationController = UINavigationController(rootViewController: centerViewController)
-        self.view.addSubview(centerViewController.view)
-        addChildViewController(centerViewController)
+        centerNavigationController.setNavigationBarHidden(true, animated: false)
+        self.view.addSubview(centerNavigationController.view)
+        addChildViewController(centerNavigationController)
         
         centerNavigationController.didMoveToParentViewController(self)
+        self.centerPanelExpandOffset = centerNavigationController.view.frame.width / 2
     }
     
 }
