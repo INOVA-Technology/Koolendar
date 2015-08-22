@@ -28,7 +28,7 @@ class EventForm: UIViewController, UITextFieldDelegate {
     var _hasClickedStart: dispatch_once_t = 0
     var _hasClickedEnd: dispatch_once_t = 0
     
-    var eventBeingEdited: Event?
+    var event: Event!
     
     var datePickerStartView: UIDatePicker = UIDatePicker()
     var datePickerEndView: UIDatePicker = UIDatePicker()
@@ -44,7 +44,7 @@ class EventForm: UIViewController, UITextFieldDelegate {
         let cal = NSCalendar.currentCalendar()
         let date = cal.dateFromComponents(comps)!
         
-        if let eventBeingEdited = eventBeingEdited { loadEvent(eventBeingEdited) }
+        loadEventInfo()
         
         datePickerStartView.timeZone = NSCalendar.currentCalendar().timeZone
         datePickerStartView.calendar = NSCalendar.currentCalendar()
@@ -76,19 +76,19 @@ class EventForm: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
     }
     
-    func loadEvent(event: Event) {
+    func loadEventInfo() {
         let timeFormatter = NSDateFormatter()
         timeFormatter.dateStyle = .NoStyle
         timeFormatter.timeStyle = .ShortStyle
         
         dispatch_once(&hasClickedStart) {
-            self.dateFieldStarting.text = timeFormatter.stringFromDate(event.startTime)
-            self.startDateLegit = event.startTime
+            self.dateFieldStarting.text = timeFormatter.stringFromDate(self.event.startTime)
+            self.startDateLegit = self.event.startTime
         }
         
         dispatch_once(&hasClickedEnd) {
-            self.dateFieldEnding.text = timeFormatter.stringFromDate(event.endTime)
-            self.endDateLegit = event.endTime
+            self.dateFieldEnding.text = timeFormatter.stringFromDate(self.event.endTime)
+            self.endDateLegit = self.event.endTime
         }
         
         self.eventName.text = event.title
@@ -96,10 +96,8 @@ class EventForm: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func dateFieldStart(sender: UITextField) {
-        if let eventBeingEdited = eventBeingEdited {
-            dispatch_once(&_hasClickedStart) {
-                self.datePickerStartView.date = eventBeingEdited.startTime
-            }
+        dispatch_once(&_hasClickedStart) {
+            self.datePickerStartView.date = self.event.startTime
         }
         
         sender.inputView = self.datePickerStartView
@@ -107,12 +105,6 @@ class EventForm: UIViewController, UITextFieldDelegate {
         let timeFormatter = NSDateFormatter()
         timeFormatter.dateStyle = .NoStyle
         timeFormatter.timeStyle = .ShortStyle
-        
-        dispatch_once(&hasClickedStart) {
-            let theDate = NSDate()
-            self.dateFieldStarting.text = timeFormatter.stringFromDate(NSDate())
-            self.startDateLegit = theDate
-        }
     }
     
     func handleDatePickerStart(sender: UIDatePicker) {
@@ -124,10 +116,8 @@ class EventForm: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func dateFieldEnd(sender: UITextField) {
-        if let eventBeingEdited = eventBeingEdited {
-            dispatch_once(&_hasClickedEnd) {
-                self.datePickerEndView.date = eventBeingEdited.endTime
-            }
+        dispatch_once(&_hasClickedEnd) {
+            self.datePickerEndView.date = self.event.endTime
         }
         
         sender.inputView = datePickerEndView
@@ -135,13 +125,6 @@ class EventForm: UIViewController, UITextFieldDelegate {
         var timeFormatter = NSDateFormatter()
         timeFormatter.dateStyle = .NoStyle
         timeFormatter.timeStyle = .ShortStyle
-        
-        dispatch_once(&hasClickedEnd) {
-            let theDate = NSDate()
-            self.dateFieldEnding.text = timeFormatter.stringFromDate(theDate)
-            self.endDateLegit = theDate
-        }
-        
     }
     
     func handleDatePickerEnd(sender: UIDatePicker) {
@@ -153,23 +136,12 @@ class EventForm: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func addEvent(sender: UIButton) {
-        if let event = eventBeingEdited {
-            event.title = eventName.text
-            event.startTime = startDateLegit
-            event.endTime = endDateLegit
-            event.save()
-        } else {
-            let event = Event(title: eventName.text, description: eventDesc.text, startTime: startDateLegit, endTime: endDateLegit)
-            event.save()
-        }
+        event.title = eventName.text
+        event.description = eventDesc.text
+        event.startTime = startDateLegit
+        event.endTime = endDateLegit
+        event.save()
         self.navigationController?.popViewControllerAnimated(true)
-        
-//        self.navigationController?.presentViewController(DayViewController(), animated: true, completion: nil)
-        
-//        if let resultController = storyboard?.instantiateViewControllerWithIdentifier("DayView") as? DayViewController {
-//            presentViewController(resultController, animated: true, completion: nil)
-//        }
-        
     }
     
 }

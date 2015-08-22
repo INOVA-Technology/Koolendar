@@ -134,9 +134,15 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func showEditMenu(notif: NSNotification) {
-        let eventForm = self.storyboard!.instantiateViewControllerWithIdentifier("eventForm") as! EventForm
-        eventForm.eventBeingEdited = self.events[notif.object as! Int]
+        let eventForm = self.storyboard!.instantiateViewControllerWithIdentifier("EventFormViewController") as! EventForm
+        eventForm.event = self.events[notif.object as! Int]
         self.navigationController!.pushViewController(eventForm, animated: true)
+    }
+    
+    @IBAction func createEvent() {
+        let vc = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("EventFormViewController") as! EventForm
+        vc.event = Event(day: SelectedDate.day, month: SelectedDate.month, year: SelectedDate.year)
+        self.navigationController!.pushViewController(vc, animated: true)
     }
     
 }

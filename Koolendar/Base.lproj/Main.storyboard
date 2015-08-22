@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rUF-Du-KGr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="GWv-k6-fcu">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -153,7 +153,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="G7n-lz-uBd" kind="show" id="v51-jX-Jub"/>
+                                    <action selector="createEvent" destination="Gql-jq-uMB" eventType="touchUpInside" id="5Hz-Up-ecK"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Wm-th-vU5">
@@ -260,24 +260,6 @@
             </objects>
             <point key="canvasLocation" x="1795.5" y="-111.5"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="YD6-tG-x0B">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="rUF-Du-KGr" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="HeC-6u-9jd">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="GWv-k6-fcu" kind="relationship" relationship="rootViewController" id="Uqt-Dl-her"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FdB-kW-b75" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-275" y="93"/>
-        </scene>
         <!--Container View Controller-->
         <scene sceneID="ySG-AU-2Ve">
             <objects>
@@ -300,7 +282,7 @@
         <!--Event Form-->
         <scene sceneID="Zrd-QY-zXt">
             <objects>
-                <viewController storyboardIdentifier="eventForm" id="G7n-lz-uBd" customClass="EventForm" customModule="Koolendar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EventFormViewController" id="G7n-lz-uBd" customClass="EventForm" customModule="Koolendar" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7Ml-KC-IRt"/>
                         <viewControllerLayoutGuide type="bottom" id="R42-2U-2bM"/>

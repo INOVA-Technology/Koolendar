@@ -79,6 +79,15 @@ class Event {
         self.init(title: row.get(title_e), description: row.get(description_e), startTime: row.get(startTime_e), endTime: row.get(endTime_e), notificationTimeOffset: 0, id: row.get(id_e))
     }
     
+    convenience init(day: Int, month: Int, year: Int) {
+        let comps = NSCalendar.currentCalendar().components(.CalendarUnitMinute | .CalendarUnitHour, fromDate: NSDate())
+        comps.day = day
+        comps.month = month
+        comps.year = year
+        let date = NSCalendar.currentCalendar().dateFromComponents(comps)!
+        self.init(title: "", description: "", startTime: date, endTime: date)
+    }
+    
     func save() {
         Event.events() { events in
             if let id = self.id {
