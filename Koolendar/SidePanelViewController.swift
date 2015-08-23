@@ -44,11 +44,12 @@ extension SidePanelViewController: UITableViewDataSource {
 
 extension SidePanelViewController: UITableViewDelegate {
 
-    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-        println("frwgawgr")
-        let vc = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier(self.items[indexPath.row].1) as! UIViewController
-        self.parentViewController!.navigationController!.pushViewController(vc, animated: true)
-        (self.parentViewController as! ContainerViewController).toggleLeftPanel()
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let vc = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier(self.items[indexPath.row].1) as! CenterViewController
+        let containerView = self.parentViewController as! ContainerViewController
+        vc.delegate = containerView
+        containerView.centerNavigationController.viewControllers = [vc]
+        containerView.toggleLeftPanel()
     }
     
 }

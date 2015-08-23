@@ -182,7 +182,7 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
     }
 
     @IBAction func showSidebar(sender: AnyObject) {
-        delegate?.toggleLeftPanel?()
+        self.delegate?.toggleLeftPanel?()
     }
 
     /*
