@@ -12,9 +12,12 @@ class SidePanelViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
+    let items = [("Calendar", "MonthViewController"), ("Settings", "SettingsViewController")]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.reloadData()
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
     }
 
 }
@@ -26,12 +29,26 @@ extension SidePanelViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return self.items.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("SidebarItemCell", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("SidebarCell", forIndexPath: indexPath) as! SidePanelCell
+        
+        cell.name.text = self.items[indexPath.row].0
+        
         return cell
+    }
+    
+}
+
+extension SidePanelViewController: UITableViewDelegate {
+
+    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        println("frwgawgr")
+        let vc = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier(self.items[indexPath.row].1) as! UIViewController
+        self.parentViewController!.navigationController!.pushViewController(vc, animated: true)
+        (self.parentViewController as! ContainerViewController).toggleLeftPanel()
     }
     
 }
