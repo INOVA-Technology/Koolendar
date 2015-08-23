@@ -128,6 +128,12 @@ class EventForm: UIViewController, UITextFieldDelegate {
         event.startTime = startDateLegit
         event.endTime = endDateLegit
         event.save()
+
+        let index = self.navigationController!.viewControllers.count - 2
+        if let vc = self.navigationController!.viewControllers[index] as? DayViewController {
+            vc.reloadEvents()
+        }
+        
         self.navigationController?.popViewControllerAnimated(true)
     }
     

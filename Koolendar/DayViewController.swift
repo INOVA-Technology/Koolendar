@@ -38,7 +38,6 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         comps.year = SelectedDate.year
         self.day = cal.dateFromComponents(comps)!
         self.events = Event.eventsOnDate(day)
-        println(events.count)
         
         theDateText.text = "\(SelectedDate.month)/\(SelectedDate.day)/\(SelectedDate.year)"
         
@@ -63,7 +62,6 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         var cell = tableView.dequeueReusableCellWithIdentifier("eventCell") as! EventCell
         
         let event = events[indexPath.row]
-        println("name: \(event.title)")
         
         cell.eventTitle.text = event.title
         cell.eventDescription.text = event.description
