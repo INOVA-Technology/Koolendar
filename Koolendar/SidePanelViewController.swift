@@ -12,7 +12,7 @@ class SidePanelViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    let items = [("Calendar", "MonthViewController"), ("Settings", "SettingsViewController")]
+    var items: [(String, String, [CenterViewController]?)] = [("Calendar", "MonthViewController", nil), ("Settings", "SettingsViewController", nil)]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,10 +45,16 @@ extension SidePanelViewController: UITableViewDataSource {
 extension SidePanelViewController: UITableViewDelegate {
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let vc = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier(self.items[indexPath.row].1) as! CenterViewController
         let containerView = self.parentViewController as! ContainerViewController
-        vc.delegate = containerView
-        containerView.centerNavigationController.viewControllers = [vc]
+        
+        if self.items[indexPath.row].2 == nil {
+            let vc = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier(self.items[indexPath.row].1) as! CenterViewController
+            vc.delegate = containerView
+            self.items[indexPath.row].2 = [vc]
+        }
+        
+        containerView.centerNavigationController.viewControllers = self.items[indexPath.row].2!
+        
         containerView.toggleLeftPanel()
     }
     
