@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsViewController: CenterViewController, UITableViewDataSource {
+class SettingsViewController: CenterViewController, UITableViewDataSource, UITableViewDelegate {
     
     let settings = ["Notifications", "Color Scheme"]
 
@@ -16,6 +16,7 @@ class SettingsViewController: CenterViewController, UITableViewDataSource {
     
     override func viewDidLoad() {
         self.tableView.dataSource = self
+        self.tableView.delegate = self
     }
     
     @IBAction func showSidebar() {
@@ -30,6 +31,10 @@ class SettingsViewController: CenterViewController, UITableViewDataSource {
         let cell = tableView.dequeueReusableCellWithIdentifier("SettingsTableViewCell", forIndexPath: indexPath) as! SettingsTableViewCell
         cell.title.text = settings[indexPath.row]
         return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
     }
     
 }

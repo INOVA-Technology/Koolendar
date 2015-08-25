@@ -487,6 +487,49 @@
             </objects>
             <point key="canvasLocation" x="2004.5" y="118.5"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="laT-zm-R5U">
+            <objects>
+                <viewController id="Szf-js-MaI" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="U3f-Gl-eDc"/>
+                        <viewControllerLayoutGuide type="bottom" id="YRr-8z-Cuz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="TJz-Pv-rTp">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Some Setting" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lfX-rC-UP2">
+                                <rect key="frame" x="248" y="20" width="104" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ac-C7-FVT">
+                                <rect key="frame" x="16" y="54" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x8t-Lb-J2T">
+                                <rect key="frame" x="66" y="49" width="51" height="31"/>
+                            </switch>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="x8t-Lb-J2T" firstAttribute="top" secondItem="lfX-rC-UP2" secondAttribute="bottom" constant="8" id="FLw-nv-PoC"/>
+                            <constraint firstItem="lfX-rC-UP2" firstAttribute="top" secondItem="U3f-Gl-eDc" secondAttribute="bottom" id="IBJ-yG-GP6"/>
+                            <constraint firstAttribute="centerX" secondItem="lfX-rC-UP2" secondAttribute="centerX" id="SzX-DD-2Lb"/>
+                            <constraint firstItem="x8t-Lb-J2T" firstAttribute="centerY" secondItem="4Ac-C7-FVT" secondAttribute="centerY" id="aqk-2z-CZc"/>
+                            <constraint firstItem="x8t-Lb-J2T" firstAttribute="leading" secondItem="4Ac-C7-FVT" secondAttribute="trailing" constant="8" id="qGY-rq-p76"/>
+                            <constraint firstItem="4Ac-C7-FVT" firstAttribute="leading" secondItem="TJz-Pv-rTp" secondAttribute="leadingMargin" id="yaJ-xE-whV"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A4K-Bq-nPq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1857" y="824"/>
+        </scene>
         <!--Side Panel View Controller-->
         <scene sceneID="ChA-8j-bfV">
             <objects>
