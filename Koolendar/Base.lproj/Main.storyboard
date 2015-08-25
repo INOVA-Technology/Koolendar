@@ -38,7 +38,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KcF-xO-hgM">
@@ -247,7 +247,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EZr-GR-SYe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1795.5" y="-111.5"/>
+            <point key="canvasLocation" x="1527.5" y="118.5"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="meZ-Kl-BFi">
@@ -277,19 +277,50 @@
                                     <action selector="showSidebar:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Inn-nu-OM0"/>
                                 </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ymv-P0-y0g">
+                                <rect key="frame" x="0.0" y="57" width="600" height="543"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsTableViewCell" id="2Jn-Oe-yef" customClass="SettingsTableViewCell" customModule="Koolendar" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2Jn-Oe-yef" id="84z-2D-8PY">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JRg-TB-JCq">
+                                                    <rect key="frame" x="8" y="11" width="584" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="title" destination="JRg-TB-JCq" id="NcY-Fu-iSa"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="DVN-2C-OlV" firstAttribute="top" secondItem="oUE-mU-pvr" secondAttribute="bottom" id="2lq-vZ-UoN"/>
                             <constraint firstItem="DVN-2C-OlV" firstAttribute="leading" secondItem="Fbp-gT-glK" secondAttribute="leadingMargin" id="Um3-D0-l8o"/>
                             <constraint firstItem="FWe-5y-guv" firstAttribute="top" secondItem="oUE-mU-pvr" secondAttribute="bottom" constant="8" id="ZcB-VH-WY7"/>
+                            <constraint firstItem="ymv-P0-y0g" firstAttribute="leading" secondItem="Fbp-gT-glK" secondAttribute="leading" id="eFu-Fq-jye"/>
+                            <constraint firstItem="Kfa-Zt-OlB" firstAttribute="top" secondItem="ymv-P0-y0g" secondAttribute="bottom" id="kDy-IF-dhn"/>
+                            <constraint firstAttribute="trailing" secondItem="ymv-P0-y0g" secondAttribute="trailing" id="onL-E7-23V"/>
+                            <constraint firstItem="ymv-P0-y0g" firstAttribute="top" secondItem="FWe-5y-guv" secondAttribute="bottom" constant="8" id="qCn-6D-hC0"/>
                             <constraint firstAttribute="centerX" secondItem="FWe-5y-guv" secondAttribute="centerX" id="yvm-wE-SeY"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="ymv-P0-y0g" id="3Dz-WL-HfI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fgX-IC-rrQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1651" y="785"/>
+            <point key="canvasLocation" x="1155" y="815"/>
         </scene>
         <!--Container View Controller-->
         <scene sceneID="ySG-AU-2Ve">
@@ -454,7 +485,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qv4-Xp-JY8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2304.75" y="-111.5"/>
+            <point key="canvasLocation" x="2004.5" y="118.5"/>
         </scene>
         <!--Side Panel View Controller-->
         <scene sceneID="ChA-8j-bfV">

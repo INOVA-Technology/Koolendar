@@ -11,6 +11,7 @@
 		2E39009F1B0E4B05005B4E6E /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E39009E1B0E4B05005B4E6E /* Event.swift */; };
 		2E54ED191B89508F00E1F166 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E54ED181B89508F00E1F166 /* SettingsViewController.swift */; };
 		2E54ED201B89522000E1F166 /* SidePanelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E54ED1F1B89522000E1F166 /* SidePanelCell.swift */; };
+		2E54ED251B8BF02B00E1F166 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E54ED241B8BF02B00E1F166 /* SettingsTableViewCell.swift */; };
 		2E5BDB831B840B53002F81F4 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5BDB821B840B53002F81F4 /* ContainerViewController.swift */; };
 		2E5BDB851B8412C1002F81F4 /* CenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5BDB841B8412C1002F81F4 /* CenterViewController.swift */; };
 		2E5BDB871B841529002F81F4 /* SidePanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5BDB861B841529002F81F4 /* SidePanelViewController.swift */; };
@@ -97,6 +98,7 @@
 		2E39009E1B0E4B05005B4E6E /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		2E54ED181B89508F00E1F166 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		2E54ED1F1B89522000E1F166 /* SidePanelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidePanelCell.swift; sourceTree = "<group>"; };
+		2E54ED241B8BF02B00E1F166 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		2E5BDB821B840B53002F81F4 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		2E5BDB841B8412C1002F81F4 /* CenterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterViewController.swift; sourceTree = "<group>"; };
 		2E5BDB861B841529002F81F4 /* SidePanelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidePanelViewController.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 				DB7577A81AA224A700159E18 /* EventCell.swift */,
 				DB3495D21A6D78CF0083668E /* Main.storyboard */,
 				2E54ED181B89508F00E1F166 /* SettingsViewController.swift */,
+				2E54ED241B8BF02B00E1F166 /* SettingsTableViewCell.swift */,
 				2ED290191A73284E00DF4356 /* KOOLColors.swift */,
 				2E5BDB821B840B53002F81F4 /* ContainerViewController.swift */,
 				2E5BDB861B841529002F81F4 /* SidePanelViewController.swift */,
@@ -398,6 +401,7 @@
 				2E54ED191B89508F00E1F166 /* SettingsViewController.swift in Sources */,
 				2ED290161A70B10500DF4356 /* DayViewController.swift in Sources */,
 				DB3495CF1A6D78CF0083668E /* AppDelegate.swift in Sources */,
+				2E54ED251B8BF02B00E1F166 /* SettingsTableViewCell.swift in Sources */,
 				2E76222B1A6DB16200EAB134 /* README.md in Sources */,
 				2ED2901A1A73284E00DF4356 /* KOOLColors.swift in Sources */,
 				2EDECBBC1AEB424B0059D523 /* DayOfTheWeekCell.swift in Sources */,

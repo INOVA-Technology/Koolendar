@@ -8,10 +8,28 @@
 
 import UIKit
 
-class SettingsViewController: CenterViewController {
+class SettingsViewController: CenterViewController, UITableViewDataSource {
+    
+    let settings = ["Notifications", "Color Scheme"]
+
+    @IBOutlet weak var tableView: UITableView!
+    
+    override func viewDidLoad() {
+        self.tableView.dataSource = self
+    }
     
     @IBAction func showSidebar() {
         self.delegate?.toggleLeftPanel?()
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return settings.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("SettingsTableViewCell", forIndexPath: indexPath) as! SettingsTableViewCell
+        cell.title.text = settings[indexPath.row]
+        return cell
     }
     
 }
