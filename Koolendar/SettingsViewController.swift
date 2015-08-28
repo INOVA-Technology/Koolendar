@@ -36,6 +36,7 @@ class SettingsViewController: CenterViewController, UITableViewDataSource, UITab
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let vc = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("SettingsSubViewController") as! SettingsSubViewController
         vc.delegate = self.delegate
+        vc.settingName = self.settings[indexPath.row]
         self.navigationController!.pushViewController(vc, animated: true)
     }
     
