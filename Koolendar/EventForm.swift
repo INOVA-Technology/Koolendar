@@ -25,9 +25,6 @@ class EventForm: UIViewController, UITextFieldDelegate {
     var hasClickedStart: dispatch_once_t = 0
     var hasClickedEnd: dispatch_once_t = 0
     
-    var _hasClickedStart: dispatch_once_t = 0
-    var _hasClickedEnd: dispatch_once_t = 0
-    
     var event: Event!
     
     var datePickerStartView: UIDatePicker = UIDatePicker()
