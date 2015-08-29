@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E1F3E9D1B913CE30000DF65 /* default_settings.json in Headers */ = {isa = PBXBuildFile; fileRef = 2E8C3D301B8FDFAE00F4D253 /* default_settings.json */; settings = {ATTRIBUTES = (Public, ); }; };
+		2E1F3E9E1B913CE30000DF65 /* settings.json in Headers */ = {isa = PBXBuildFile; fileRef = 2E8C3D2E1B8FDC5A00F4D253 /* settings.json */; settings = {ATTRIBUTES = (Public, ); }; };
+		2E1F3EA01B913D940000DF65 /* default_settings.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2E8C3D301B8FDFAE00F4D253 /* default_settings.json */; };
+		2E1F3EA11B913D940000DF65 /* settings.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2E8C3D2E1B8FDC5A00F4D253 /* settings.json */; };
 		2E2E82831A7099A800F83374 /* MonthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E82821A7099A800F83374 /* MonthViewController.swift */; };
 		2E39009F1B0E4B05005B4E6E /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E39009E1B0E4B05005B4E6E /* Event.swift */; };
 		2E54ED191B89508F00E1F166 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E54ED181B89508F00E1F166 /* SettingsViewController.swift */; };
@@ -84,6 +88,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		2E1F3E9F1B913D810000DF65 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				2E1F3EA01B913D940000DF65 /* default_settings.json in CopyFiles */,
+				2E1F3EA11B913D940000DF65 /* settings.json in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DBEB64621A943ED00002D772 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -204,13 +219,13 @@
 				DB3495D21A6D78CF0083668E /* Main.storyboard */,
 				2E54ED181B89508F00E1F166 /* SettingsViewController.swift */,
 				2E54ED261B8D3A0200E1F166 /* SettingsSubViewController.swift */,
-				2E8C3D301B8FDFAE00F4D253 /* default_settings.json */,
 				2E54ED241B8BF02B00E1F166 /* SettingsTableViewCell.swift */,
 				2ED290191A73284E00DF4356 /* KOOLColors.swift */,
 				2E5BDB821B840B53002F81F4 /* ContainerViewController.swift */,
 				2E5BDB861B841529002F81F4 /* SidePanelViewController.swift */,
 				2E54ED1F1B89522000E1F166 /* SidePanelCell.swift */,
 				2E5BDB841B8412C1002F81F4 /* CenterViewController.swift */,
+				2E8C3D301B8FDFAE00F4D253 /* default_settings.json */,
 				2E8C3D2E1B8FDC5A00F4D253 /* settings.json */,
 				DB3495D51A6D78CF0083668E /* Images.xcassets */,
 				DB3495D71A6D78CF0083668E /* LaunchScreen.xib */,
@@ -259,6 +274,18 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		2E1F3E9C1B913C610000DF65 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2E1F3E9D1B913CE30000DF65 /* default_settings.json in Headers */,
+				2E1F3E9E1B913CE30000DF65 /* settings.json in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		DB3495C81A6D78CF0083668E /* Koolendar */ = {
 			isa = PBXNativeTarget;
@@ -268,6 +295,8 @@
 				DB3495C61A6D78CF0083668E /* Frameworks */,
 				DB3495C71A6D78CF0083668E /* Resources */,
 				DBEB64621A943ED00002D772 /* CopyFiles */,
+				2E1F3E9C1B913C610000DF65 /* Headers */,
+				2E1F3E9F1B913D810000DF65 /* CopyFiles */,
 			);
 			buildRules = (
 			);
