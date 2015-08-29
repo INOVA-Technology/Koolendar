@@ -48,7 +48,7 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
         layout.itemSize = CGSize(width: sizeX/7, height: sizeX/7)
         collectionView.collectionViewLayout = layout
 //        collectionView.backgroundView = UIImageView(image: UIImage(named: "SimpleBg"))
-        collectionView.backgroundColor = ColorScheme.background
+        collectionView.backgroundView = UIImageView(image: ColorScheme.background)
         comps = calendar.components(flags, fromDate: date)
         formatter.dateFormat = "MM"
         
@@ -132,7 +132,7 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
         
 //        return calendar.rangeOfUnit(.CalendarUnitDay, inUnit: .CalendarUnitMonth, forDate: date).length + firstWeek - 1
         if collectionView == self.collectionView {
-            return 35
+            return 42
         } else {
             return 7
         }

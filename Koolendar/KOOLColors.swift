@@ -21,10 +21,10 @@ struct ColorScheme {
     // change these awful colors to something aestheticly pleasing
     // also, these color names are too specific as far as usage goes, but idk how else to name them
     
-    static var background: UIColor {
+    static var background: UIImage {
         switch currentTheme {
         case .Dark:
-            return UIColor.blackColor().colorWithAlphaComponent(0.9)
+            return UIImage(named:"SimpleBg")!
         }
     }
     
