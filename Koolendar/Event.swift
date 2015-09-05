@@ -37,12 +37,79 @@ let SQLDateFormatter: NSDateFormatter = {
 
 class Event {
     
-    var title: String
-    var description: String
-    var startTime: NSDate
-    var endTime: NSDate
+    private var _title: String?
+    var title: String {
+        set {
+            _title = newValue
+        }
+        get {
+            if let title = self._title {
+                return title
+            } else {
+                return self.sqlRow!.get(title_e)
+            }
+        }
+    }
     
-    var id: Int?
+    private var _description: String?
+    var description: String {
+        set {
+            _description = newValue
+        }
+        get {
+            if let description = self._description {
+                return description
+            } else {
+                return self.sqlRow!.get(description_e)
+            }
+        }
+    }
+    
+    private var _startTime: NSDate?
+    var startTime: NSDate {
+        set {
+            _startTime = newValue
+        }
+        get {
+            if let startTime = self._startTime {
+                return startTime
+            } else {
+                return self.sqlRow!.get(startTime_e)
+            }
+        }
+    }
+    
+    private var _endTime: NSDate?
+    var endTime: NSDate {
+        set {
+            _endTime = newValue
+        }
+        get {
+            if let endTime = self._endTime {
+                return endTime
+            } else {
+                return self.sqlRow!.get(endTime_e)
+            }
+        }
+    }
+    
+    var _id: Int?
+    var id: Int? {
+        set {
+            _id = newValue
+        }
+        get {
+            if let id = self._id {
+                return id
+            } else if let row = self.sqlRow {
+                return row.get(id_e)
+            } else {
+                return nil
+            }
+        }
+    }
+    
+    var sqlRow: Row?
     
     var allDay: Bool {
         get {
@@ -63,11 +130,11 @@ class Event {
     }
 
     init(title: String, description: String, startTime: NSDate, endTime: NSDate, notificationTimeOffset: NSTimeInterval, id: Int?) {
+        self.notificationTimeOffset = notificationTimeOffset
         self.title = title
         self.description = description
         self.startTime = startTime
         self.endTime = endTime
-        self.notificationTimeOffset = notificationTimeOffset
         self.id = id
     }
     
@@ -75,8 +142,10 @@ class Event {
         self.init(title: title, description: description, startTime: startTime, endTime: endTime, notificationTimeOffset: 0, id: nil)
     }
     
-    convenience init(row: Row) {
-        self.init(title: row.get(title_e), description: row.get(description_e), startTime: row.get(startTime_e), endTime: row.get(endTime_e), notificationTimeOffset: 0, id: row.get(id_e))
+    init(row: Row) {
+        self.notificationTimeOffset = 0 // we gotta store this in the db...
+        self.sqlRow = row
+//        self.init(title: row.get(title_e), description: row.get(description_e), startTime: row.get(startTime_e), endTime: row.get(endTime_e), notificationTimeOffset: 0, id: row.get(id_e))
     }
     
     convenience init(day: Int, month: Int, year: Int) {
