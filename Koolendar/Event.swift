@@ -46,7 +46,8 @@ class Event {
             if let title = self._title {
                 return title
             } else {
-                return self.sqlRow!.get(title_e)
+                self._title = self.sqlRow!.get(title_e)
+                return self._title!
             }
         }
     }
@@ -60,7 +61,8 @@ class Event {
             if let description = self._description {
                 return description
             } else {
-                return self.sqlRow!.get(description_e)
+                self._description = self.sqlRow!.get(description_e)
+                return self._description!
             }
         }
     }
@@ -74,7 +76,8 @@ class Event {
             if let startTime = self._startTime {
                 return startTime
             } else {
-                return self.sqlRow!.get(startTime_e)
+                self._startTime = self.sqlRow!.get(startTime_e)
+                return self._startTime!
             }
         }
     }
@@ -88,7 +91,8 @@ class Event {
             if let endTime = self._endTime {
                 return endTime
             } else {
-                return self.sqlRow!.get(endTime_e)
+                self._endTime = self.sqlRow!.get(endTime_e)
+                return self._endTime!
             }
         }
     }
@@ -102,7 +106,8 @@ class Event {
             if let id = self._id {
                 return id
             } else if let row = self.sqlRow {
-                return row.get(id_e)
+                self._id = row.get(id_e)
+                return self._id
             } else {
                 return nil
             }

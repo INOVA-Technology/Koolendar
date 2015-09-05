@@ -172,9 +172,6 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
             if (indexPath.row - firstWeek + 1 == todaysComps.day - 1 && comps.month == todaysComps.month && comps.year == todaysComps.year) {
                 cell.backgroundColor = ColorScheme.currentDayCell
                 cell.theDay.textColor = UIColor.whiteColor()
-            } else if indexPath.row == 6 {
-                println(comps)
-                println(todaysComps)
             }
             if (indexPath.row >= firstWeek - 1 && indexPath.row + 1 < daysInMonth + firstWeek) {
                 cell.theDay.text = String(indexPath.row - firstWeek + 2)
