@@ -103,6 +103,15 @@
                                     <action selector="showSidebar:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="GI1-0c-DhI"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4pc-2X-LF1">
+                                <rect key="frame" x="277" y="28" width="81" height="30"/>
+                                <state key="normal" title="Next Month">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="goToNextMonth:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="abi-NS-ssg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>

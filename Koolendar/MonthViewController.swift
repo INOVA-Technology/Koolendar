@@ -23,10 +23,9 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var daysOfTheWeekCollection: UICollectionView!
     
-    let flags: NSCalendarUnit = .CalendarUnitDay | .CalendarUnitMonth | .CalendarUnitYear
+    let flags: NSCalendarUnit = .CalendarUnitMonth | .CalendarUnitYear
 
     var calendar = NSCalendar.currentCalendar()
-    var date = NSDate()
     
     var comps: NSDateComponents!
     let formatter = NSDateFormatter()
@@ -35,6 +34,7 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
     var daysInMonth:Int!
     // MARK: da functions
     
+    // this method is getting very confusing...
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,31 +47,11 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
         self.automaticallyAdjustsScrollViewInsets = false
         layout.itemSize = CGSize(width: sizeX/7, height: sizeX/7)
         collectionView.collectionViewLayout = layout
-//        collectionView.backgroundView = UIImageView(image: UIImage(named: "SimpleBg"))
         collectionView.backgroundView = UIImageView(image: ColorScheme.background)
-        comps = calendar.components(flags, fromDate: date)
-        formatter.dateFormat = "MM"
         
-        let todayDate:Array = formatter.monthSymbols
-        nameOfMonth.text = String(todayDate[comps.month - 1] as! NSString)
+        self.formatter.dateFormat = "MM"
         
-        // Getting first day of month
-        let calendarForMessingUp = NSCalendar.currentCalendar()
-        let dateForMessingUp = NSDate()
-        let componentsForMessingUp = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitMonth, fromDate: dateForMessingUp)
-        
-        componentsForMessingUp.year = comps.year
-        componentsForMessingUp.day = 1
-        let firstDateOfMonth: NSDate = calendarForMessingUp.dateFromComponents(componentsForMessingUp)!
-        componentsForMessingUp.month  += 1
-        componentsForMessingUp.day     = 0
-        let lastDateOfMonth: NSDate = calendarForMessingUp.dateFromComponents(componentsForMessingUp)!
-        var unitFlags: NSCalendarUnit = .CalendarUnitWeekOfMonth | .CalendarUnitWeekday | .CalendarUnitDay
-        
-        let firstDateComponents = calendarForMessingUp.components(unitFlags, fromDate: firstDateOfMonth)
-        let lastDateComponents  = calendarForMessingUp.components(unitFlags, fromDate: lastDateOfMonth)
-        firstWeek = firstDateComponents.weekday
-        daysInMonth = lastDateComponents.day
+        setUpCalendarForCurrentDate()
         
         let layout2 = UICollectionViewFlowLayout()
         layout2.minimumInteritemSpacing = 0
@@ -86,6 +66,41 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: "handleCellTap:")
         gestureRecognizer.delegate = self
         self.collectionView.addGestureRecognizer(gestureRecognizer)
+    }
+    
+    func setUpCalendar(forMonth month: Int, year: Int) {
+        self.comps = NSDateComponents()
+        comps.month = month
+        comps.year = year
+        
+        let monthNames = formatter.monthSymbols
+        self.nameOfMonth.text = monthNames[comps.month - 1] as? String
+        
+        // Getting first day of month
+        let calendarForMessingUp = NSCalendar.currentCalendar()
+        let dateForMessingUp = calendarForMessingUp.dateFromComponents(self.comps)!
+        
+        let componentsForMessingUp = NSCalendar.currentCalendar().components(.CalendarUnitMonth, fromDate: dateForMessingUp)
+        componentsForMessingUp.year = comps.year
+        componentsForMessingUp.day = 1
+        
+        let firstDateOfMonth: NSDate = calendarForMessingUp.dateFromComponents(componentsForMessingUp)!
+        componentsForMessingUp.month  += 1
+        componentsForMessingUp.day     = 0
+        
+        let lastDateOfMonth: NSDate = calendarForMessingUp.dateFromComponents(componentsForMessingUp)!
+        var unitFlags: NSCalendarUnit = .CalendarUnitWeekOfMonth | .CalendarUnitWeekday | .CalendarUnitDay
+        
+        let firstDateComponents = calendarForMessingUp.components(unitFlags, fromDate: firstDateOfMonth)
+        let lastDateComponents  = calendarForMessingUp.components(unitFlags, fromDate: lastDateOfMonth)
+        
+        self.firstWeek = firstDateComponents.weekday
+        self.daysInMonth = lastDateComponents.day
+    }
+    
+    func setUpCalendarForCurrentDate() {
+        let comps = NSCalendar.currentCalendar().components(.CalendarUnitMonth | .CalendarUnitYear, fromDate: NSDate())
+        setUpCalendar(forMonth: comps.month, year: comps.year)
     }
     
     func handleCellTap(recognizer: UITapGestureRecognizer) {
@@ -128,9 +143,6 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let myWeekday = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitWeekday, fromDate: date).weekday
-        
-//        return calendar.rangeOfUnit(.CalendarUnitDay, inUnit: .CalendarUnitMonth, forDate: date).length + firstWeek - 1
         if collectionView == self.collectionView {
             return 42
         } else {
@@ -148,8 +160,7 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         if collectionView == self.collectionView {
             var cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! MonthViewCell
-            let myWeekday = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitWeekday, fromDate: date).weekday
-            let day = calendar.components(.CalendarUnitDay, fromDate: date).day
+            let todaysComps = calendar.components(.CalendarUnitDay | .CalendarUnitMonth | .CalendarUnitYear, fromDate: NSDate())
             
             if (indexPath.row % 2 == 0) {
                 cell.backgroundColor = ColorScheme.dayCell
@@ -158,9 +169,12 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
                 cell.backgroundColor = ColorScheme.dayCell2
                 cell.theDay.textColor = UIColor.blackColor()
             }
-            if (indexPath.row - firstWeek + 1 == comps.day - 1) {
+            if (indexPath.row - firstWeek + 1 == todaysComps.day - 1 && comps.month == todaysComps.month && comps.year == todaysComps.year) {
                 cell.backgroundColor = ColorScheme.currentDayCell
                 cell.theDay.textColor = UIColor.whiteColor()
+            } else if indexPath.row == 6 {
+                println(comps)
+                println(todaysComps)
             }
             if (indexPath.row >= firstWeek - 1 && indexPath.row + 1 < daysInMonth + firstWeek) {
                 cell.theDay.text = String(indexPath.row - firstWeek + 2)
@@ -183,6 +197,12 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
 
     @IBAction func showSidebar(sender: AnyObject) {
         self.delegate?.toggleLeftPanel?()
+    }
+    
+    // fix this when self.comps.month == 11
+    @IBAction func goToNextMonth(sender: AnyObject) {
+        setUpCalendar(forMonth: self.comps.month + 1, year: comps.year)
+        self.collectionView.reloadData()
     }
 
     /*
