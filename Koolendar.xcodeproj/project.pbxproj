@@ -166,6 +166,54 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2E3375681B9A787E001DE6D4 /* MonthView */ = {
+			isa = PBXGroup;
+			children = (
+				2E2E82821A7099A800F83374 /* MonthViewController.swift */,
+				2ED290131A70AED000DF4356 /* MonthViewCell.swift */,
+				2EDECBBB1AEB424B0059D523 /* DayOfTheWeekCell.swift */,
+			);
+			name = MonthView;
+			sourceTree = "<group>";
+		};
+		2E33756D1B9A78B6001DE6D4 /* DayView */ = {
+			isa = PBXGroup;
+			children = (
+				2ED290151A70B10500DF4356 /* DayViewController.swift */,
+				DB7577A81AA224A700159E18 /* EventCell.swift */,
+			);
+			name = DayView;
+			sourceTree = "<group>";
+		};
+		2E33756E1B9A78D5001DE6D4 /* SettingsViews */ = {
+			isa = PBXGroup;
+			children = (
+				2E54ED181B89508F00E1F166 /* SettingsViewController.swift */,
+				2E54ED261B8D3A0200E1F166 /* SettingsSubViewController.swift */,
+				2E54ED241B8BF02B00E1F166 /* SettingsTableViewCell.swift */,
+			);
+			name = SettingsViews;
+			sourceTree = "<group>";
+		};
+		2E33756F1B9A78F8001DE6D4 /* ContainerView/SidePanelView */ = {
+			isa = PBXGroup;
+			children = (
+				2E5BDB821B840B53002F81F4 /* ContainerViewController.swift */,
+				2E5BDB841B8412C1002F81F4 /* CenterViewController.swift */,
+				2E5BDB861B841529002F81F4 /* SidePanelViewController.swift */,
+				2E54ED1F1B89522000E1F166 /* SidePanelCell.swift */,
+			);
+			name = ContainerView/SidePanelView;
+			sourceTree = "<group>";
+		};
+		2E3375701B9A793C001DE6D4 /* EventForm */ = {
+			isa = PBXGroup;
+			children = (
+				DBD70A1D1A8A8F1400639001 /* EventForm.swift */,
+			);
+			name = EventForm;
+			sourceTree = "<group>";
+		};
 		2E76222C1A6DB18E00EAB134 /* Etc */ = {
 			isa = PBXGroup;
 			children = (
@@ -209,22 +257,14 @@
 			isa = PBXGroup;
 			children = (
 				DB3495CE1A6D78CF0083668E /* AppDelegate.swift */,
-				2E2E82821A7099A800F83374 /* MonthViewController.swift */,
-				2EDECBBB1AEB424B0059D523 /* DayOfTheWeekCell.swift */,
-				2ED290131A70AED000DF4356 /* MonthViewCell.swift */,
-				2ED290151A70B10500DF4356 /* DayViewController.swift */,
-				DBD70A1D1A8A8F1400639001 /* EventForm.swift */,
+				2E3375681B9A787E001DE6D4 /* MonthView */,
+				2E33756D1B9A78B6001DE6D4 /* DayView */,
+				2E33756E1B9A78D5001DE6D4 /* SettingsViews */,
+				2E33756F1B9A78F8001DE6D4 /* ContainerView/SidePanelView */,
+				2E3375701B9A793C001DE6D4 /* EventForm */,
 				2E39009E1B0E4B05005B4E6E /* Event.swift */,
-				DB7577A81AA224A700159E18 /* EventCell.swift */,
-				DB3495D21A6D78CF0083668E /* Main.storyboard */,
-				2E54ED181B89508F00E1F166 /* SettingsViewController.swift */,
-				2E54ED261B8D3A0200E1F166 /* SettingsSubViewController.swift */,
-				2E54ED241B8BF02B00E1F166 /* SettingsTableViewCell.swift */,
 				2ED290191A73284E00DF4356 /* KOOLColors.swift */,
-				2E5BDB821B840B53002F81F4 /* ContainerViewController.swift */,
-				2E5BDB861B841529002F81F4 /* SidePanelViewController.swift */,
-				2E54ED1F1B89522000E1F166 /* SidePanelCell.swift */,
-				2E5BDB841B8412C1002F81F4 /* CenterViewController.swift */,
+				DB3495D21A6D78CF0083668E /* Main.storyboard */,
 				2E8C3D301B8FDFAE00F4D253 /* default_settings.json */,
 				2E8C3D2E1B8FDC5A00F4D253 /* settings.json */,
 				DB3495D51A6D78CF0083668E /* Images.xcassets */,
