@@ -22,7 +22,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let settings = UIUserNotificationSettings(forTypes: .Alert | .Sound | .Badge, categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(settings)
         
+        registerDefaultsFromSettingsBundle()
+    
         return true
+    }
+    
+    func registerDefaultsFromSettingsBundle() {
+        let settingsBundle = NSBundle.mainBundle().pathForResource("Settings", ofType: "bundle")!
+        let settingsPath = settingsBundle.stringByAppendingPathComponent("Root.plist")
+        
+        let settings = NSDictionary(contentsOfFile: settingsPath)!
+        
+//        let prefs = settings.objectForKey("PreferenceSpecifiers") as! [NSDictionary]
+//        var keyValuePairs = NSMutableDictionary()
+        
+//        for pref in prefs {
+//            let prefType = pref["Type"] as! String
+//            let prefKey = pref["Key"] as! String?
+//            let prefDefaultValue = pref["DefaultValue"] as! NSObject?
+//            
+//            if prefType == "PSChildPaneSpecifier" {
+//                // ugh
+//            } else if prefKey != nil && prefDefaultValue != nil {
+//                keyValuePairs[prefKey!] = prefDefaultValue
+//            }
+        NSUserDefaults.standardUserDefaults().registerDefaults(settings as! [NSObject : AnyObject])
+        NSUserDefaults.standardUserDefaults().synchronize()
     }
     
     func applicationWillResignActive(application: UIApplication) {

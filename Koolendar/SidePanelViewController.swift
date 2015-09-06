@@ -12,7 +12,7 @@ class SidePanelViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    var items: [(String, String, [CenterViewController]?)] = [("Calendar", "MonthViewController", nil), ("Settings", "SettingsViewController", nil)]
+    var items: [(String, String, [CenterViewController]?)] = [("Calendar", "MonthViewController", nil), ("Settings", "SettingsViewController", nil), ("Debug", "", nil)]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +45,11 @@ extension SidePanelViewController: UITableViewDataSource {
 extension SidePanelViewController: UITableViewDelegate {
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if indexPath.row == items.count - 1 {
+            println()
+        }
+        
         let containerView = self.parentViewController as! ContainerViewController
         
         if self.items[indexPath.row].2 == nil {
