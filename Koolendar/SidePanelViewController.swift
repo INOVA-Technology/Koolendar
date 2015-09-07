@@ -46,10 +46,6 @@ extension SidePanelViewController: UITableViewDelegate {
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        if indexPath.row == items.count - 1 {
-            println()
-        }
-        
         let containerView = self.parentViewController as! ContainerViewController
         
         if self.items[indexPath.row].2 == nil {

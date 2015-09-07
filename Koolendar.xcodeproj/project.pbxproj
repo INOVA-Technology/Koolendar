@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2E2E82831A7099A800F83374 /* MonthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E82821A7099A800F83374 /* MonthViewController.swift */; };
 		2E33757B1B9B9922001DE6D4 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2E33757A1B9B9922001DE6D4 /* Settings.bundle */; };
+		2E33757D1B9DD540001DE6D4 /* NotificationTimeOffsetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E33757C1B9DD540001DE6D4 /* NotificationTimeOffsetViewController.swift */; };
 		2E39009F1B0E4B05005B4E6E /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E39009E1B0E4B05005B4E6E /* Event.swift */; };
 		2E54ED191B89508F00E1F166 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E54ED181B89508F00E1F166 /* SettingsViewController.swift */; };
 		2E54ED201B89522000E1F166 /* SidePanelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E54ED1F1B89522000E1F166 /* SidePanelCell.swift */; };
@@ -107,6 +108,7 @@
 /* Begin PBXFileReference section */
 		2E2E82821A7099A800F83374 /* MonthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthViewController.swift; sourceTree = "<group>"; };
 		2E33757A1B9B9922001DE6D4 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		2E33757C1B9DD540001DE6D4 /* NotificationTimeOffsetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTimeOffsetViewController.swift; sourceTree = "<group>"; };
 		2E39009E1B0E4B05005B4E6E /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		2E54ED181B89508F00E1F166 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		2E54ED1F1B89522000E1F166 /* SidePanelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidePanelCell.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 		2E3375701B9A793C001DE6D4 /* EventForm */ = {
 			isa = PBXGroup;
 			children = (
+				2E33757C1B9DD540001DE6D4 /* NotificationTimeOffsetViewController.swift */,
 				DBD70A1D1A8A8F1400639001 /* EventForm.swift */,
 			);
 			name = EventForm;
@@ -460,6 +463,7 @@
 			files = (
 				2E5BDB851B8412C1002F81F4 /* CenterViewController.swift in Sources */,
 				DBD70A1E1A8A8F1400639001 /* EventForm.swift in Sources */,
+				2E33757D1B9DD540001DE6D4 /* NotificationTimeOffsetViewController.swift in Sources */,
 				2E2E82831A7099A800F83374 /* MonthViewController.swift in Sources */,
 				DB7577A91AA224A700159E18 /* EventCell.swift in Sources */,
 				2E5BDB871B841529002F81F4 /* SidePanelViewController.swift in Sources */,

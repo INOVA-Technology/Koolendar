@@ -11,7 +11,7 @@ import SQLite
 
 // THIS IS A MESS, proceed with caution
 
-class EventForm: UIViewController, UITextFieldDelegate {
+class EventForm: UIViewController, UITextFieldDelegate, NotificationTimeOffsetViewControllerDelegate {
     
     @IBOutlet weak var dateFieldStarting: UITextField!
     @IBOutlet weak var dateFieldEnding: UITextField!
@@ -29,6 +29,8 @@ class EventForm: UIViewController, UITextFieldDelegate {
     
     var datePickerStartView: UIDatePicker = UIDatePicker()
     var datePickerEndView: UIDatePicker = UIDatePicker()
+    
+    var offsets: [(String, CFTimeInterval)]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +54,8 @@ class EventForm: UIViewController, UITextFieldDelegate {
         datePickerEndView.calendar = NSCalendar.currentCalendar()
         datePickerEndView.datePickerMode = UIDatePickerMode.Time
         datePickerEndView.addTarget(self, action: Selector("handleDatePickerEnd:"), forControlEvents: UIControlEvents.ValueChanged)
+        
+        self.offsets = [("1 Minutes", 60), ("5 Minutes", 300), ("10 Minutes", 600), ("15 Minutes", 900), ("30 Minutes", 1800), ("1 Hour", 3600), ("1 Day", 43200)]
     }
     
     override func didReceiveMemoryWarning() {
@@ -104,6 +108,12 @@ class EventForm: UIViewController, UITextFieldDelegate {
         timeFormatter.timeStyle = .ShortStyle
         dateFieldStarting.text = timeFormatter.stringFromDate(sender.date)
         startDateLegit = sender.date
+    }
+    
+    @IBAction func notifictionTimeOffsetPressed(sender: AnyObject) {
+        let vc = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("NotificationTimeOffsetViewController") as! NotificationTimeOffsetViewController
+        vc.delegate = self
+        self.navigationController!.pushViewController(vc, animated: true)
     }
 
     @IBAction func dateFieldEnd(sender: UITextField) {
