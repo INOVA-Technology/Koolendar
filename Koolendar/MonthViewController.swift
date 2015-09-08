@@ -72,9 +72,8 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
         self.comps = NSDateComponents()
         comps.month = month
         comps.year = year
-        
-        let monthNames = formatter.monthSymbols
-        self.nameOfMonth.text = monthNames[comps.month - 1] as? String
+        println(month)
+        self.nameOfMonth.text = formatter.monthSymbols[comps.month - 1] as? String
         
         // Getting first day of month
         let calendarForMessingUp = NSCalendar.currentCalendar()
@@ -196,9 +195,14 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
         self.delegate?.toggleLeftPanel?()
     }
     
-    // fix this when self.comps.month == 11
     @IBAction func goToNextMonth(sender: AnyObject) {
-        setUpCalendar(forMonth: self.comps.month + 1, year: comps.year)
+        if self.comps.month == 12 {
+            self.comps.month = 0
+            self.comps.year++
+        } else {
+            println(self.comps.month)
+        }
+        setUpCalendar(forMonth: self.comps.month + 1, year: self.comps.year)
         self.collectionView.reloadData()
     }
 
