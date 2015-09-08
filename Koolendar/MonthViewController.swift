@@ -16,8 +16,6 @@ struct SelectedDate {
 }
 
 class MonthViewController: CenterViewController, UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate {
-
-    // MARK: variables and constants
    
     @IBOutlet weak var nameOfMonth: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -32,9 +30,7 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
     
     var firstWeek:Int!
     var daysInMonth:Int!
-    // MARK: da functions
-    
-    // this method is getting very confusing...
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -149,13 +145,6 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
         }
     }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        if collectionView == self.collectionView {
-            // TODO: show new DayViewController in here, instead of in the storyboard
-            
-        }
-    }
-    
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         if collectionView == self.collectionView {
             var cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! MonthViewCell
@@ -197,7 +186,7 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
     
     @IBAction func goToNextMonth(sender: AnyObject) {
         if self.comps.month == 12 {
-            self.comps.month = 0
+            self.comps.month == 0
             self.comps.year++
         } else {
             println(self.comps.month)
@@ -205,6 +194,17 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
         setUpCalendar(forMonth: self.comps.month + 1, year: self.comps.year)
         self.collectionView.reloadData()
     }
+    
+//    @IBAction func goToPreviousMonth(sender: AnyObject) {
+//        if self.comps.month == 1 {
+//            self.comps.month == 13
+//            self.comps.year--
+//        } else {
+//            println(self.comps.month)
+//        }
+//        setUpCalendar(forMonth: self.comps.month - 1, year: self.comps.year)
+//        self.collectionView.reloadData()
+//    }
 
     /*
     // MARK: - Navigation
