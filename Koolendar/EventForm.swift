@@ -19,6 +19,13 @@ class EventForm: UIViewController, UITextFieldDelegate, NotificationTimeOffsetVi
     @IBOutlet weak var eventName: UITextField!
     @IBOutlet weak var eventDesc: UITextField!
     
+    @IBOutlet weak var timeOffsetLabel: UIButton!
+    
+    var timeOffsetLabelText: String {
+        get { return timeOffsetLabel.titleLabel!.text! }
+        set { timeOffsetLabel.setTitle(newValue, forState: UIControlState.Normal) }
+    }
+    
     var startDateLegit: NSDate!
     var endDateLegit:NSDate!
     
@@ -31,6 +38,8 @@ class EventForm: UIViewController, UITextFieldDelegate, NotificationTimeOffsetVi
     var datePickerEndView: UIDatePicker = UIDatePicker()
     
     var offsets: [(String, CFTimeInterval)]!
+    
+    var selectedOffsetIndex: Int! = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +64,7 @@ class EventForm: UIViewController, UITextFieldDelegate, NotificationTimeOffsetVi
         datePickerEndView.datePickerMode = UIDatePickerMode.Time
         datePickerEndView.addTarget(self, action: Selector("handleDatePickerEnd:"), forControlEvents: UIControlEvents.ValueChanged)
         
-        self.offsets = [("1 Minutes", 60), ("5 Minutes", 300), ("10 Minutes", 600), ("15 Minutes", 900), ("30 Minutes", 1800), ("1 Hour", 3600), ("1 Day", 43200)]
+        self.offsets = [("0 minutes", 0), ("1 minutes", 60), ("5 minutes", 300), ("10 minutes", 600), ("15 minutes", 900), ("30 minutes", 1800), ("1 hour", 3600), ("1 day", 43200)]
     }
     
     override func didReceiveMemoryWarning() {
@@ -134,6 +143,7 @@ class EventForm: UIViewController, UITextFieldDelegate, NotificationTimeOffsetVi
         event.description = eventDesc.text
         event.startTime = startDateLegit
         event.endTime = endDateLegit
+        event.notificationTimeOffset = self.offsets[self.selectedOffsetIndex].1
         event.save()
 
         let index = self.navigationController!.viewControllers.count - 2

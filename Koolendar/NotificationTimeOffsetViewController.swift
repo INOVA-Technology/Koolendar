@@ -10,6 +10,8 @@ import UIKit
 
 protocol NotificationTimeOffsetViewControllerDelegate {
     var offsets: [(String, CFTimeInterval)]! { get }
+    var selectedOffsetIndex: Int! { get set }
+    var timeOffsetLabelText: String { get set }
 }
 
 class NotificationTimeOffsetViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
@@ -19,8 +21,10 @@ class NotificationTimeOffsetViewController: UIViewController, UIPickerViewDataSo
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        timePicker.delegate = self
+        timePicker.dataSource = self
         
+        timePicker.selectRow(self.delegate.selectedOffsetIndex, inComponent: 0, animated: false)
     }
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -34,4 +38,12 @@ class NotificationTimeOffsetViewController: UIViewController, UIPickerViewDataSo
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
         return self.delegate.offsets[row].0
     }
+    
+    @IBAction func goBack() {
+        let index = self.timePicker.selectedRowInComponent(0)
+        self.delegate.selectedOffsetIndex = index
+        self.delegate.timeOffsetLabelText = self.delegate.offsets[index].0
+        self.navigationController!.popViewControllerAnimated(true)
+    }
+    
 }

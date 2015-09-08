@@ -14,6 +14,7 @@ private let title_e = Expression<String>("title")
 private let startTime_e = Expression<NSDate>("startTime")
 private let endTime_e = Expression<NSDate>("endTime")
 private let description_e = Expression<String>("description")
+private let notificationTimeOffset_e = Expression<Int>("notificationTimeOffset")
 
 extension NSDate: Value {
     public class var declaredDatatype: String {
@@ -129,7 +130,16 @@ class Event {
     }
     
     // in seconds
-    var notificationTimeOffset: NSTimeInterval
+    var _notificationTimeOffset: NSTimeInterval?
+    var notificationTimeOffset: NSTimeInterval {
+        set {
+            _notificationTimeOffset = newValue
+        }
+        get {
+            self._notificationTimeOffset = NSTimeInterval(self.sqlRow!.get(notificationTimeOffset_e))
+            return self._notificationTimeOffset!
+        }
+    }
     var notificationTime: NSDate {
         return self.startTime.dateByAddingTimeInterval(-notificationTimeOffset)
     }
@@ -141,10 +151,6 @@ class Event {
         self.startTime = startTime
         self.endTime = endTime
         self.id = id
-    }
-    
-    convenience init(title: String, description: String, startTime: NSDate, endTime: NSDate) {
-        self.init(title: title, description: description, startTime: startTime, endTime: endTime, notificationTimeOffset: 0, id: nil)
     }
     
     init(row: Row) {
@@ -159,7 +165,7 @@ class Event {
         comps.month = month
         comps.year = year
         let date = NSCalendar.currentCalendar().dateFromComponents(comps)!
-        self.init(title: "", description: "", startTime: date, endTime: date)
+        self.init(title: "", description: "", startTime: date, endTime: date, notificationTimeOffset: 0, id: nil)
     }
     
     func save() {
@@ -198,6 +204,7 @@ class Event {
             t.column(description_e)
             t.column(startTime_e)
             t.column(endTime_e)
+            t.column(notificationTimeOffset_e)
         }
         
         block(events)
