@@ -17,7 +17,6 @@ class SettingsSubViewController: CenterViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
-        println(self.settings)
     }
     
     @IBAction func goBack() {

@@ -9,12 +9,26 @@
 import UIKit
 
 class SettingsTableViewCell: UITableViewCell {
+    
+    var type: String!
 
     @IBOutlet weak var title: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+    }
+    
+    func setup(#type: String) {
+        self.type = type
+        switch self.type {
+        case "Bool":
+            let uiswitch = UISwitch()
+            let f = uiswitch.frame
+            uiswitch.frame = CGRect(x: frame.width - f.width - 8, y: (frame.height - f.height) / 2, width: 0, height: 0)
+            addSubview(uiswitch)
+        default:
+            println("frgasgeatgass") // not good
+        }
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

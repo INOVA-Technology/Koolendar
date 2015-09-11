@@ -68,7 +68,6 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
         self.comps = NSDateComponents()
         comps.month = month
         comps.year = year
-        println(month)
         self.nameOfMonth.text = formatter.monthSymbols[comps.month - 1] as? String
         
         // Getting first day of month
@@ -188,8 +187,6 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
         if self.comps.month == 12 {
             self.comps.month == 0
             self.comps.year++
-        } else {
-            println(self.comps.month)
         }
         setUpCalendar(forMonth: self.comps.month + 1, year: self.comps.year)
         self.collectionView.reloadData()

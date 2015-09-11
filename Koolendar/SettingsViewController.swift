@@ -34,6 +34,10 @@ class SettingsViewController: CenterViewController, UITableViewDataSource, UITab
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("SettingsTableViewCell", forIndexPath: indexPath) as! SettingsTableViewCell
         cell.title.text = self.settings[indexPath.section].1[indexPath.row].0
+        let obj: AnyObject = self.settings[indexPath.section].1[indexPath.row].1
+        if let _ = obj as? Bool {
+            cell.setup(type: "Bool")
+        }
         return cell
     }
     
