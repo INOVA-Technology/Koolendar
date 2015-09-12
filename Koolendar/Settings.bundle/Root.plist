@@ -20,6 +20,32 @@
 			<key>DefaultValue</key>
 			<true/>
 		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Interface</string>
+		</dict>
+		<dict>
+			<key>Values</key>
+			<array>
+				<string>RedAurora</string>
+				<string>MidnightEpiphany</string>
+			</array>
+			<key>Titles</key>
+			<array>
+				<string>Red Aurora</string>
+				<string>Midnight Epiphany</string>
+			</array>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Color Scheme</string>
+			<key>Key</key>
+			<string>color_scheme</string>
+			<key>DefaultValue</key>
+			<string>RedAurora</string>
+		</dict>
 	</array>
 	<key>StringsTable</key>
 	<string>Root</string>

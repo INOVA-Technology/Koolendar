@@ -9,42 +9,47 @@
 import Foundation
 import UIKit
 
-enum ColorForScheme {
-    case Dark
+enum ColorSchemeStyle: String {
+    case RedAurora = "RedAurora"
+    case MidnightEpiphany = "Midnight Epiphany"
 }
 
 struct ColorScheme {
     
-    static var currentTheme: ColorForScheme = .Dark
-
-    
-    // change these awful colors to something aestheticly pleasing
-    // also, these color names are too specific as far as usage goes, but idk how else to name them
+    static var currentTheme: ColorSchemeStyle = .RedAurora
     
     static var background: UIImage {
         switch currentTheme {
-        case .Dark:
+        case .RedAurora:
             return UIImage(named:"SimpleBg")!
+        case .MidnightEpiphany:
+            return UIImage(named: "idk")!
         }
     }
     
-    static var dayCell: UIColor {
+    static var dayCellEven: UIColor {
         switch currentTheme {
-        case .Dark:
+        case .RedAurora:
+            return UIColor.blackColor().colorWithAlphaComponent(0.4)
+        case .MidnightEpiphany:
             return UIColor.blackColor().colorWithAlphaComponent(0.4)
         }
     }
     
-    static var dayCell2: UIColor {
+    static var dayCellOdd: UIColor {
         switch currentTheme {
-        case .Dark:
+        case .RedAurora:
+            return UIColor.whiteColor().colorWithAlphaComponent(0.1)
+        case .MidnightEpiphany:
             return UIColor.whiteColor().colorWithAlphaComponent(0.1)
         }
     }
     
     static var currentDayCell: UIColor {
         switch currentTheme {
-        case .Dark:
+        case .RedAurora:
+            return UIColor(red: 128/255, green: 219/255, blue: 255/255, alpha: 0.7)
+        case .MidnightEpiphany:
             return UIColor(red: 128/255, green: 219/255, blue: 255/255, alpha: 0.7)
         }
     }

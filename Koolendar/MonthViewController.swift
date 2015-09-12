@@ -150,10 +150,10 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
             let todaysComps = calendar.components(.CalendarUnitDay | .CalendarUnitMonth | .CalendarUnitYear, fromDate: NSDate())
             
             if (indexPath.row % 2 == 0) {
-                cell.backgroundColor = ColorScheme.dayCell
+                cell.backgroundColor = ColorScheme.dayCellEven
                 cell.theDay.textColor = UIColor.whiteColor()
             } else {
-                cell.backgroundColor = ColorScheme.dayCell2
+                cell.backgroundColor = ColorScheme.dayCellOdd
                 cell.theDay.textColor = UIColor.blackColor()
             }
             if (indexPath.row - firstWeek + 1 == todaysComps.day - 1 && comps.month == todaysComps.month && comps.year == todaysComps.year) {

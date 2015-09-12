@@ -17,13 +17,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        ColorScheme.currentTheme = .Dark
+        // ColorScheme.currentTheme = .RedAurora
         
         let settings = UIUserNotificationSettings(forTypes: .Alert | .Sound | .Badge, categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(settings)
         
         registerDefaultsFromSettingsBundle()
-    
+        
+        let scheme = NSUserDefaults.standardUserDefaults().stringForKey("color_scheme")!
+        ColorScheme.currentTheme = ColorSchemeStyle(rawValue: scheme)!
+
         return true
     }
     
@@ -48,6 +51,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            }
         NSUserDefaults.standardUserDefaults().registerDefaults(settings as! [NSObject : AnyObject])
         NSUserDefaults.standardUserDefaults().synchronize()
+        
+        if NSUserDefaults.standardUserDefaults().stringForKey("color_scheme") == nil {
+            NSUserDefaults.standardUserDefaults().setValue("RedAurora", forKey: "color_scheme")
+        }
+        
+//        if NSUserDefaults.standardUserDefaults().boolForKey("sound_effects_enabled") == nil {
+//            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "sound_effects_enabled")
+//        }
     }
     
     func applicationWillResignActive(application: UIApplication) {

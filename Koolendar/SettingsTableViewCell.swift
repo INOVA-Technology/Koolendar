@@ -18,13 +18,14 @@ class SettingsTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
     
-    func setup(#type: String) {
+    func setup(#type: String, options: AnyObject? = nil) {
         self.type = type
         switch self.type {
         case "Bool":
             let uiswitch = UISwitch()
             let f = uiswitch.frame
             uiswitch.frame = CGRect(x: frame.width - f.width - 8, y: (frame.height - f.height) / 2, width: 0, height: 0)
+            uiswitch.setOn(options! as! Bool, animated: false)
             addSubview(uiswitch)
         default:
             println("frgasgeatgass") // not good

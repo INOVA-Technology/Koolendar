@@ -12,7 +12,6 @@ class SettingsViewController: CenterViewController, UITableViewDataSource, UITab
 
     @IBOutlet weak var tableView: UITableView!
     
-//    var settings: [String: [String: Any]]!
     var settings = [(String, [(String, AnyObject)])]()
     
     override func viewDidLoad() {
@@ -35,8 +34,9 @@ class SettingsViewController: CenterViewController, UITableViewDataSource, UITab
         let cell = tableView.dequeueReusableCellWithIdentifier("SettingsTableViewCell", forIndexPath: indexPath) as! SettingsTableViewCell
         cell.title.text = self.settings[indexPath.section].1[indexPath.row].0
         let obj: AnyObject = self.settings[indexPath.section].1[indexPath.row].1
-        if let _ = obj as? Bool {
-            cell.setup(type: "Bool")
+        if let val = obj as? Bool {
+            println(val)
+            cell.setup(type: "Bool", options: val)
         }
         return cell
     }
