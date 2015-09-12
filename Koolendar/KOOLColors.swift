@@ -11,7 +11,7 @@ import UIKit
 
 enum ColorSchemeStyle: String {
     case RedAurora = "RedAurora"
-    case MidnightEpiphany = "Midnight Epiphany"
+    case MidnightEpiphany = "MidnightEpiphany"
 }
 
 struct ColorScheme {

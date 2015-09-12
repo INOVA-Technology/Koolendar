@@ -18,7 +18,7 @@ class SettingsTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
     
-    func setup(#type: String, options: AnyObject? = nil) {
+    func setup(#type: String, options: Any? = nil) {
         self.type = type
         switch self.type {
         case "Bool":
@@ -27,6 +27,15 @@ class SettingsTableViewCell: UITableViewCell {
             uiswitch.frame = CGRect(x: frame.width - f.width - 8, y: (frame.height - f.height) / 2, width: 0, height: 0)
             uiswitch.setOn(options! as! Bool, animated: false)
             addSubview(uiswitch)
+        case "MultiValue":
+            switch (options as! (String, Any)).0 {
+            case "Color Scheme":
+                let opts = options as! (String, [(String, String)])
+                println(opts.1)
+            default:
+                println(":(")
+            }
+            
         default:
             println("frgasgeatgass") // not good
         }

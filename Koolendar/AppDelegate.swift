@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+ 
+var colorSchemeValues: [(String, String)]!
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -36,6 +38,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let settings = NSDictionary(contentsOfFile: settingsPath)!
         
+        let prefs = settings["PreferenceSpecifiers"] as! [NSDictionary]
+        for pref in prefs {
+//            println(pref)
+            if pref["Key"] as? String == "color_scheme" {
+                colorSchemeValues = Array(zip(pref["Titles"] as! [String], pref["Values"] as! [String]))
+            }
+        }
 //        let prefs = settings.objectForKey("PreferenceSpecifiers") as! [NSDictionary]
 //        var keyValuePairs = NSMutableDictionary()
         
@@ -55,10 +64,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if NSUserDefaults.standardUserDefaults().stringForKey("color_scheme") == nil {
             NSUserDefaults.standardUserDefaults().setValue("RedAurora", forKey: "color_scheme")
         }
-        
-//        if NSUserDefaults.standardUserDefaults().boolForKey("sound_effects_enabled") == nil {
-//            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "sound_effects_enabled")
-//        }
     }
     
     func applicationWillResignActive(application: UIApplication) {

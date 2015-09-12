@@ -12,7 +12,7 @@ class SettingsViewController: CenterViewController, UITableViewDataSource, UITab
 
     @IBOutlet weak var tableView: UITableView!
     
-    var settings = [(String, [(String, AnyObject)])]()
+    var settings = [(String, [(String, Any)])]()
     
     override func viewDidLoad() {
         self.tableView.dataSource = self
@@ -20,6 +20,7 @@ class SettingsViewController: CenterViewController, UITableViewDataSource, UITab
         
         let userDefaults = NSUserDefaults.standardUserDefaults()
         settings.append(("Sounds", [("Sound Effects", userDefaults.boolForKey("sound_effects_enabled"))]))
+        settings.append(("Interface", [("Color Scheme", colorSchemeValues as Any)]))
     }
     
     @IBAction func showSidebar() {
@@ -32,11 +33,18 @@ class SettingsViewController: CenterViewController, UITableViewDataSource, UITab
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("SettingsTableViewCell", forIndexPath: indexPath) as! SettingsTableViewCell
-        cell.title.text = self.settings[indexPath.section].1[indexPath.row].0
-        let obj: AnyObject = self.settings[indexPath.section].1[indexPath.row].1
+        let ugh = self.settings[indexPath.section].1[indexPath.row].0
+        cell.title.text = ugh
+        let obj: Any = self.settings[indexPath.section].1[indexPath.row].1
         if let val = obj as? Bool {
-            println(val)
+            println("ugh2")
             cell.setup(type: "Bool", options: val)
+        } else if let vals = obj as? [(String, String)] {
+            println("ugh")
+            cell.setup(type: "MultiValue", options: (ugh, vals))
+        } else {
+            println("ugh3")
+            println(obj)
         }
         return cell
     }
