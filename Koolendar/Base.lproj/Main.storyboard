@@ -18,13 +18,13 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My cool month" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iEv-S5-E6f">
-                                <rect key="frame" x="105" y="28" width="164" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <rect key="frame" x="109" y="28" width="157" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Itz-8b-Mzg">
-                                <rect key="frame" x="0.0" y="108" width="375" height="559"/>
+                                <rect key="frame" x="0.0" y="106" width="375" height="561"/>
                                 <color key="backgroundColor" red="0.88470193614130432" green="0.88470193614130432" blue="0.88470193614130432" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" red="0.76004926697184128" green="0.88470193614130432" blue="0.73770903995766146" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="1" id="Lwk-EF-rvI">
@@ -63,10 +63,10 @@
                                 </connections>
                             </collectionView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2QP-Fh-3HC">
-                                <rect key="frame" x="0.0" y="78" width="375" height="30"/>
+                                <rect key="frame" x="0.0" y="77" width="375" height="29"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="v1z-G4-YyC">
-                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="itemSize" width="54" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -76,7 +76,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="54" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sunday" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8aa-oG-ZM9">
@@ -103,8 +103,8 @@
                                     <action selector="showSidebar:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="GI1-0c-DhI"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4pc-2X-LF1">
-                                <rect key="frame" x="277" y="28" width="81" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4pc-2X-LF1">
+                                <rect key="frame" x="274" y="27" width="81" height="30"/>
                                 <state key="normal" title="Next Month">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -112,6 +112,12 @@
                                     <action selector="goToNextMonth:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="abi-NS-ssg"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1970" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V0P-BN-R5c">
+                                <rect key="frame" x="167" y="57" width="41" height="22"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -121,9 +127,13 @@
                             <constraint firstItem="iEv-S5-E6f" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" id="BeX-Cd-70W"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="Itz-8b-Mzg" secondAttribute="bottom" id="Cdc-OZ-RQC"/>
                             <constraint firstItem="2QP-Fh-3HC" firstAttribute="top" secondItem="iEv-S5-E6f" secondAttribute="bottom" constant="20" id="Dqo-db-E4E"/>
+                            <constraint firstAttribute="centerX" secondItem="V0P-BN-R5c" secondAttribute="centerX" id="FHV-RM-ap3"/>
                             <constraint firstItem="34M-9Q-8M9" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="LlA-Yh-dMp"/>
                             <constraint firstAttribute="trailing" secondItem="2QP-Fh-3HC" secondAttribute="trailing" id="c0r-DQ-bfn"/>
                             <constraint firstItem="Itz-8b-Mzg" firstAttribute="top" secondItem="2QP-Fh-3HC" secondAttribute="bottom" id="f5f-7p-gOz"/>
+                            <constraint firstItem="4pc-2X-LF1" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="7" id="kZG-Yl-v3c"/>
+                            <constraint firstItem="V0P-BN-R5c" firstAttribute="top" secondItem="iEv-S5-E6f" secondAttribute="bottom" id="rbA-R3-cUo"/>
+                            <constraint firstItem="4pc-2X-LF1" firstAttribute="leading" secondItem="iEv-S5-E6f" secondAttribute="trailing" constant="8" id="s9y-1D-8sV"/>
                             <constraint firstItem="2QP-Fh-3HC" firstAttribute="height" secondItem="iEv-S5-E6f" secondAttribute="height" id="wdQ-HP-bAt"/>
                             <constraint firstItem="34M-9Q-8M9" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="y74-56-qAu"/>
                             <constraint firstAttribute="trailing" secondItem="Itz-8b-Mzg" secondAttribute="trailing" id="yRJ-aj-LGX"/>
@@ -136,13 +146,14 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="collectionView" destination="Itz-8b-Mzg" id="hgY-dz-Ton"/>
+                        <outlet property="daYearLabel" destination="V0P-BN-R5c" id="Qk1-a6-g3v"/>
                         <outlet property="daysOfTheWeekCollection" destination="2QP-Fh-3HC" id="fVd-ff-yex"/>
                         <outlet property="nameOfMonth" destination="iEv-S5-E6f" id="mgG-Jj-ZhI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1057.5" y="118.5"/>
+            <point key="canvasLocation" x="1066.5" y="118.5"/>
         </scene>
         <!--Day View Controller-->
         <scene sceneID="7Zr-D8-xR7">

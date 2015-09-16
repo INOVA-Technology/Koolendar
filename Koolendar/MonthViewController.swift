@@ -20,6 +20,7 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
     @IBOutlet weak var nameOfMonth: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var daysOfTheWeekCollection: UICollectionView!
+    @IBOutlet weak var daYearLabel: UILabel!
     
     let flags: NSCalendarUnit = .CalendarUnitMonth | .CalendarUnitYear
 
@@ -69,6 +70,7 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
         comps.month = month
         comps.year = year
         self.nameOfMonth.text = formatter.monthSymbols[comps.month - 1] as? String
+        self.daYearLabel.text = String(year)
         
         // Getting first day of month
         let calendarForMessingUp = NSCalendar.currentCalendar()
