@@ -187,7 +187,7 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
     
     @IBAction func goToNextMonth(sender: AnyObject) {
         if self.comps.month == 12 {
-            self.comps.month == 0
+            self.comps.month = 0
             self.comps.year++
         }
         setUpCalendar(forMonth: self.comps.month + 1, year: self.comps.year)
