@@ -18,7 +18,7 @@ class SettingsTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
     
-    func setup(#type: String, options: Any? = nil) {
+    func setup(type type: String, options: Any? = nil) {
         self.type = type
         switch self.type {
         case "Bool":
@@ -31,13 +31,13 @@ class SettingsTableViewCell: UITableViewCell {
             switch (options as! (String, Any)).0 {
             case "Color Scheme":
                 let opts = options as! (String, [(String, String)])
-                println(opts.1)
+                print(opts.1)
             default:
-                println(":(")
+                print(":(")
             }
             
         default:
-            println("frgasgeatgass") // not good
+            print("frgasgeatgass") // not good
         }
     }
 

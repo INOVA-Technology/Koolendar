@@ -12,7 +12,7 @@ enum SlideOutState {
     case BothCollapsed, LeftPanelExpanded
 }
 
-class ContainerViewController: UIViewController, CenterViewControllerDelegate {
+class ContainerViewController: UIViewController {
     
     var centerNavigationController: UINavigationController!
     var centerViewController: CenterViewController!
@@ -73,7 +73,7 @@ extension ContainerViewController: CenterViewControllerDelegate {
         sidePanelController.didMoveToParentViewController(self)
     }
     
-    func animateLeftPanel(#shouldExpand: Bool) {
+    func animateLeftPanel(shouldExpand shouldExpand: Bool) {
         if shouldExpand {
             currentState = .LeftPanelExpanded
             animateCenterPanelXPosition(targetPosition: CGRectGetWidth(centerNavigationController.view.frame) - centerPanelExpandOffset)
@@ -86,7 +86,7 @@ extension ContainerViewController: CenterViewControllerDelegate {
         }
     }
     
-    func animateCenterPanelXPosition(#targetPosition: CGFloat, completion: ((Bool) -> Void)! = nil) {
+    func animateCenterPanelXPosition(targetPosition targetPosition: CGFloat, completion: ((Bool) -> Void)! = nil) {
         UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: {
             self.centerNavigationController.view.frame.origin.x = targetPosition
         }, completion: completion)

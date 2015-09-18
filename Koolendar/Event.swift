@@ -16,7 +16,7 @@ private let endTime_e = Expression<NSDate>("endTime")
 private let description_e = Expression<String>("description")
 private let notificationTimeOffset_e = Expression<Int>("notificationTimeOffset")
 
-extension NSDate: Value {
+extension NSDate {
     public class var declaredDatatype: String {
         return String.declaredDatatype
     }
@@ -120,7 +120,7 @@ class Event {
     var allDay: Bool {
         get {
             let cal = NSCalendar.currentCalendar()
-            let units: NSCalendarUnit = .CalendarUnitDay | .CalendarUnitHour | .CalendarUnitMinute
+            let units: NSCalendarUnit = [.Day, .Hour, .Minute]
             let startComps = cal.components(units, fromDate: startTime)
             let endComps   = cal.components(units, fromDate: endTime)
             
@@ -160,7 +160,7 @@ class Event {
     }
     
     convenience init(day: Int, month: Int, year: Int) {
-        let comps = NSCalendar.currentCalendar().components(.CalendarUnitMinute | .CalendarUnitHour, fromDate: NSDate())
+        let comps = NSCalendar.currentCalendar().components([.Minute, .Hour], fromDate: NSDate())
         comps.day = day
         comps.month = month
         comps.year = year
@@ -169,13 +169,16 @@ class Event {
     }
     
     func save() {
-        Event.events() { events in
+        Event.events() { events, db in
             if let id = self.id {
-                events.filter(id_e == id).update(title_e <- self.title, description_e <- self.description, startTime_e <- self.startTime, endTime_e <- self.endTime)
-            } else if let id = events.insert(title_e <- self.title, description_e <- self.description, startTime_e <- self.startTime, endTime_e <- self.endTime).rowid {
-                self.id = Int(id)
+                let _ = try? db.run(events.filter(id_e == id).update(title_e <- self.title, description_e <- self.description, startTime_e <- self.startTime, endTime_e <- self.endTime))
             } else {
-                println("couldn't save the event 😞")
+                do {
+                    let id = try db.run(events.insert(title_e <- self.title, description_e <- self.description, startTime_e <- self.startTime, endTime_e <- self.endTime))
+                    self.id = Int(id)
+                } catch {
+                    print("couldn't save the event 😞")
+                }
             }
         }
         
@@ -183,39 +186,39 @@ class Event {
     
     func delete() {
         if let id = self.id {
-            Event.events() { events in
-                events.filter(id_e == id).delete()
+            Event.events() { events, db in
+                let _ = try? db.run(events.filter(id_e == id).delete())
             }
         } else {
-            println("counld delete an event that hasn't been saved")
+            print("counld delete an event that hasn't been saved")
         }
     }
     
-    class private func events(block: (Query -> Void)) {
+    class private func events(block: ((QueryType, Connection) -> Void)) {
         let dbDir = NSSearchPathForDirectoriesInDomains(
-            .DocumentDirectory, .UserDomainMask, true).first as! String
-        let db = Database("\(dbDir)/KoolendarDB.sqlite3")
+            .DocumentDirectory, .UserDomainMask, true).first!
+        let db = try! Connection("\(dbDir)/KoolendarDB.sqlite3")
         
-        let events = db["events"]
+        let events = Table("events")
         
-        db.create(table: events, ifNotExists: true) { t in
+        try! db.run(events.create(ifNotExists: true) { t in
             t.column(id_e, primaryKey: true)
             t.column(title_e)
             t.column(description_e)
             t.column(startTime_e)
             t.column(endTime_e)
             t.column(notificationTimeOffset_e)
-        }
+        })
         
-        block(events)
+        block(events, db)
     }
     
     class func eventsOnDate(date: NSDate) -> [Event] {
         var evvents = [Event]()
         
-        Event.events() { events in
+        Event.events() { events, db in
         
-            let units: NSCalendarUnit = .CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay | .CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitSecond
+            let units: NSCalendarUnit = [.Year, .Month, .Day, .Hour, .Minute, .Second]
             let comps = NSCalendar.currentCalendar().components(units, fromDate: date)
             comps.hour = 0
             comps.minute = 0
@@ -224,7 +227,7 @@ class Event {
             comps.day += 1
             let endOfDay = NSCalendar.currentCalendar().dateFromComponents(comps)!
             
-            let results = events.filter(startTime_e >= startOfDay).filter(endTime_e <= endOfDay).order(startTime_e)
+            let results = db.prepare(events.filter(startTime_e >= startOfDay).filter(endTime_e <= endOfDay).order(startTime_e))
             
             for res in results {
                 evvents.append(Event(row: res))
@@ -235,8 +238,8 @@ class Event {
     }
     
     class func each(block: (Event -> ())) { 
-        Event.events() { events in
-            for e in events {
+        Event.events() { events, db in
+            for e in db.prepare(events) {
                 block(Event(row: e))
             }
         }

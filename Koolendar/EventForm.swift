@@ -49,9 +49,6 @@ class EventForm: UIViewController, UITextFieldDelegate, NotificationTimeOffsetVi
         comps.month = SelectedDate.month
         comps.year = SelectedDate.year
         
-        let cal = NSCalendar.currentCalendar()
-        let date = cal.dateFromComponents(comps)!
-        
         loadEventInfo()
         
         datePickerStartView.timeZone = NSCalendar.currentCalendar().timeZone
@@ -82,7 +79,7 @@ class EventForm: UIViewController, UITextFieldDelegate, NotificationTimeOffsetVi
         return true;
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
     }
     
@@ -112,7 +109,7 @@ class EventForm: UIViewController, UITextFieldDelegate, NotificationTimeOffsetVi
     }
     
     func handleDatePickerStart(sender: UIDatePicker) {
-        var timeFormatter = NSDateFormatter()
+        let timeFormatter = NSDateFormatter()
         timeFormatter.dateStyle = .NoStyle
         timeFormatter.timeStyle = .ShortStyle
         dateFieldStarting.text = timeFormatter.stringFromDate(sender.date)
@@ -131,7 +128,7 @@ class EventForm: UIViewController, UITextFieldDelegate, NotificationTimeOffsetVi
     }
     
     func handleDatePickerEnd(sender: UIDatePicker) {
-        var timeFormatter = NSDateFormatter()
+        let timeFormatter = NSDateFormatter()
         timeFormatter.dateStyle = .NoStyle
         timeFormatter.timeStyle = .ShortStyle
         dateFieldEnding.text = timeFormatter.stringFromDate(sender.date)
@@ -139,8 +136,8 @@ class EventForm: UIViewController, UITextFieldDelegate, NotificationTimeOffsetVi
     }
     
     @IBAction func addEvent(sender: UIButton) {
-        event.title = eventName.text
-        event.description = eventDesc.text
+        event.title = eventName.text!
+        event.description = eventDesc.text!
         event.startTime = startDateLegit
         event.endTime = endDateLegit
         event.notificationTimeOffset = self.offsets[self.selectedOffsetIndex].1

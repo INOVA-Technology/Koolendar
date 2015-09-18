@@ -54,12 +54,12 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     // MARK: Table View Stuff
     
-    func tableView(UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return events.count
     }
     
-    func tableView(UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("eventCell") as! EventCell
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("eventCell") as! EventCell
         
         let event = events[indexPath.row]
         
@@ -69,12 +69,6 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         if event.allDay {
             cell.eventTime.text = "All day"
         } else {
-            let cal = NSCalendar.currentCalendar()
-            let units: NSCalendarUnit = .CalendarUnitHour | .CalendarUnitMinute
-            
-            let startComps = cal.components(units, fromDate: event.startTime)
-            let endComps = cal.components(units, fromDate: event.endTime)
-            
             let formatter = NSDateFormatter()
             formatter.dateStyle = .NoStyle
             formatter.timeStyle = .ShortStyle
@@ -91,7 +85,7 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         return cell
     }
     
-    func tableView(UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if let selectedCellIndexPath = selectedCellIndexPath {
             if selectedCellIndexPath == indexPath {
                 self.selectedCellIndexPath = nil
@@ -105,25 +99,25 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         tableView.endUpdates()
     }
     
-    func tableView(UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
     
     
     // wait this method declaration is really weird, idk how it even works
-    func tableView(UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
 //        if (editingStyle == UITableViewCellEditingStyle.Delete) {
 //            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
 //        }
     }
     
-    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
        
-        var editAction = UITableViewRowAction(style: .Normal, title: "Edit") { (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
+        let editAction = UITableViewRowAction(style: .Normal, title: "Edit") { (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
             self.editEventWithIndex(indexPath.row)
         }
         
-        var deleteAction = UITableViewRowAction(style: .Normal, title: "Delete") { action, indexPath in
+        let deleteAction = UITableViewRowAction(style: .Normal, title: "Delete") { action, indexPath in
             self.deleteEventWithIndex(indexPath.row)
         }
         
@@ -139,7 +133,7 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         self.tableView.reloadData()
     }
     
-    func tableView(UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if let selectedCellIndexPath = selectedCellIndexPath {
             if selectedCellIndexPath == indexPath {
                 return SelectedCellHeight

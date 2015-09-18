@@ -22,7 +22,7 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
     @IBOutlet weak var daysOfTheWeekCollection: UICollectionView!
     @IBOutlet weak var daYearLabel: UILabel!
     
-    let flags: NSCalendarUnit = .CalendarUnitMonth | .CalendarUnitYear
+    let flags: NSCalendarUnit = [.Month, .Year]
 
     var calendar = NSCalendar.currentCalendar()
     
@@ -37,7 +37,6 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
         
         let screenSize = UIScreen.mainScreen().bounds
         let sizeX = screenSize.width
-        let sizeY = screenSize.height
         let layout = UICollectionViewFlowLayout()
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
@@ -63,20 +62,22 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: "handleCellTap:")
         gestureRecognizer.delegate = self
         self.collectionView.addGestureRecognizer(gestureRecognizer)
+        
+        setUpNavArrows()
     }
     
     func setUpCalendar(forMonth month: Int, year: Int) {
         self.comps = NSDateComponents()
         comps.month = month
         comps.year = year
-        self.nameOfMonth.text = formatter.monthSymbols[comps.month - 1] as? String
+        self.nameOfMonth.text = formatter.monthSymbols[comps.month - 1]
         self.daYearLabel.text = String(year)
         
         // Getting first day of month
         let calendarForMessingUp = NSCalendar.currentCalendar()
         let dateForMessingUp = calendarForMessingUp.dateFromComponents(self.comps)!
         
-        let componentsForMessingUp = NSCalendar.currentCalendar().components(.CalendarUnitMonth, fromDate: dateForMessingUp)
+        let componentsForMessingUp = NSCalendar.currentCalendar().components([.Month], fromDate: dateForMessingUp)
         componentsForMessingUp.year = comps.year
         componentsForMessingUp.day = 1
         
@@ -84,8 +85,8 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
         componentsForMessingUp.month  += 1
         componentsForMessingUp.day     = 0
         
-        let lastDateOfMonth: NSDate = calendarForMessingUp.dateFromComponents(componentsForMessingUp)!
-        var unitFlags: NSCalendarUnit = .CalendarUnitWeekOfMonth | .CalendarUnitWeekday | .CalendarUnitDay
+        let lastDateOfMonth = calendarForMessingUp.dateFromComponents(componentsForMessingUp)!
+        let unitFlags: NSCalendarUnit = [.WeekOfMonth, .Weekday, .Day]
         
         let firstDateComponents = calendarForMessingUp.components(unitFlags, fromDate: firstDateOfMonth)
         let lastDateComponents  = calendarForMessingUp.components(unitFlags, fromDate: lastDateOfMonth)
@@ -95,8 +96,18 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
     }
     
     func setUpCalendarForCurrentDate() {
-        let comps = NSCalendar.currentCalendar().components(.CalendarUnitMonth | .CalendarUnitYear, fromDate: NSDate())
+        let comps = NSCalendar.currentCalendar().components([.Month, .Year], fromDate: NSDate())
         setUpCalendar(forMonth: comps.month, year: comps.year)
+    }
+    
+    func setUpNavArrows() {
+        if let img = UIImage(named: "UINavigationBarBackIndicatorDefault") {
+            let imgView = UIImageView(image: img)
+            imgView.frame = CGRect(x: 0, y: 0, width: img.size.width, height: img.size.height)
+            view.addSubview(imgView)
+        } else {
+            print("ugh")
+        }
     }
     
     func handleCellTap(recognizer: UITapGestureRecognizer) {
@@ -135,7 +146,7 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
     
     // its not letting me connect this from the cell's gesture recognizer to this controller in the storyboard
     @IBAction func previewDate(recognizer: UITapGestureRecognizer) {
-        println("double tapped a date!")
+        print("double tapped a date!")
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -148,8 +159,8 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         if collectionView == self.collectionView {
-            var cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! MonthViewCell
-            let todaysComps = calendar.components(.CalendarUnitDay | .CalendarUnitMonth | .CalendarUnitYear, fromDate: NSDate())
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! MonthViewCell
+            let todaysComps = calendar.components([.Day, .Month, .Year], fromDate: NSDate())
             
             if (indexPath.row % 2 == 0) {
                 cell.backgroundColor = ColorScheme.dayCellEven
