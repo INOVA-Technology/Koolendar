@@ -33,10 +33,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func registerDefaultsFromSettingsBundle() {
-        let settingsBundle = NSBundle.mainBundle().pathForResource("Settings", ofType: "bundle")!
-        let settingsPath = NSURL(string: settingsBundle)!.URLByAppendingPathComponent("Root.plist")
+        let settingsBundle = NSBundle.mainBundle().URLForResource("Settings", withExtension: "bundle")!
+        let settingsPath = settingsBundle.URLByAppendingPathComponent("Root.plist")
         
-        let settings = NSDictionary(contentsOfURL: settingsPath)!
+         let settings = NSDictionary(contentsOfURL: settingsPath)!
         
         let prefs = settings["PreferenceSpecifiers"] as! [NSDictionary]
         for pref in prefs {

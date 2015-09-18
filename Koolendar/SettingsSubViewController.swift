@@ -27,7 +27,7 @@ class SettingsSubViewController: CenterViewController {
 extension SettingsSubViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("SettingsSubViewCell", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("SettingsSubViewCell", forIndexPath: indexPath)
         return cell
     }
     
