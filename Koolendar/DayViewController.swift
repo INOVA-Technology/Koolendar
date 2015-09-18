@@ -25,6 +25,8 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     var day: NSDate!
     
+    var dateComps: NSDateComponents!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.backgroundView = UIImageView(image: ColorScheme.background)
@@ -33,23 +35,19 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         let cal = NSCalendar.currentCalendar()
         let comps = NSDateComponents()
-        comps.day = SelectedDate.day
-        comps.month = SelectedDate.month
-        comps.year = SelectedDate.year
+        comps.day = self.dateComps.day
+        comps.month = self.dateComps.month
+        comps.year = self.dateComps.year
         self.day = cal.dateFromComponents(comps)!
         self.events = Event.eventsOnDate(day)
         
-        theDateText.text = "\(SelectedDate.month)/\(SelectedDate.day)/\(SelectedDate.year)"
+        theDateText.text = "\(self.dateComps.month)/\(self.dateComps.day)/\(self.dateComps.year)"
         
         self.tableView.reloadData()
     }
     
     @IBAction func goBack(sender: UIButton) {
         self.navigationController?.popViewControllerAnimated(true)
-    }
-    
-    @IBAction func eatThis(sender: UIButton) {
-        theDateText.text = "\(SelectedDate.month)/\(SelectedDate.day)/\(SelectedDate.year)"
     }
     
     // MARK: Table View Stuff
@@ -161,7 +159,7 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     @IBAction func createEvent() {
         let vc = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("EventFormViewController") as! EventForm
-        vc.event = Event(day: SelectedDate.day, month: SelectedDate.month, year: SelectedDate.year)
+        vc.event = Event(day: self.dateComps.day, month: self.dateComps.month, year: self.dateComps.year)
         self.navigationController!.pushViewController(vc, animated: true)
     }
     

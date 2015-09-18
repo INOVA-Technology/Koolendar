@@ -8,13 +8,6 @@
 
 import UIKit
 
-// TODO: make this an NSDateComponets
-struct SelectedDate {
-    static var day: Int!
-    static var month: Int!
-    static var year: Int!
-}
-
 class MonthViewController: CenterViewController, UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate {
    
     @IBOutlet weak var nameOfMonth: UILabel!
@@ -113,18 +106,16 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
     func handleCellTap(recognizer: UITapGestureRecognizer) {
         let point = recognizer.locationInView(self.collectionView)
         
-        let indexPath = self.collectionView.indexPathForItemAtPoint(point)
-        if indexPath == nil {
-            return
-        } else {
-            SelectedDate.day = indexPath!.row - firstWeek + 2
-            SelectedDate.month = comps.month
-            SelectedDate.year = comps.year
-            
-            let vc = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("DayViewController") as! DayViewController
-            
-            self.navigationController!.pushViewController(vc, animated: true)
-        }
+        guard let indexPath = self.collectionView.indexPathForItemAtPoint(point) else { return }
+
+        let comps = NSDateComponents()
+        comps.day = indexPath.row - firstWeek + 2
+        comps.month = self.comps.month
+        comps.year = self.comps.year
+        
+        let vc = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("DayViewController") as! DayViewController
+        vc.dateComps = comps
+        self.navigationController!.pushViewController(vc, animated: true)
     }
     
     override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
@@ -209,8 +200,6 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
 //        if self.comps.month == 1 {
 //            self.comps.month == 13
 //            self.comps.year--
-//        } else {
-//            println(self.comps.month)
 //        }
 //        setUpCalendar(forMonth: self.comps.month - 1, year: self.comps.year)
 //        self.collectionView.reloadData()

@@ -44,11 +44,6 @@ class EventForm: UIViewController, UITextFieldDelegate, NotificationTimeOffsetVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let comps = NSDateComponents()
-        comps.day = SelectedDate.day
-        comps.month = SelectedDate.month
-        comps.year = SelectedDate.year
-        
         loadEventInfo()
         
         datePickerStartView.timeZone = NSCalendar.currentCalendar().timeZone

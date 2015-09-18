@@ -32,11 +32,8 @@ extension SettingsSubViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let c = self.settings?.count {
-            return c
-        } else {
-            return 0
-        }
+        guard let c = self.settings?.count else { return 0 }
+        return c
     }
     
 }

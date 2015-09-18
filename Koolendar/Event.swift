@@ -156,7 +156,6 @@ class Event {
     init(row: Row) {
         self.notificationTimeOffset = 0 // we gotta store this in the db...
         self.sqlRow = row
-//        self.init(title: row.get(title_e), description: row.get(description_e), startTime: row.get(startTime_e), endTime: row.get(endTime_e), notificationTimeOffset: 0, id: row.get(id_e))
     }
     
     convenience init(day: Int, month: Int, year: Int) {
@@ -185,12 +184,13 @@ class Event {
     }
     
     func delete() {
-        if let id = self.id {
-            Event.events() { events, db in
-                let _ = try? db.run(events.filter(id_e == id).delete())
-            }
-        } else {
-            print("counld delete an event that hasn't been saved")
+        guard let id = self.id else {
+            print("couldn't delete an event that hasn't been saved")
+            return
+        }
+        
+        Event.events() { events, db in
+            let _ = try? db.run(events.filter(id_e == id).delete())
         }
     }
     
