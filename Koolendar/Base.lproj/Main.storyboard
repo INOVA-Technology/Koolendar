@@ -94,7 +94,7 @@
                                     <constraint firstAttribute="height" constant="20" id="MmO-ly-Q1V"/>
                                     <constraint firstAttribute="width" constant="12" id="V4P-Vn-5jg"/>
                                 </constraints>
-                                <state key="normal" image="MonthSwitcherArrowForward"/>
+                                <state key="normal" image="MonthArrowForward"/>
                                 <connections>
                                     <action selector="goToNextMonth:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="EjT-Bd-j4y"/>
                                 </connections>
@@ -105,7 +105,7 @@
                                     <constraint firstAttribute="height" constant="20" id="m6i-8k-XOW"/>
                                     <constraint firstAttribute="width" constant="12" id="uiT-6W-JNa"/>
                                 </constraints>
-                                <state key="normal" title=" " image="MonthSwitcherArrowBack"/>
+                                <state key="normal" title=" " image="MonthArrowBackward"/>
                                 <connections>
                                     <action selector="goToPreviousMonth:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="7Hd-sq-V4t"/>
                                 </connections>
@@ -792,7 +792,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="MonthSwitcherArrowBack" width="12" height="20"/>
-        <image name="MonthSwitcherArrowForward" width="12" height="20"/>
+        <image name="MonthArrowBackward" width="12" height="20"/>
+        <image name="MonthArrowForward" width="12" height="20"/>
     </resources>
 </document>
