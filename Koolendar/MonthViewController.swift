@@ -55,8 +55,6 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: "handleCellTap:")
         gestureRecognizer.delegate = self
         self.collectionView.addGestureRecognizer(gestureRecognizer)
-        
-        setUpNavArrows()
     }
     
     func setUpCalendar(forMonth month: Int, year: Int) {
@@ -93,15 +91,27 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
         setUpCalendar(forMonth: comps.month, year: comps.year)
     }
     
-    func setUpNavArrows() {
-        if let img = UIImage(named: "UINavigationBarBackIndicatorDefault") {
-            let imgView = UIImageView(image: img)
-            imgView.frame = CGRect(x: 0, y: 0, width: img.size.width, height: img.size.height)
-            view.addSubview(imgView)
-        } else {
-            print("ugh")
-        }
-    }
+//    func setUpNavArrows() {
+//        if let img = UIImage(named: "MonthSwitcherArrow") {
+//            let imgView = UIImageView(image: img)
+//            imgView.frame = CGRect(x: 0, y: 0, width: img.size.width, height: img.size.height)
+//            imgView.tintColor = UIColor.redColor()
+//            
+//            let button = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+//            button.addTarget(self, action: "_goToNextMonth", forControlEvents: .TouchUpInside)
+//            button.addSubview(imgView)
+//            
+//            button.translatesAutoresizingMaskIntoConstraints = false
+//            var cs = [NSLayoutConstraint]()
+//            cs.append(NSLayoutConstraint(item: button, attribute: .CenterX, relatedBy: .Equal, toItem: nameOfMonth, attribute: .CenterX, multiplier: 1, constant: 0))
+//            cs.append(NSLayoutConstraint(item: button, attribute: .Left, relatedBy: .Equal, toItem: nameOfMonth, attribute: .Right, multiplier: 1, constant: 8))
+//            button.addConstraints(cs)
+//            
+//            view.addSubview(button)
+//        } else {
+//            print("ugh")
+//        }
+//    }
     
     func handleCellTap(recognizer: UITapGestureRecognizer) {
         let point = recognizer.locationInView(self.collectionView)
@@ -195,15 +205,16 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
         setUpCalendar(forMonth: self.comps.month + 1, year: self.comps.year)
         self.collectionView.reloadData()
     }
+
     
-//    @IBAction func goToPreviousMonth(sender: AnyObject) {
-//        if self.comps.month == 1 {
-//            self.comps.month == 13
-//            self.comps.year--
-//        }
-//        setUpCalendar(forMonth: self.comps.month - 1, year: self.comps.year)
-//        self.collectionView.reloadData()
-//    }
+    @IBAction func goToPreviousMonth(sender: AnyObject) {
+        if self.comps.month == 1 {
+            self.comps.month = 13
+            self.comps.year--
+        }
+        setUpCalendar(forMonth: self.comps.month - 1, year: self.comps.year)
+        self.collectionView.reloadData()
+    }
 
     /*
     // MARK: - Navigation
