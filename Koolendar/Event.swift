@@ -173,7 +173,6 @@ class Event {
                 let _ = try? db.run(events.filter(id_e == id).update(title_e <- self.title, description_e <- self.description, startTime_e <- self.startTime, endTime_e <- self.endTime))
             } else {
                 do {
-//                    let id = try db.run(events.insert(title_e <- self.title, description_e <- self.description, startTime_e <- self.startTime, endTime_e <- self.endTime))
                     let id = try db.run(events.insert(title_e <- self.title, description_e <- self.description, startTime_e <- self.startTime, endTime_e <- self.endTime, notificationTimeOffset_e <- 0))
                     self.id = Int(id)
                 } catch {
