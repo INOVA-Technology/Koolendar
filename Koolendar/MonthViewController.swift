@@ -175,7 +175,27 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
                 cell.theDay.textColor = UIColor.whiteColor()
             }
             if (indexPath.row >= firstWeek - 1 && indexPath.row + 1 < daysInMonth + firstWeek) {
-                cell.theDay.text = String(indexPath.row - firstWeek + 2)
+                
+                let calendar = NSCalendar(identifier: NSCalendarIdentifierGregorian)
+                
+                let components = NSDateComponents()
+                components.year = self.comps.year
+                components.month = self.comps.month
+                components.day = indexPath.row - firstWeek + 2
+//                components.hour = 14
+//                components.minute = 20
+//                components.second = 0
+                
+                let hotDate = calendar!.dateFromComponents(components)
+                
+                if (Event.eventsOnDate(hotDate!).count > 0) {
+                    cell.theDay.text = String(indexPath.row - firstWeek + 2)
+                    cell.hasDates.hidden = false
+                }
+                else {
+                    cell.hasDates.hidden = true
+                    cell.theDay.text = String(indexPath.row - firstWeek + 2)
+                }
     //            cell.theDay.text = String(indexPath.row)
             } else {
                 cell.theDay.text = ""

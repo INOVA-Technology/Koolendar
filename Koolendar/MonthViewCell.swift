@@ -10,6 +10,7 @@ import UIKit
 
 class MonthViewCell: UICollectionViewCell {
     @IBOutlet weak var theDay: UILabel!
+    @IBOutlet weak var hasDates: UILabel!
     
     @IBAction func handleTap(recognizer:UITapGestureRecognizer) {
 //        println("rwge")
