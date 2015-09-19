@@ -323,11 +323,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FWe-5y-guv">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FWe-5y-guv">
                                 <rect key="frame" x="269" y="28" width="63" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="63" id="cWd-TO-x6I"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -558,18 +555,23 @@
                             <constraint firstItem="76v-PK-XlX" firstAttribute="trailing" secondItem="EFp-6a-RID" secondAttribute="trailing" id="vWk-XQ-qJW"/>
                             <constraint firstItem="cI2-Yx-NgJ" firstAttribute="leading" secondItem="xsn-Cb-mVB" secondAttribute="leadingMargin" constant="76" id="vnd-c1-PeH"/>
                             <constraint firstItem="Bag-xa-QEB" firstAttribute="leading" secondItem="hoR-bJ-kfG" secondAttribute="leading" id="zL3-LU-Dud"/>
+                            <constraint firstItem="cI2-Yx-NgJ" firstAttribute="centerX" secondItem="xsn-Cb-mVB" secondAttribute="centerX" id="zon-km-5yJ"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="6le-1E-29J"/>
                                 <exclude reference="Aev-F4-TWa"/>
                                 <exclude reference="q29-SL-wYJ"/>
+                                <exclude reference="zon-km-5yJ"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="constraints">
+                                <exclude reference="K30-uy-CdY"/>
                                 <exclude reference="6le-1E-29J"/>
                                 <exclude reference="q29-SL-wYJ"/>
+                                <exclude reference="vnd-c1-PeH"/>
+                                <include reference="zon-km-5yJ"/>
                             </mask>
                         </variation>
                     </view>
@@ -638,7 +640,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Ev-Bb-vtz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2797.5" y="119"/>
+            <point key="canvasLocation" x="3244.5" y="132"/>
         </scene>
         <!--Settings Sub View Controller-->
         <scene sceneID="laT-zm-R5U">
