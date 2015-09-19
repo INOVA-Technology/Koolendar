@@ -183,7 +183,7 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
         } else {
             let cell = daysOfTheWeekCollection.dequeueReusableCellWithReuseIdentifier("dayOfTheWeekCell", forIndexPath: indexPath) as! DayOfTheWeekCell
             
-            let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+            let days = ["S", "M", "T", "W", "T", "F", "S"]
             
             cell.dayName.text = days[indexPath.row]
 //            
