@@ -309,7 +309,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EZr-GR-SYe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1527.5" y="118.5"/>
+            <point key="canvasLocation" x="1749.75" y="131.5"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="meZ-Kl-BFi">
@@ -495,15 +495,6 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RRj-aU-rr7">
-                                <rect key="frame" x="112" y="362" width="67" height="30"/>
-                                <state key="normal" title="x minutes">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="notifictionTimeOffsetPressed:" destination="G7n-lz-uBd" eventType="touchUpInside" id="kEw-DT-0GU"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="before the event" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kec-vZ-0e2">
                                 <rect key="frame" x="187" y="366" width="125" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -517,6 +508,15 @@
                                 </state>
                                 <connections>
                                     <action selector="addEvent:" destination="G7n-lz-uBd" eventType="touchUpInside" id="nzX-0M-jq7"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RRj-aU-rr7">
+                                <rect key="frame" x="112" y="362" width="67" height="30"/>
+                                <state key="normal" title="x minutes">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="notifictionTimeOffsetPressed:" destination="G7n-lz-uBd" eventType="touchUpInside" id="kEw-DT-0GU"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -568,8 +568,8 @@
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="constraints">
-                                <include reference="6le-1E-29J"/>
-                                <include reference="q29-SL-wYJ"/>
+                                <exclude reference="6le-1E-29J"/>
+                                <exclude reference="q29-SL-wYJ"/>
                             </mask>
                         </variation>
                     </view>
@@ -585,7 +585,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qv4-Xp-JY8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2151.75" y="133.5"/>
+            <point key="canvasLocation" x="2423.25" y="141.5"/>
         </scene>
         <!--Notification Time Offset View Controller-->
         <scene sceneID="E0b-UK-L1V">
