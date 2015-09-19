@@ -91,8 +91,12 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Nv-Kp-vW8">
                                 <rect key="frame" x="275" y="32" width="12" height="20"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="MmO-ly-Q1V"/>
-                                    <constraint firstAttribute="width" constant="12" id="V4P-Vn-5jg"/>
+                                    <constraint firstAttribute="height" constant="20" id="MmO-ly-Q1V">
+                                        <variation key="widthClass=compact" constant="30"/>
+                                    </constraint>
+                                    <constraint firstAttribute="width" constant="12" id="V4P-Vn-5jg">
+                                        <variation key="widthClass=compact" constant="30"/>
+                                    </constraint>
                                 </constraints>
                                 <state key="normal" image="MonthArrowForward"/>
                                 <connections>
@@ -102,14 +106,25 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CoK-xB-etj">
                                 <rect key="frame" x="88" y="32" width="12" height="20"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="m6i-8k-XOW"/>
-                                    <constraint firstAttribute="width" constant="12" id="uiT-6W-JNa"/>
+                                    <constraint firstAttribute="height" constant="20" id="m6i-8k-XOW">
+                                        <variation key="widthClass=compact" constant="30"/>
+                                    </constraint>
+                                    <constraint firstAttribute="width" constant="30" id="uiT-6W-JNa"/>
                                 </constraints>
                                 <state key="normal" title=" " image="MonthArrowBackward"/>
                                 <connections>
                                     <action selector="goToPreviousMonth:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="7Hd-sq-V4t"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BD6-tR-y6m">
+                                <rect key="frame" x="0.0" y="0.0" width="30" height="34"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1970" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V0P-BN-R5c">
+                                <rect key="frame" x="168" y="57" width="40" height="22"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2QP-Fh-3HC">
                                 <rect key="frame" x="0.0" y="77" width="375" height="29"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -142,15 +157,6 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BD6-tR-y6m">
-                                <rect key="frame" x="0.0" y="0.0" width="30" height="34"/>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1970" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V0P-BN-R5c">
-                                <rect key="frame" x="168" y="57" width="40" height="22"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>

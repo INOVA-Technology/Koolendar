@@ -37,10 +37,8 @@ class SettingsViewController: CenterViewController, UITableViewDataSource, UITab
         cell.title.text = ugh
         let obj: Any = self.settings[indexPath.section].1[indexPath.row].1
         if let val = obj as? Bool {
-            print("ugh2")
             cell.setup(type: "Bool", options: val)
         } else if let vals = obj as? [(String, String)] {
-            print("ugh")
             cell.setup(type: "MultiValue", options: (ugh, vals))
         } else {
             print("ugh3")

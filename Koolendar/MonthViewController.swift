@@ -83,7 +83,6 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
         let lastDateComponents  = calendarForMessingUp.components(unitFlags, fromDate: lastDateOfMonth)
         
         self.firstWeek = firstDateComponents.weekday
-        print(self.firstWeek)
         self.daysInMonth = lastDateComponents.day
     }
     
