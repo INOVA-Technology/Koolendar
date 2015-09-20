@@ -17,6 +17,10 @@ class ContainerViewController: UIViewController {
     var centerNavigationController: UINavigationController!
     var centerViewController: CenterViewController!
     
+    var centerViewControllerUserInteraction = true
+    
+    var sidePanelItems: [(String, String, [CenterViewController]?)] = [("Calendar", "MonthViewController", nil), ("Settings", "SettingsViewController", nil), ("Debug", "", nil)]
+    
     var currentState: SlideOutState = .BothCollapsed {
         didSet {
             let shouldShowShadow = currentState != .BothCollapsed
@@ -50,6 +54,9 @@ extension ContainerViewController: CenterViewControllerDelegate {
     func toggleLeftPanel() {
         let notAlreadyExpanded = (currentState != .LeftPanelExpanded)
         if notAlreadyExpanded {
+            if sidePanelItems[0].2 == nil {
+                sidePanelItems[0].2 = [self.centerNavigationController!.visibleViewController as! CenterViewController]
+            }
             addLeftPanelViewController()
         }
         
@@ -62,6 +69,7 @@ extension ContainerViewController: CenterViewControllerDelegate {
     func addLeftPanelViewController() {
         if (leftViewController == nil) {
             leftViewController = UIStoryboard.leftViewController()
+            leftViewController!.delegate = self
             addChildSidePanelController(leftViewController!)
         }
     }
@@ -74,15 +82,19 @@ extension ContainerViewController: CenterViewControllerDelegate {
     }
     
     func animateLeftPanel(shouldExpand shouldExpand: Bool) {
+        let vc = self.centerNavigationController.visibleViewController as! CenterViewController
+        
         if shouldExpand {
             currentState = .LeftPanelExpanded
             animateCenterPanelXPosition(targetPosition: CGRectGetWidth(centerNavigationController.view.frame) - centerPanelExpandOffset)
+            vc.setUserInteraction(false)
         } else {
             animateCenterPanelXPosition(targetPosition: 0) { finished in
                 self.currentState = .BothCollapsed
                 self.leftViewController!.view.removeFromSuperview()
                 self.leftViewController = nil
             }
+            vc.setUserInteraction(true)
         }
     }
     

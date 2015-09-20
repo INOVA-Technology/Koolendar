@@ -12,7 +12,7 @@ class SidePanelViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    var items: [(String, String, [CenterViewController]?)] = [("Calendar", "MonthViewController", nil), ("Settings", "SettingsViewController", nil), ("Debug", "", nil)]
+    var delegate: ContainerViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,13 +29,13 @@ extension SidePanelViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.items.count
+        return self.delegate.sidePanelItems.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("SidebarCell", forIndexPath: indexPath) as! SidePanelCell
         
-        cell.name.text = self.items[indexPath.row].0
+        cell.name.text = self.delegate.sidePanelItems[indexPath.row].0
         
         return cell
     }
@@ -46,17 +46,16 @@ extension SidePanelViewController: UITableViewDelegate {
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        let containerView = self.parentViewController as! ContainerViewController
-        
-        if self.items[indexPath.row].2 == nil {
-            let vc = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier(self.items[indexPath.row].1) as! CenterViewController
-            vc.delegate = containerView
-            self.items[indexPath.row].2 = [vc]
+        if self.delegate.sidePanelItems[indexPath.row].2 == nil {
+            let vc = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier(self.delegate.sidePanelItems[indexPath.row].1) as! CenterViewController
+            vc.delegate = self.delegate
+            self.delegate.sidePanelItems[indexPath.row].2 = [vc]
+            print("test")
         }
         
-        containerView.centerNavigationController.viewControllers = self.items[indexPath.row].2!
+        self.delegate.centerNavigationController.viewControllers = self.delegate.sidePanelItems[indexPath.row].2!
         
-        containerView.toggleLeftPanel()
+        self.delegate.toggleLeftPanel()
     }
     
 }
