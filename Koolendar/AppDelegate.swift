@@ -72,16 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidEnterBackground(application: UIApplication) {
-        Event.each { e in
-            let notif = UILocalNotification()
-            notif.fireDate = e.notificationTime
-            notif.timeZone = NSTimeZone.defaultTimeZone()
-            notif.alertBody = e.title
-            notif.soundName = UILocalNotificationDefaultSoundName
-//            notif.alertAction = ...
-            
-            UIApplication.sharedApplication().scheduleLocalNotification(notif)
-        }
+        
     }
     
     func applicationWillEnterForeground(application: UIApplication) {

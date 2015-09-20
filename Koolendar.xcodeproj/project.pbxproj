@@ -392,7 +392,7 @@
 				TargetAttributes = {
 					DB3495C81A6D78CF0083668E = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = 5J5CU372W5;
+						DevelopmentTeam = 5H7T6U552T;
 					};
 					DB3495DD1A6D78CF0083668E = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -665,7 +665,7 @@
 				INFOPLIST_FILE = Koolendar/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.INOVA.KoolCal;
+				PRODUCT_BUNDLE_IDENTIFIER = com.INOVA.Koolendar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -681,7 +681,7 @@
 				INFOPLIST_FILE = Koolendar/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.INOVA.KoolCal;
+				PRODUCT_BUNDLE_IDENTIFIER = com.INOVA.Koolendar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";

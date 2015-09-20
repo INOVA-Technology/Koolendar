@@ -143,6 +143,17 @@ class EventForm: UIViewController, UITextFieldDelegate, NotificationTimeOffsetVi
             vc.reloadEvents()
         }
         
+        Event.each { e in
+            let notif = UILocalNotification()
+            notif.fireDate = e.notificationTime
+            notif.timeZone = NSTimeZone.defaultTimeZone()
+            notif.alertBody = e.title
+            notif.soundName = UILocalNotificationDefaultSoundName
+            //            notif.alertAction = ...
+            
+            UIApplication.sharedApplication().scheduleLocalNotification(notif)
+        }
+        
         self.navigationController?.popViewControllerAnimated(true)
     }
     
