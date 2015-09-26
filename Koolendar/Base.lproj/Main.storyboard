@@ -103,7 +103,7 @@
                                     <action selector="goToNextMonth:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="EjT-Bd-j4y"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CoK-xB-etj">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CoK-xB-etj">
                                 <rect key="frame" x="88" y="32" width="12" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="m6i-8k-XOW">

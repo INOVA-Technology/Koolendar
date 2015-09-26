@@ -106,6 +106,10 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
         self.navigationController!.pushViewController(vc, animated: true)
     }
     
+    override func viewWillAppear(animated: Bool) {
+        self.collectionView!.reloadData()
+    }
+    
     override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
         let screenSize = UIScreen.mainScreen().bounds
         let sizeX = screenSize.width
