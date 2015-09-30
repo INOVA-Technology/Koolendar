@@ -19,6 +19,11 @@
 		2E5BDB851B8412C1002F81F4 /* CenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5BDB841B8412C1002F81F4 /* CenterViewController.swift */; };
 		2E5BDB871B841529002F81F4 /* SidePanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5BDB861B841529002F81F4 /* SidePanelViewController.swift */; };
 		2E76222B1A6DB16200EAB134 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 2E76222A1A6DB16200EAB134 /* README.md */; };
+		2E7641E51BBB6BDD00F4E6A2 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E7641E41BBB6BDD00F4E6A2 /* NotificationCenter.framework */; settings = {ASSET_TAGS = (); }; };
+		2E7641E81BBB6BDD00F4E6A2 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7641E71BBB6BDD00F4E6A2 /* TodayViewController.swift */; };
+		2E7641EB1BBB6BDD00F4E6A2 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E7641E91BBB6BDD00F4E6A2 /* MainInterface.storyboard */; };
+		2E7641EF1BBB6BDD00F4E6A2 /* Koolendar Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2E7641E21BBB6BDD00F4E6A2 /* Koolendar Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		2E7641F51BBB6EAC00F4E6A2 /* WidgetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7641F41BBB6EAC00F4E6A2 /* WidgetTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		2ED290141A70AED000DF4356 /* MonthViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED290131A70AED000DF4356 /* MonthViewCell.swift */; };
 		2ED290161A70B10500DF4356 /* DayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED290151A70B10500DF4356 /* DayViewController.swift */; };
 		2ED2901A1A73284E00DF4356 /* KOOLColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED290191A73284E00DF4356 /* KOOLColors.swift */; };
@@ -39,6 +44,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		2E7641ED1BBB6BDD00F4E6A2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DB3495C11A6D78CF0083668E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2E7641E11BBB6BDD00F4E6A2;
+			remoteInfo = "Koolendar Widget";
+		};
 		DB3495DF1A6D78CF0083668E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DB3495C11A6D78CF0083668E /* Project object */;
@@ -112,6 +124,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		2E7641F31BBB6BDD00F4E6A2 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				2E7641EF1BBB6BDD00F4E6A2 /* Koolendar Widget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DBEB64621A943ED00002D772 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -138,6 +161,12 @@
 		2E5BDB861B841529002F81F4 /* SidePanelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidePanelViewController.swift; sourceTree = "<group>"; };
 		2E7622291A6DABF800EAB134 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		2E76222A1A6DB16200EAB134 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		2E7641E21BBB6BDD00F4E6A2 /* Koolendar Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Koolendar Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E7641E41BBB6BDD00F4E6A2 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		2E7641E71BBB6BDD00F4E6A2 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		2E7641EA1BBB6BDD00F4E6A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		2E7641EC1BBB6BDD00F4E6A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2E7641F41BBB6EAC00F4E6A2 /* WidgetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WidgetTableViewCell.swift; sourceTree = "<group>"; };
 		2ED290131A70AED000DF4356 /* MonthViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthViewCell.swift; sourceTree = "<group>"; };
 		2ED290151A70B10500DF4356 /* DayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayViewController.swift; sourceTree = "<group>"; };
 		2ED290191A73284E00DF4356 /* KOOLColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KOOLColors.swift; sourceTree = "<group>"; };
@@ -161,6 +190,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2E7641DF1BBB6BDD00F4E6A2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2E7641E51BBB6BDD00F4E6A2 /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DB3495C61A6D78CF0083668E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -238,11 +275,32 @@
 			name = Etc;
 			sourceTree = "<group>";
 		};
+		2E7641E31BBB6BDD00F4E6A2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2E7641E41BBB6BDD00F4E6A2 /* NotificationCenter.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2E7641E61BBB6BDD00F4E6A2 /* Koolendar Widget */ = {
+			isa = PBXGroup;
+			children = (
+				2E7641E71BBB6BDD00F4E6A2 /* TodayViewController.swift */,
+				2E7641F41BBB6EAC00F4E6A2 /* WidgetTableViewCell.swift */,
+				2E7641E91BBB6BDD00F4E6A2 /* MainInterface.storyboard */,
+				2E7641EC1BBB6BDD00F4E6A2 /* Info.plist */,
+			);
+			path = "Koolendar Widget";
+			sourceTree = SOURCE_ROOT;
+		};
 		DB3495C01A6D78CF0083668E = {
 			isa = PBXGroup;
 			children = (
 				DB3495CB1A6D78CF0083668E /* Koolendar */,
+				2E7641E61BBB6BDD00F4E6A2 /* Koolendar Widget */,
 				DB3495E11A6D78CF0083668E /* KoolendarTests */,
+				2E7641E31BBB6BDD00F4E6A2 /* Frameworks */,
 				DB3495CA1A6D78CF0083668E /* Products */,
 				DBE22E561BADACC7007276A2 /* SQLite.xcodeproj */,
 			);
@@ -253,6 +311,7 @@
 			children = (
 				DB3495C91A6D78CF0083668E /* Koolendar.app */,
 				DB3495DE1A6D78CF0083668E /* KoolendarTests.xctest */,
+				2E7641E21BBB6BDD00F4E6A2 /* Koolendar Widget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -342,6 +401,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		2E7641E11BBB6BDD00F4E6A2 /* Koolendar Widget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2E7641F21BBB6BDD00F4E6A2 /* Build configuration list for PBXNativeTarget "Koolendar Widget" */;
+			buildPhases = (
+				2E7641DE1BBB6BDD00F4E6A2 /* Sources */,
+				2E7641DF1BBB6BDD00F4E6A2 /* Frameworks */,
+				2E7641E01BBB6BDD00F4E6A2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Koolendar Widget";
+			productName = "Koolendar Widget";
+			productReference = 2E7641E21BBB6BDD00F4E6A2 /* Koolendar Widget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		DB3495C81A6D78CF0083668E /* Koolendar */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = DB3495E81A6D78CF0083668E /* Build configuration list for PBXNativeTarget "Koolendar" */;
@@ -351,11 +427,13 @@
 				DB3495C71A6D78CF0083668E /* Resources */,
 				DBEB64621A943ED00002D772 /* CopyFiles */,
 				2E1F3E9C1B913C610000DF65 /* Headers */,
+				2E7641F31BBB6BDD00F4E6A2 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				DBE22E731BADACDE007276A2 /* PBXTargetDependency */,
+				2E7641EE1BBB6BDD00F4E6A2 /* PBXTargetDependency */,
 			);
 			name = Koolendar;
 			productName = Koolendar;
@@ -390,6 +468,10 @@
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = INOVA;
 				TargetAttributes = {
+					2E7641E11BBB6BDD00F4E6A2 = {
+						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = 5H7T6U552T;
+					};
 					DB3495C81A6D78CF0083668E = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = 5H7T6U552T;
@@ -421,6 +503,7 @@
 			targets = (
 				DB3495C81A6D78CF0083668E /* Koolendar */,
 				DB3495DD1A6D78CF0083668E /* KoolendarTests */,
+				2E7641E11BBB6BDD00F4E6A2 /* Koolendar Widget */,
 			);
 		};
 /* End PBXProject section */
@@ -485,6 +568,14 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		2E7641E01BBB6BDD00F4E6A2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2E7641EB1BBB6BDD00F4E6A2 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DB3495C71A6D78CF0083668E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -509,6 +600,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2E7641DE1BBB6BDD00F4E6A2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2E7641E81BBB6BDD00F4E6A2 /* TodayViewController.swift in Sources */,
+				2E7641F51BBB6EAC00F4E6A2 /* WidgetTableViewCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DB3495C51A6D78CF0083668E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -546,6 +646,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		2E7641EE1BBB6BDD00F4E6A2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2E7641E11BBB6BDD00F4E6A2 /* Koolendar Widget */;
+			targetProxy = 2E7641ED1BBB6BDD00F4E6A2 /* PBXContainerItemProxy */;
+		};
 		DB3495E01A6D78CF0083668E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = DB3495C81A6D78CF0083668E /* Koolendar */;
@@ -559,6 +664,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		2E7641E91BBB6BDD00F4E6A2 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2E7641EA1BBB6BDD00F4E6A2 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		DB3495D21A6D78CF0083668E /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -578,6 +691,39 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		2E7641F01BBB6BDD00F4E6A2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Koolendar Widget/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.INOVA.Koolendar.Koolendar-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		2E7641F11BBB6BDD00F4E6A2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Koolendar Widget/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.INOVA.Koolendar.Koolendar-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		DB3495E61A6D78CF0083668E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -662,6 +808,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Koolendar/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -678,6 +825,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Koolendar/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -727,6 +875,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2E7641F21BBB6BDD00F4E6A2 /* Build configuration list for PBXNativeTarget "Koolendar Widget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2E7641F01BBB6BDD00F4E6A2 /* Debug */,
+				2E7641F11BBB6BDD00F4E6A2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		DB3495C41A6D78CF0083668E /* Build configuration list for PBXProject "Koolendar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

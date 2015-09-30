@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Koolendar Widget.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>Koolendar.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -12,6 +17,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>2E7641E11BBB6BDD00F4E6A2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>DB3495C81A6D78CF0083668E</key>
 		<dict>
 			<key>primary</key>
