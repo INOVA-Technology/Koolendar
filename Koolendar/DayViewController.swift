@@ -44,10 +44,23 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         theDateText.text = "\(self.dateComps.month)/\(self.dateComps.day)/\(self.dateComps.year)"
         
         self.tableView.reloadData()
+        
+        if events.count == 0 {
+            showNoEventThings()
+        }
     }
     
     @IBAction func goBack(sender: UIButton) {
         self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    func showNoEventThings() {
+        let text = "You haven't scheduled any events for this day :("
+        let textSize = (text as NSString).sizeWithAttributes([NSFontAttributeName: UIFont.systemFontOfSize(UIFont.systemFontSize())])
+        
+        let fljnrgalaggqigoe = UILabel(frame: CGRect(x: self.view.frame.width / 2 - textSize.width / 2, y: self.view.frame.height / 2 - textSize.height / 2, width: textSize.width, height: textSize.height))
+        fljnrgalaggqigoe.text = text
+        view.addSubview(fljnrgalaggqigoe)
     }
     
     // MARK: Table View Stuff
