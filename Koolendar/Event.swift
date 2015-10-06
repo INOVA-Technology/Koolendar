@@ -15,6 +15,10 @@ private let startTime_e = Expression<NSDate>("startTime")
 private let endTime_e = Expression<NSDate>("endTime")
 private let description_e = Expression<String>("description")
 private let notificationTimeOffset_e = Expression<Int>("notificationTimeOffset")
+private let calendarId_e = Expression<Int>("calendarId")
+
+private let id_c = Expression<Int>("id")
+private let name_c = Expression<String>("name")
 
 extension NSDate {
     public class var declaredDatatype: String {
@@ -115,6 +119,24 @@ class Event {
         }
     }
     
+    var _calendarId: Int?
+    var calendarId: Int {
+        set {
+            _calendarId = newValue
+        }
+        get {
+            if let calendarId = self._calendarId {
+                return calendarId
+            } else if let row = self.sqlRow {
+                self._calendarId = row.get(calendarId_e)
+                return self._calendarId!
+            } else {
+                // change/fix this to something like this: Event.idForDefaultCalendar()
+                return 1
+            }
+        }
+    }
+    
     var sqlRow: Row?
     
     var allDay: Bool {
@@ -144,12 +166,14 @@ class Event {
         return self.startTime.dateByAddingTimeInterval(-notificationTimeOffset)
     }
 
-    init(title: String, description: String, startTime: NSDate, endTime: NSDate, notificationTimeOffset: NSTimeInterval, id: Int?) {
+    // note to self: I don't this this initializer is necessary anymore
+    init(title: String, description: String, startTime: NSDate, endTime: NSDate, notificationTimeOffset: NSTimeInterval, calendarId: Int?, id: Int?) {
         self.notificationTimeOffset = notificationTimeOffset
         self.title = title
         self.description = description
         self.startTime = startTime
         self.endTime = endTime
+        if let calendarId = calendarId { self.calendarId = calendarId }
         self.id = id
     }
     
@@ -164,16 +188,16 @@ class Event {
         comps.month = month
         comps.year = year
         let date = NSCalendar.currentCalendar().dateFromComponents(comps)!
-        self.init(title: "", description: "", startTime: date, endTime: date, notificationTimeOffset: 0, id: nil)
+        self.init(title: "", description: "", startTime: date, endTime: date, notificationTimeOffset: 0, calendarId: nil, id: nil)
     }
     
     func save() {
         Event.events() { events, db in
             if let id = self.id {
-                let _ = try? db.run(events.filter(id_e == id).update(title_e <- self.title, description_e <- self.description, startTime_e <- self.startTime, endTime_e <- self.endTime))
+                let _ = try? db.run(events.filter(id_e == id).update(title_e <- self.title, description_e <- self.description, startTime_e <- self.startTime, endTime_e <- self.endTime, notificationTimeOffset_e <- (Int(self.notificationTimeOffset)), calendarId_e <- self.calendarId))
             } else {
                 do {
-                    let id = try db.run(events.insert(title_e <- self.title, description_e <- self.description, startTime_e <- self.startTime, endTime_e <- self.endTime, notificationTimeOffset_e <- 0))
+                    let id = try db.run(events.insert(title_e <- self.title, description_e <- self.description, startTime_e <- self.startTime, endTime_e <- self.endTime, notificationTimeOffset_e <- 0, calendarId_e <- self.calendarId))
                     self.id = Int(id)
                 } catch {
                     print("couldn't save the event 😞")
@@ -195,7 +219,25 @@ class Event {
         }
     }
     
-    class private func events(block: ((QueryType, Connection) -> Void)) {
+    func calendar() -> (name: String, id: Int)! {
+        var returnTuple = (name: "This shouldn't happen", id: 1)
+        Event.calendars { calendars, db in
+            for whatever in try! db.prepare(calendars.filter(id_c == self.calendarId)) {
+                returnTuple = (name: whatever.get(name_c), id: whatever.get(id_c))
+            }
+        }
+        return returnTuple
+    }
+    
+    class private func events(block: (QueryType, Connection) -> Void) {
+        Event.db({ db, events, _ in block(events, db) })
+    }
+    
+    class private func calendars(block: (QueryType, Connection) -> Void) {
+        Event.db({ db, _, calendars in block(calendars, db) })
+    }
+    
+    class private func db(block: (Connection, Table, Table) -> Void) {
         let dbDir = NSSearchPathForDirectoriesInDomains(
             .DocumentDirectory, .UserDomainMask, true).first!
         let db = try! Connection("\(dbDir)/KoolendarDB.sqlite3")
@@ -209,9 +251,20 @@ class Event {
             t.column(startTime_e)
             t.column(endTime_e)
             t.column(notificationTimeOffset_e)
-        })
+            t.column(calendarId_e)
+            })
         
-        block(events, db)
+        let calendars = Table("calendars")
+        try! db.run(calendars.create(ifNotExists: true) { t in
+            t.column(id_c, primaryKey: true)
+            t.column(name_c)
+            })
+        
+        if db.scalar(calendars.count) == 0 {
+            try! db.run(calendars.insert(name_c <- "Primary"))
+        }
+        
+        block(db, events, calendars)
     }
     
     class func eventsOnDate(date: NSDate) -> [Event] {

@@ -46,6 +46,7 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         self.tableView.reloadData()
         
         if events.count == 0 { showNoEventThings() }
+        print(events.first?.calendar())
     }
     
     @IBAction func goBack(sender: UIButton) {

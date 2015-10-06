@@ -470,11 +470,11 @@
 				TargetAttributes = {
 					2E7641E11BBB6BDD00F4E6A2 = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = 5H7T6U552T;
+						DevelopmentTeam = 5J5CU372W5;
 					};
 					DB3495C81A6D78CF0083668E = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = 5H7T6U552T;
+						DevelopmentTeam = 5J5CU372W5;
 					};
 					DB3495DD1A6D78CF0083668E = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -701,8 +701,9 @@
 				INFOPLIST_FILE = "Koolendar Widget/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.INOVA.Koolendar.Koolendar-Widget";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.INOVA.KoolCal.Koolendar-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -718,8 +719,9 @@
 				INFOPLIST_FILE = "Koolendar Widget/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.INOVA.Koolendar.Koolendar-Widget";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.INOVA.KoolCal.Koolendar-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -812,7 +814,7 @@
 				INFOPLIST_FILE = Koolendar/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.INOVA.Koolendar;
+				PRODUCT_BUNDLE_IDENTIFIER = com.INOVA.KoolCal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -829,7 +831,7 @@
 				INFOPLIST_FILE = Koolendar/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.INOVA.Koolendar;
+				PRODUCT_BUNDLE_IDENTIFIER = com.INOVA.KoolCal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
