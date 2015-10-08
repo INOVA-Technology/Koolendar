@@ -20,6 +20,7 @@ class EventForm: UIViewController, UITextFieldDelegate, NotificationTimeOffsetVi
     @IBOutlet weak var eventDesc: UITextField!
     
     @IBOutlet weak var timeOffsetLabel: UIButton!
+    @IBOutlet weak var calendarPicker: UITableView!
     
     var timeOffsetLabelText: String {
         get { return timeOffsetLabel.titleLabel!.text! }
@@ -57,6 +58,9 @@ class EventForm: UIViewController, UITextFieldDelegate, NotificationTimeOffsetVi
         datePickerEndView.addTarget(self, action: Selector("handleDatePickerEnd:"), forControlEvents: UIControlEvents.ValueChanged)
         
         self.offsets = [("0 minutes", 0), ("1 minutes", 60), ("5 minutes", 300), ("10 minutes", 600), ("15 minutes", 900), ("30 minutes", 1800), ("1 hour", 3600), ("1 day", 43200)]
+        
+        calendarPicker.delegate = self
+        calendarPicker.dataSource = self
     }
     
     override func didReceiveMemoryWarning() {
@@ -157,4 +161,17 @@ class EventForm: UIViewController, UITextFieldDelegate, NotificationTimeOffsetVi
         self.navigationController?.popViewControllerAnimated(true)
     }
     
+}
+
+
+extension EventForm: UITableViewDelegate, UITableViewDataSource {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = calendarPicker.dequeueReusableCellWithIdentifier("EventFormCalendarTableCell", forIndexPath: indexPath) as! EventFormCalendarCell
+        cell.name.text = event.calendar().name
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
 }

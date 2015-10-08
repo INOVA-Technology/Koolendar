@@ -20,6 +20,8 @@ private let calendarId_e = Expression<Int>("calendarId")
 private let id_c = Expression<Int>("id")
 private let name_c = Expression<String>("name")
 
+typealias Calendar = (name: String, id: Int)
+
 extension NSDate {
     public class var declaredDatatype: String {
         return String.declaredDatatype
@@ -219,22 +221,32 @@ class Event {
         }
     }
     
-    func calendar() -> (name: String, id: Int)! {
+    func calendar() -> Calendar! {
         var returnTuple = (name: "This shouldn't happen", id: 1)
         Event.calendars { calendars, db in
-            for whatever in try! db.prepare(calendars.filter(id_c == self.calendarId)) {
+            for whatever in db.prepare(calendars.filter(id_c == self.calendarId)) {
                 returnTuple = (name: whatever.get(name_c), id: whatever.get(id_c))
             }
         }
         return returnTuple
     }
     
-    class private func events(block: (QueryType, Connection) -> Void) {
+    class func events(block: (Table, Connection) -> Void) {
         Event.db({ db, events, _ in block(events, db) })
     }
     
-    class private func calendars(block: (QueryType, Connection) -> Void) {
+    class func calendars(block: (Table, Connection) -> Void) {
         Event.db({ db, _, calendars in block(calendars, db) })
+    }
+    
+    class var allCalendars: [Calendar] {
+        var calsToReturn = [Calendar]()
+        Event.calendars { cals, db in
+            for cal in db.prepare(cals) {
+                calsToReturn.append((name: cal.get(name_c), id: cal.get(id_c)))
+            }
+        }
+        return calsToReturn
     }
     
     class private func db(block: (Connection, Table, Table) -> Void) {

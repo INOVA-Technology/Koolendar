@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Month View Controller-->
@@ -397,7 +398,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fgX-IC-rrQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1155" y="815"/>
+            <point key="canvasLocation" x="1157" y="869"/>
         </scene>
         <!--Container View Controller-->
         <scene sceneID="ySG-AU-2Ve">
@@ -507,15 +508,6 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cI2-Yx-NgJ">
-                                <rect key="frame" x="92" y="395" width="190" height="30"/>
-                                <state key="normal" title="ADD THIS FREAKIN EVENT">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="addEvent:" destination="G7n-lz-uBd" eventType="touchUpInside" id="nzX-0M-jq7"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RRj-aU-rr7">
                                 <rect key="frame" x="112" y="362" width="67" height="30"/>
                                 <state key="normal" title="x minutes">
@@ -525,9 +517,57 @@
                                     <action selector="notifictionTimeOffsetPressed:" destination="G7n-lz-uBd" eventType="touchUpInside" id="kEw-DT-0GU"/>
                                 </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LUs-LX-0My">
+                                <rect key="frame" x="0.0" y="432" width="375" height="160"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="160" id="Frf-Kz-FUf"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EventFormCalendarTableCell" id="Kh7-tx-NFe" customClass="EventFormCalendarCell" customModule="Koolendar" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Kh7-tx-NFe" id="Sd8-hL-ETs">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PWd-yL-5fJ">
+                                                    <rect key="frame" x="8" y="11" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="PWd-yL-5fJ" firstAttribute="leading" secondItem="Sd8-hL-ETs" secondAttribute="leadingMargin" id="Qzh-gh-9HG"/>
+                                                <constraint firstItem="PWd-yL-5fJ" firstAttribute="centerY" secondItem="Sd8-hL-ETs" secondAttribute="centerY" id="RZs-jU-5FC"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="name" destination="PWd-yL-5fJ" id="YBk-8S-gvo"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cI2-Yx-NgJ">
+                                <rect key="frame" x="92" y="600" width="190" height="30"/>
+                                <state key="normal" title="ADD THIS FREAKIN EVENT">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addEvent:" destination="G7n-lz-uBd" eventType="touchUpInside" id="nzX-0M-jq7"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calendars" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pe1-Pn-L4f">
+                                <rect key="frame" x="16" y="395" width="77" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="LUs-LX-0My" secondAttribute="trailing" id="2Jr-vb-AOY"/>
                             <constraint firstItem="cI2-Yx-NgJ" firstAttribute="top" secondItem="7Ml-KC-IRt" secondAttribute="bottom" id="6le-1E-29J"/>
                             <constraint firstItem="cFW-FF-LPd" firstAttribute="leading" secondItem="76v-PK-XlX" secondAttribute="leading" id="78S-yW-rly"/>
                             <constraint firstItem="cFW-FF-LPd" firstAttribute="top" secondItem="hoR-bJ-kfG" secondAttribute="bottom" constant="8" symbolic="YES" id="875-bk-exm"/>
@@ -538,6 +578,7 @@
                             <constraint firstItem="kec-vZ-0e2" firstAttribute="baseline" secondItem="RRj-aU-rr7" secondAttribute="baseline" id="BnY-vt-wGa"/>
                             <constraint firstItem="RRj-aU-rr7" firstAttribute="top" secondItem="cFW-FF-LPd" secondAttribute="bottom" constant="12" id="CV7-EI-tAb"/>
                             <constraint firstItem="cFW-FF-LPd" firstAttribute="trailing" secondItem="xsn-Cb-mVB" secondAttribute="trailingMargin" id="DS4-ah-8B5"/>
+                            <constraint firstItem="LUs-LX-0My" firstAttribute="top" secondItem="Pe1-Pn-L4f" secondAttribute="bottom" constant="16" id="Eho-7f-v8R"/>
                             <constraint firstItem="sLQ-Uq-Wje" firstAttribute="trailing" secondItem="Bag-xa-QEB" secondAttribute="trailing" id="EmJ-1y-z3f"/>
                             <constraint firstItem="sLQ-Uq-Wje" firstAttribute="top" secondItem="EFp-6a-RID" secondAttribute="bottom" constant="8" symbolic="YES" id="GKU-eo-y7x"/>
                             <constraint firstItem="RRj-aU-rr7" firstAttribute="leading" secondItem="76v-PK-XlX" secondAttribute="trailing" constant="8" symbolic="YES" id="JdB-bz-m5d"/>
@@ -550,19 +591,24 @@
                             <constraint firstItem="9V6-Vy-59T" firstAttribute="leading" secondItem="yXf-5F-mGk" secondAttribute="leading" id="RYi-rF-NJT"/>
                             <constraint firstItem="9V6-Vy-59T" firstAttribute="top" secondItem="yXf-5F-mGk" secondAttribute="bottom" constant="8" symbolic="YES" id="SDo-h9-UzS"/>
                             <constraint firstItem="EFp-6a-RID" firstAttribute="leading" secondItem="9V6-Vy-59T" secondAttribute="leading" id="UYU-OV-Yxe"/>
+                            <constraint firstItem="cI2-Yx-NgJ" firstAttribute="top" secondItem="7Ml-KC-IRt" secondAttribute="bottom" id="Zma-9O-nh3"/>
                             <constraint firstItem="Bag-xa-QEB" firstAttribute="leading" secondItem="9Bj-ob-96W" secondAttribute="leading" id="aa6-nd-U2d"/>
+                            <constraint firstItem="Pe1-Pn-L4f" firstAttribute="top" secondItem="76v-PK-XlX" secondAttribute="bottom" constant="8" id="c3a-j5-yEg"/>
                             <constraint firstItem="8VR-7u-Ibc" firstAttribute="leading" secondItem="yXf-5F-mGk" secondAttribute="leading" id="cAY-Hb-qe2"/>
                             <constraint firstItem="hoR-bJ-kfG" firstAttribute="leading" secondItem="cFW-FF-LPd" secondAttribute="leading" id="cn9-ts-pyY"/>
                             <constraint firstItem="76v-PK-XlX" firstAttribute="baseline" secondItem="RRj-aU-rr7" secondAttribute="baseline" id="hEx-4N-qtq"/>
                             <constraint firstItem="yXf-5F-mGk" firstAttribute="top" secondItem="8VR-7u-Ibc" secondAttribute="bottom" constant="16" id="hHR-we-nmb"/>
                             <constraint firstItem="9V6-Vy-59T" firstAttribute="trailing" secondItem="sLQ-Uq-Wje" secondAttribute="trailing" id="iF4-H0-Bwb"/>
                             <constraint firstItem="sLQ-Uq-Wje" firstAttribute="leading" secondItem="EFp-6a-RID" secondAttribute="leading" id="jmI-kf-eJm"/>
-                            <constraint firstItem="cI2-Yx-NgJ" firstAttribute="top" secondItem="76v-PK-XlX" secondAttribute="bottom" constant="8" symbolic="YES" id="nKF-3g-y98"/>
+                            <constraint firstItem="cI2-Yx-NgJ" firstAttribute="top" secondItem="LUs-LX-0My" secondAttribute="bottom" constant="8" id="mmd-7u-wLd"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kec-vZ-0e2" secondAttribute="trailing" constant="47" id="ofa-A2-FxN"/>
                             <constraint firstItem="cI2-Yx-NgJ" firstAttribute="trailing" secondItem="xsn-Cb-mVB" secondAttribute="trailingMargin" id="q29-SL-wYJ"/>
                             <constraint firstItem="kec-vZ-0e2" firstAttribute="leading" secondItem="RRj-aU-rr7" secondAttribute="trailing" constant="8" symbolic="YES" id="rFv-sb-Lrd"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="cI2-Yx-NgJ" secondAttribute="trailing" id="spV-bh-Mep"/>
+                            <constraint firstItem="Pe1-Pn-L4f" firstAttribute="leading" secondItem="xsn-Cb-mVB" secondAttribute="leadingMargin" id="uMd-qH-o0E"/>
                             <constraint firstItem="76v-PK-XlX" firstAttribute="trailing" secondItem="EFp-6a-RID" secondAttribute="trailing" id="vWk-XQ-qJW"/>
                             <constraint firstItem="cI2-Yx-NgJ" firstAttribute="leading" secondItem="xsn-Cb-mVB" secondAttribute="leadingMargin" constant="76" id="vnd-c1-PeH"/>
+                            <constraint firstItem="LUs-LX-0My" firstAttribute="leading" secondItem="xsn-Cb-mVB" secondAttribute="leading" id="y0e-VC-3yh"/>
                             <constraint firstItem="Bag-xa-QEB" firstAttribute="leading" secondItem="hoR-bJ-kfG" secondAttribute="leading" id="zL3-LU-Dud"/>
                             <constraint firstItem="cI2-Yx-NgJ" firstAttribute="centerX" secondItem="xsn-Cb-mVB" secondAttribute="centerX" id="zon-km-5yJ"/>
                         </constraints>
@@ -570,7 +616,9 @@
                             <mask key="constraints">
                                 <exclude reference="6le-1E-29J"/>
                                 <exclude reference="Aev-F4-TWa"/>
+                                <exclude reference="Zma-9O-nh3"/>
                                 <exclude reference="q29-SL-wYJ"/>
+                                <exclude reference="spV-bh-Mep"/>
                                 <exclude reference="zon-km-5yJ"/>
                             </mask>
                         </variation>
@@ -578,15 +626,19 @@
                             <mask key="constraints">
                                 <exclude reference="K30-uy-CdY"/>
                                 <exclude reference="6le-1E-29J"/>
+                                <include reference="Zma-9O-nh3"/>
+                                <exclude reference="mmd-7u-wLd"/>
                                 <exclude reference="q29-SL-wYJ"/>
+                                <include reference="spV-bh-Mep"/>
                                 <exclude reference="vnd-c1-PeH"/>
-                                <include reference="zon-km-5yJ"/>
+                                <exclude reference="zon-km-5yJ"/>
                             </mask>
                         </variation>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="calendarPicker" destination="LUs-LX-0My" id="gUS-NZ-L13"/>
                         <outlet property="dateFieldEnding" destination="cFW-FF-LPd" id="qug-3f-zov"/>
                         <outlet property="dateFieldStarting" destination="Bag-xa-QEB" id="89O-RN-5XG"/>
                         <outlet property="eventDesc" destination="sLQ-Uq-Wje" id="1af-Jx-quG"/>
@@ -650,6 +702,63 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Ev-Bb-vtz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3244.5" y="132"/>
+        </scene>
+        <!--Calendar Picker View Controller-->
+        <scene sceneID="fXt-6l-xfc">
+            <objects>
+                <viewController id="Gau-hN-hae" customClass="CalendarPickerViewController" customModule="Koolendar" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ycb-L5-meq"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ofw-YE-vaS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2el-8G-lTa">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calendars" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YVI-rf-v3m">
+                                <rect key="frame" x="262" y="20" width="77" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3IN-CC-8oT">
+                                <rect key="frame" x="487" y="20" width="93" height="30"/>
+                                <state key="normal" title="Add Calendar"/>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2pc-TJ-FrK">
+                                <rect key="frame" x="0.0" y="49" width="600" height="251"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CalendarPickerCell" id="brd-3b-p9e">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="brd-3b-p9e" id="bDo-5i-e4o">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Ofw-YE-vaS" firstAttribute="top" secondItem="2pc-TJ-FrK" secondAttribute="bottom" multiplier="2" id="8ZU-oR-A9l"/>
+                            <constraint firstItem="3IN-CC-8oT" firstAttribute="top" secondItem="ycb-L5-meq" secondAttribute="bottom" id="8v7-rv-hW1"/>
+                            <constraint firstItem="3IN-CC-8oT" firstAttribute="trailing" secondItem="2el-8G-lTa" secondAttribute="trailingMargin" id="DcB-aG-yra"/>
+                            <constraint firstItem="YVI-rf-v3m" firstAttribute="centerX" secondItem="2el-8G-lTa" secondAttribute="centerX" id="GhP-VU-gOY"/>
+                            <constraint firstItem="2pc-TJ-FrK" firstAttribute="top" secondItem="YVI-rf-v3m" secondAttribute="bottom" constant="8" id="UE2-Gk-ksY"/>
+                            <constraint firstAttribute="trailing" secondItem="2pc-TJ-FrK" secondAttribute="trailing" id="cYM-hc-vge"/>
+                            <constraint firstItem="YVI-rf-v3m" firstAttribute="top" secondItem="ycb-L5-meq" secondAttribute="bottom" id="kXU-C2-be7"/>
+                            <constraint firstItem="2pc-TJ-FrK" firstAttribute="leading" secondItem="2el-8G-lTa" secondAttribute="leading" id="tBy-tx-y7l"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="2pc-TJ-FrK" id="iOF-tO-Ps9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RW4-6Y-Ner" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2791" y="869"/>
         </scene>
         <!--Settings Sub View Controller-->
         <scene sceneID="laT-zm-R5U">
@@ -739,7 +848,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A4K-Bq-nPq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1904" y="815"/>
+            <point key="canvasLocation" x="1904" y="869"/>
         </scene>
         <!--Side Panel View Controller-->
         <scene sceneID="ChA-8j-bfV">
@@ -799,7 +908,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yeM-BF-sUw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="504" y="815"/>
+            <point key="canvasLocation" x="506" y="869"/>
         </scene>
     </scenes>
     <resources>

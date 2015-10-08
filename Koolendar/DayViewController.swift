@@ -46,7 +46,6 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         self.tableView.reloadData()
         
         if events.count == 0 { showNoEventThings() }
-        print(events.first?.calendar())
     }
     
     @IBAction func goBack(sender: UIButton) {
@@ -56,7 +55,6 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     func showNoEventThings() {
         var text = "You haven't scheduled"
         var textSize = (text as NSString).sizeWithAttributes([NSFontAttributeName: UIFont.systemFontOfSize(UIFont.systemFontSize())])
-        
         var fljnrgalaggqigoe = UILabel(frame: CGRect(x: self.view.frame.width / 2 - textSize.width / 2, y: self.view.frame.height / 2 - textSize.height / 2, width: textSize.width, height: textSize.height))
         fljnrgalaggqigoe.text = text
         view.addSubview(fljnrgalaggqigoe)
