@@ -61,6 +61,11 @@ class EventForm: UIViewController, UITextFieldDelegate, NotificationTimeOffsetVi
         
         calendarPicker.delegate = self
         calendarPicker.dataSource = self
+
+        let aBunchOfCrap = self.calendarPicker.delegate!.tableView!(self.calendarPicker, heightForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0)) * CGFloat(self.calendarPicker.numberOfRowsInSection(0))
+        
+        calendarPicker.addConstraint(NSLayoutConstraint(item: calendarPicker, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: aBunchOfCrap))
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -165,13 +170,26 @@ class EventForm: UIViewController, UITextFieldDelegate, NotificationTimeOffsetVi
 
 
 extension EventForm: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = calendarPicker.dequeueReusableCellWithIdentifier("EventFormCalendarTableCell", forIndexPath: indexPath) as! EventFormCalendarCell
         cell.name.text = event.calendar().name
         return cell
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return ("idk" as NSString).sizeWithAttributes([NSFontAttributeName: UIFont.systemFontOfSize(UIFont.systemFontSize())]).height
     }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        var val: Int!
+        Event.calendars { cals, db in
+            val = db.scalar(cals.count)
+        }
+        return val
+    }
+    
 }
+
+
+
