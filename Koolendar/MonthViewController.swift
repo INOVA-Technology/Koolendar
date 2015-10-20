@@ -36,7 +36,6 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
         self.automaticallyAdjustsScrollViewInsets = false
         layout.itemSize = CGSize(width: sizeX/7, height: sizeX/7)
         collectionView.collectionViewLayout = layout
-        collectionView.backgroundView = UIImageView(image: ColorScheme.background)
         
         self.formatter.dateFormat = "MM"
         
@@ -163,7 +162,7 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
                 components.year = self.comps.year
                 components.month = self.comps.month
                 components.day = indexPath.row - firstWeek + 2
-//                components.hour = 14
+//                components.hour = 4
 //                components.minute = 20
 //                components.second = 0
                 

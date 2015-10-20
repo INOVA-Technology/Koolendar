@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="M4Y-Lb-cyx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="M4Y-Lb-cyx">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -25,6 +25,7 @@
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="B95-0k-Aao">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+                                                <animations/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="widgetTableViewCell" id="os3-FW-bd5" customClass="WidgetTableViewCell" customModule="Koolendar_Widget" customModuleProvider="target">
@@ -36,16 +37,19 @@
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="An Event/Reminer (we gotta add those)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TYY-y7-C8U">
                                                                     <rect key="frame" x="8" y="11" width="300" height="21"/>
+                                                                    <animations/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
+                                                            <animations/>
                                                             <constraints>
                                                                 <constraint firstItem="TYY-y7-C8U" firstAttribute="leading" secondItem="hec-HX-mhT" secondAttribute="leadingMargin" id="hed-PF-GI7"/>
                                                                 <constraint firstItem="TYY-y7-C8U" firstAttribute="centerY" secondItem="hec-HX-mhT" secondAttribute="centerY" id="wlP-55-5LL"/>
                                                             </constraints>
                                                         </tableViewCellContentView>
+                                                        <animations/>
                                                         <connections>
                                                             <outlet property="eventNameLabel" destination="TYY-y7-C8U" id="eH3-BB-5ZA"/>
                                                         </connections>
@@ -53,10 +57,13 @@
                                                 </prototypes>
                                             </tableView>
                                         </subviews>
+                                        <animations/>
                                     </stackView>
                                 </subviews>
+                                <animations/>
                             </stackView>
                         </subviews>
+                        <animations/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="87h-5X-kje" secondAttribute="trailing" id="1wS-ac-JVy"/>
                             <constraint firstItem="FKl-LY-JtV" firstAttribute="top" secondItem="87h-5X-kje" secondAttribute="bottom" id="DaK-CL-CuN"/>
