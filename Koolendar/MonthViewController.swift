@@ -36,6 +36,7 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
         self.automaticallyAdjustsScrollViewInsets = false
         layout.itemSize = CGSize(width: sizeX/7, height: sizeX/7)
         collectionView.collectionViewLayout = layout
+        collectionView.backgroundColor = UIColor.clearColor()
         
         self.formatter.dateFormat = "MM"
         
@@ -54,6 +55,9 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: "handleCellTap:")
         gestureRecognizer.delegate = self
         self.collectionView.addGestureRecognizer(gestureRecognizer)
+        
+        self.collectionView.delegate = self
+        self.collectionView.dataSource = self
     }
     
     func setUpCalendar(forMonth month: Int, year: Int) {

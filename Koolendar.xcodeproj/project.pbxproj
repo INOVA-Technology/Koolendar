@@ -225,7 +225,6 @@
 			children = (
 				2E2E82821A7099A800F83374 /* MonthViewController.swift */,
 				2ED290131A70AED000DF4356 /* MonthViewCell.swift */,
-				2EDECBBB1AEB424B0059D523 /* DayOfTheWeekCell.swift */,
 			);
 			name = MonthView;
 			sourceTree = "<group>";
@@ -234,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				2ED290151A70B10500DF4356 /* DayViewController.swift */,
+				2EDECBBB1AEB424B0059D523 /* DayOfTheWeekCell.swift */,
 				DB7577A81AA224A700159E18 /* EventCell.swift */,
 			);
 			name = DayView;
