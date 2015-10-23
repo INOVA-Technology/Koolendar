@@ -19,38 +19,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SimpleBg" translatesAutoresizingMaskIntoConstraints="NO" id="ivb-xy-nP0">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
-                                <animations/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="October" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cPZ-Gj-Sgb">
-                                <rect key="frame" x="225" y="28" width="151" height="51"/>
+                                <rect key="frame" x="225" y="20" width="151" height="51"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="42"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2015" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aTa-rA-QIw">
-                                <rect key="frame" x="273" y="83" width="54" height="29"/>
+                                <rect key="frame" x="273" y="75" width="54" height="29"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monday the 25th" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="72P-1C-RUZ">
-                                <rect key="frame" x="232" y="363" width="136" height="21"/>
+                                <rect key="frame" x="232" y="355" width="136" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cal-P8-l9m">
-                                <rect key="frame" x="20" y="392" width="560" height="208"/>
+                                <rect key="frame" x="20" y="384" width="560" height="216"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4yf-l7-02z">
-                                <rect key="frame" x="0.0" y="120" width="600" height="35"/>
+                                <rect key="frame" x="0.0" y="112" width="600" height="35"/>
                                 <animations/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -93,10 +89,10 @@
                                 </cells>
                             </collectionView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="PHN-L7-PC0">
-                                <rect key="frame" x="0.0" y="155" width="600" height="200"/>
+                                <rect key="frame" x="0.0" y="147" width="600" height="200"/>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="sLu-aH-nOa"/>
+                                    <constraint firstAttribute="height" constant="200" placeholder="YES" id="sLu-aH-nOa"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="qs4-Rp-Hgy">
                                     <size key="itemSize" width="50" height="50"/>
@@ -148,9 +144,7 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ARg-tj-ZGU" firstAttribute="top" secondItem="ivb-xy-nP0" secondAttribute="bottom" id="8Oh-cg-ECU"/>
                             <constraint firstItem="PHN-L7-PC0" firstAttribute="leading" secondItem="dLr-g9-4II" secondAttribute="leading" id="AcH-nc-gs3"/>
-                            <constraint firstItem="ivb-xy-nP0" firstAttribute="leading" secondItem="dLr-g9-4II" secondAttribute="leading" id="GNB-9J-aFv"/>
                             <constraint firstItem="cPZ-Gj-Sgb" firstAttribute="centerX" secondItem="dLr-g9-4II" secondAttribute="centerX" id="Gfd-Hj-WcY"/>
                             <constraint firstItem="ARg-tj-ZGU" firstAttribute="top" secondItem="cal-P8-l9m" secondAttribute="bottom" id="IVg-T5-REC"/>
                             <constraint firstItem="aTa-rA-QIw" firstAttribute="centerX" secondItem="dLr-g9-4II" secondAttribute="centerX" id="Kp8-Nh-GXv"/>
@@ -159,10 +153,8 @@
                             <constraint firstItem="72P-1C-RUZ" firstAttribute="centerX" secondItem="dLr-g9-4II" secondAttribute="centerX" id="N7C-ay-O7s"/>
                             <constraint firstItem="PHN-L7-PC0" firstAttribute="top" secondItem="4yf-l7-02z" secondAttribute="bottom" id="O5k-ty-8lY"/>
                             <constraint firstItem="cal-P8-l9m" firstAttribute="leading" secondItem="dLr-g9-4II" secondAttribute="leadingMargin" id="STn-Tt-b1d"/>
-                            <constraint firstItem="ivb-xy-nP0" firstAttribute="top" secondItem="cPZ-Gj-Sgb" secondAttribute="bottom" constant="-59" id="cHA-YK-nP5"/>
-                            <constraint firstItem="ivb-xy-nP0" firstAttribute="top" secondItem="P6o-uj-8GJ" secondAttribute="bottom" id="glP-iO-OWz"/>
+                            <constraint firstItem="cPZ-Gj-Sgb" firstAttribute="top" secondItem="P6o-uj-8GJ" secondAttribute="bottom" id="dnE-xH-cPu"/>
                             <constraint firstAttribute="trailingMargin" secondItem="cal-P8-l9m" secondAttribute="trailing" id="h0P-Eb-d3D"/>
-                            <constraint firstAttribute="trailing" secondItem="ivb-xy-nP0" secondAttribute="trailing" id="j4z-M3-5YV"/>
                             <constraint firstItem="72P-1C-RUZ" firstAttribute="top" secondItem="PHN-L7-PC0" secondAttribute="bottom" constant="8" id="nyU-6F-noZ"/>
                             <constraint firstItem="4yf-l7-02z" firstAttribute="top" secondItem="aTa-rA-QIw" secondAttribute="bottom" constant="8" id="qJ9-fF-Vm0"/>
                             <constraint firstItem="aTa-rA-QIw" firstAttribute="top" secondItem="cPZ-Gj-Sgb" secondAttribute="bottom" constant="4" id="s0K-MI-9hb"/>
@@ -174,26 +166,13 @@
                         <outlet property="collectionView" destination="PHN-L7-PC0" id="vjD-C5-19K"/>
                         <outlet property="daYearLabel" destination="aTa-rA-QIw" id="rcO-n2-bIr"/>
                         <outlet property="daysOfTheWeekCollection" destination="4yf-l7-02z" id="0fT-ry-J2X"/>
+                        <outlet property="koolTableView" destination="cal-P8-l9m" id="aT8-V7-BHf"/>
                         <outlet property="nameOfMonth" destination="cPZ-Gj-Sgb" id="nYw-gZ-ElC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y6U-Oq-ZKd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1157" y="10"/>
-        </scene>
-        <!--Month View Controller-->
-        <scene sceneID="ufC-wZ-h7g">
-            <objects>
-                <viewController id="vXZ-lx-hvc" customClass="MonthViewController" customModule="Koolendar" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="jLM-3R-Qs7">
-                        <barButtonItem key="rightBarButtonItem" title="Gooooo" id="uQI-af-xVe"/>
-                    </navigationItem>
-                    <nil key="simulatedTopBarMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-153.5" y="-153.5"/>
         </scene>
         <!--Day View Controller-->
         <scene sceneID="7Zr-D8-xR7">
@@ -356,7 +335,6 @@
                                 </state>
                                 <connections>
                                     <action selector="showSidebar" destination="bm6-1R-FcL" eventType="touchUpInside" id="Hfg-Zj-245"/>
-                                    <action selector="showSidebar:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Inn-nu-OM0"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ymv-P0-y0g">
@@ -838,7 +816,6 @@
                                 <connections>
                                     <action selector="goBack" destination="Szf-js-MaI" eventType="touchUpInside" id="qhD-vj-dfD"/>
                                     <action selector="showSidebar" destination="bm6-1R-FcL" eventType="touchUpInside" id="pZs-fa-EeO"/>
-                                    <action selector="showSidebar:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="YZ2-eA-m2T"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="BH1-LA-GXn">
@@ -968,7 +945,4 @@
             <point key="canvasLocation" x="506" y="869"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="SimpleBg" width="640" height="960"/>
-    </resources>
 </document>

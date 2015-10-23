@@ -15,6 +15,8 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
     @IBOutlet weak var daysOfTheWeekCollection: UICollectionView!
     @IBOutlet weak var daYearLabel: UILabel!
     
+    @IBOutlet weak var koolTableView: UITableView!
+    
     let flags: NSCalendarUnit = [.Month, .Year]
 
     var calendar = NSCalendar.currentCalendar()
@@ -27,6 +29,12 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        let bgImageView = UIImageView(image: UIImage(named: "SimpleBg"))
+        bgImageView.contentMode = .ScaleAspectFill
+        self.view.addSubview(bgImageView)
+        self.view.sendSubviewToBack(bgImageView)
         
         let screenSize = UIScreen.mainScreen().bounds
         let sizeX = screenSize.width
@@ -58,6 +66,8 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
         
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
+        
+        self.koolTableView.backgroundColor = UIColor.clearColor()
     }
     
     func setUpCalendar(forMonth month: Int, year: Int) {
@@ -112,6 +122,12 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
     override func viewWillAppear(animated: Bool) {
         self.collectionView!.reloadData()
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        let x = self.collectionView.collectionViewLayout.collectionViewContentSize().height
+        self.collectionView.addConstraint(NSLayoutConstraint(item: self.collectionView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: x))
+    }
+    
     
     override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
         let screenSize = UIScreen.mainScreen().bounds
