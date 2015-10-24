@@ -27,7 +27,10 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
     
     var firstWeek:Int!
     var daysInMonth:Int!
-
+    
+    var selectedDay: Int!
+    var eventsOnSelectedDay: [Event]!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -72,6 +75,13 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
         self.koolTableView.dataSource = self
         
         self.koolTableView.backgroundColor = UIColor.clearColor()
+        
+        let day = NSCalendar.currentCalendar().component(.Day, fromDate: NSDate())
+        self.selectedDay = day
+        
+        let comps = NSCalendar.currentCalendar().components([.Month, .Year], fromDate: NSDate())
+        comps.day = selectedDay
+        self.eventsOnSelectedDay = Event.eventsOnDate(NSCalendar.currentCalendar().dateFromComponents(comps)!)
     }
     
     func setUpCalendar(forMonth month: Int, year: Int) {
@@ -127,7 +137,8 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.collectionView!.reloadData()
+        self.collectionView.reloadData()
+        self.koolTableView.reloadData()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -265,8 +276,9 @@ extension MonthViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = koolTableView.dequeueReusableCellWithIdentifier("daySummaryCell", forIndexPath: indexPath) as! DaySummaryCell
-        cell.eventName.text = "tmp"
-        cell.eventTime.text = "whenever"
+        cell.backgroundColor = UIColor.clearColor()
+        cell.eventName.text = eventsOnSelectedDay[indexPath.row].title
+        cell.eventTime.text = "placeholder"
         return cell
     }
     
@@ -276,7 +288,7 @@ extension MonthViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return Event.eventsOnDate(NSDate()).count
+            return eventsOnSelectedDay.count
         } else {
             // this'll be for the reminders
             return 0
