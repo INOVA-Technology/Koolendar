@@ -67,6 +67,9 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         
+        self.koolTableView.delegate = self
+        self.koolTableView.dataSource = self
+        
         self.koolTableView.backgroundColor = UIColor.clearColor()
     }
     
@@ -127,7 +130,6 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
         let x = self.collectionView.collectionViewLayout.collectionViewContentSize().height
         self.collectionView.addConstraint(NSLayoutConstraint(item: self.collectionView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: x))
     }
-    
     
     override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
         let screenSize = UIScreen.mainScreen().bounds
@@ -247,3 +249,30 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
     */
 
 }
+
+extension MonthViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = koolTableView.dequeueReusableCellWithIdentifier("daySummaryCell", forIndexPath: indexPath)
+        return cell
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return Event.eventsOnDate(NSDate()).count
+        } else {
+            // this'll be for the reminders
+            return 0
+        }
+    }
+    
+}
+
+
+
+
+
