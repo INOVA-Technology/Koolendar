@@ -14,8 +14,9 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var daysOfTheWeekCollection: UICollectionView!
     @IBOutlet weak var daYearLabel: UILabel!
-    
     @IBOutlet weak var koolTableView: UITableView!
+    
+    var collectionViewHeightConstraint: NSLayoutConstraint!
     
     let flags: NSCalendarUnit = [.Month, .Year]
 
@@ -100,6 +101,9 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
         
         self.firstWeek = firstDateComponents.weekday
         self.daysInMonth = lastDateComponents.day
+        
+        self.collectionView.reloadData()
+        setUpConstraints()
     }
     
     func setUpCalendarForCurrentDate() {
@@ -127,8 +131,17 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
     }
     
     override func viewDidAppear(animated: Bool) {
+        setUpConstraints()
+    }
+    
+    func setUpConstraints() {
         let x = self.collectionView.collectionViewLayout.collectionViewContentSize().height
-        self.collectionView.addConstraint(NSLayoutConstraint(item: self.collectionView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: x))
+        if collectionViewHeightConstraint == nil {
+            collectionViewHeightConstraint = NSLayoutConstraint(item: self.collectionView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: x)
+            self.collectionView.addConstraint(collectionViewHeightConstraint)
+        } else {
+            collectionViewHeightConstraint.constant = x
+        }
     }
     
     override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
@@ -225,7 +238,6 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
             self.comps.year++
         }
         setUpCalendar(forMonth: self.comps.month + 1, year: self.comps.year)
-        self.collectionView.reloadData()
     }
 
     
@@ -235,7 +247,6 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
             self.comps.year--
         }
         setUpCalendar(forMonth: self.comps.month - 1, year: self.comps.year)
-        self.collectionView.reloadData()
     }
     
     /*
