@@ -40,23 +40,6 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cal-P8-l9m">
-                                <rect key="frame" x="20" y="384" width="560" height="216"/>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="daySummaryCell" id="k50-b0-S0r">
-                                        <rect key="frame" x="0.0" y="28" width="560" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="k50-b0-S0r" id="0n0-ZW-eQc">
-                                            <rect key="frame" x="0.0" y="0.0" width="560" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <animations/>
-                                        </tableViewCellContentView>
-                                        <animations/>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4yf-l7-02z">
                                 <rect key="frame" x="0.0" y="112" width="600" height="35"/>
                                 <animations/>
@@ -174,6 +157,49 @@
                                     <action selector="goToPreviousMonth:" destination="epP-Jm-iH1" eventType="touchUpInside" id="igK-18-YV0"/>
                                 </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cal-P8-l9m">
+                                <rect key="frame" x="20" y="384" width="560" height="216"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="daySummaryCell" id="k50-b0-S0r" customClass="DaySummaryCell" customModule="Koolendar" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="560" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="k50-b0-S0r" id="0n0-ZW-eQc">
+                                            <rect key="frame" x="0.0" y="0.0" width="560" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QmZ-Ud-w9O">
+                                                    <rect key="frame" x="8" y="11" width="93" height="21"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2:30-7:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dbr-HS-0oi">
+                                                    <rect key="frame" x="474" y="11" width="78" height="21"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstItem="Dbr-HS-0oi" firstAttribute="centerY" secondItem="0n0-ZW-eQc" secondAttribute="centerY" id="07Z-n1-G7T"/>
+                                                <constraint firstItem="Dbr-HS-0oi" firstAttribute="trailing" secondItem="0n0-ZW-eQc" secondAttribute="trailingMargin" id="GsM-Pk-cFy"/>
+                                                <constraint firstItem="QmZ-Ud-w9O" firstAttribute="leading" secondItem="0n0-ZW-eQc" secondAttribute="leadingMargin" id="eo5-Zr-QsB"/>
+                                                <constraint firstItem="QmZ-Ud-w9O" firstAttribute="centerY" secondItem="0n0-ZW-eQc" secondAttribute="centerY" id="t6i-cn-ScU"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                        <connections>
+                                            <outlet property="eventName" destination="QmZ-Ud-w9O" id="jYs-2b-9Nl"/>
+                                            <outlet property="eventTime" destination="Dbr-HS-0oi" id="qRy-Xg-vVF"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

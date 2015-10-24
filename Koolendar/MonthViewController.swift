@@ -264,7 +264,9 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
 extension MonthViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = koolTableView.dequeueReusableCellWithIdentifier("daySummaryCell", forIndexPath: indexPath)
+        let cell = koolTableView.dequeueReusableCellWithIdentifier("daySummaryCell", forIndexPath: indexPath) as! DaySummaryCell
+        cell.eventName.text = "tmp"
+        cell.eventTime.text = "whenever"
         return cell
     }
     

@@ -31,6 +31,7 @@
 		2EDB8AF41BC71BE20026916F /* CalendarPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDB8AF31BC71BE20026916F /* CalendarPickerViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		2EDB8AF61BC722DC0026916F /* EventFormCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDB8AF51BC722DC0026916F /* EventFormCalendarCell.swift */; settings = {ASSET_TAGS = (); }; };
 		2EDECBBC1AEB424B0059D523 /* DayOfTheWeekCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDECBBB1AEB424B0059D523 /* DayOfTheWeekCell.swift */; };
+		2EFF97251BDC41E4007933FF /* DaySummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFF97241BDC41E4007933FF /* DaySummaryCell.swift */; settings = {ASSET_TAGS = (); }; };
 		DB3495CF1A6D78CF0083668E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3495CE1A6D78CF0083668E /* AppDelegate.swift */; };
 		DB3495D41A6D78CF0083668E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB3495D21A6D78CF0083668E /* Main.storyboard */; };
 		DB3495D61A6D78CF0083668E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB3495D51A6D78CF0083668E /* Images.xcassets */; };
@@ -176,6 +177,7 @@
 		2EDB8AF31BC71BE20026916F /* CalendarPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarPickerViewController.swift; sourceTree = "<group>"; };
 		2EDB8AF51BC722DC0026916F /* EventFormCalendarCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventFormCalendarCell.swift; sourceTree = "<group>"; };
 		2EDECBBB1AEB424B0059D523 /* DayOfTheWeekCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayOfTheWeekCell.swift; sourceTree = "<group>"; };
+		2EFF97241BDC41E4007933FF /* DaySummaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaySummaryCell.swift; sourceTree = "<group>"; };
 		DB3495C91A6D78CF0083668E /* Koolendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Koolendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB3495CD1A6D78CF0083668E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB3495CE1A6D78CF0083668E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 			children = (
 				2E2E82821A7099A800F83374 /* MonthViewController.swift */,
 				2ED290131A70AED000DF4356 /* MonthViewCell.swift */,
+				2EFF97241BDC41E4007933FF /* DaySummaryCell.swift */,
 			);
 			name = MonthView;
 			sourceTree = "<group>";
@@ -628,6 +631,7 @@
 				2E5BDB871B841529002F81F4 /* SidePanelViewController.swift in Sources */,
 				2EDB8AF61BC722DC0026916F /* EventFormCalendarCell.swift in Sources */,
 				2E39009F1B0E4B05005B4E6E /* Event.swift in Sources */,
+				2EFF97251BDC41E4007933FF /* DaySummaryCell.swift in Sources */,
 				2E54ED201B89522000E1F166 /* SidePanelCell.swift in Sources */,
 				2ED290871A7485A200DF4356 /* Koolendar.xcdatamodeld in Sources */,
 				2E54ED191B89508F00E1F166 /* SettingsViewController.swift in Sources */,
