@@ -282,8 +282,17 @@ extension MonthViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = koolTableView.dequeueReusableCellWithIdentifier("daySummaryCell", forIndexPath: indexPath) as! DaySummaryCell
         cell.backgroundColor = UIColor.clearColor()
-        cell.eventName.text = eventsOnSelectedDay[indexPath.row].title
-//        cell.eventTime.text = "placeholder"
+        let event = eventsOnSelectedDay[indexPath.row]
+        
+        cell.eventName.text = event.title
+        
+        let formatter = NSDateFormatter()
+        formatter.dateStyle = .NoStyle
+        formatter.timeStyle = .ShortStyle
+        
+        let daTime = "\(formatter.stringFromDate(event.startTime))-\(formatter.stringFromDate(event.endTime))"
+        cell.eventTime.text = daTime
+
         return cell
     }
     
