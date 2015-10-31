@@ -24,6 +24,7 @@
 		2E7641EB1BBB6BDD00F4E6A2 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E7641E91BBB6BDD00F4E6A2 /* MainInterface.storyboard */; };
 		2E7641EF1BBB6BDD00F4E6A2 /* Koolendar Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2E7641E21BBB6BDD00F4E6A2 /* Koolendar Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2E7641F51BBB6EAC00F4E6A2 /* WidgetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7641F41BBB6EAC00F4E6A2 /* WidgetTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		2E9643031BE560C500CFF92C /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9643021BE560C500CFF92C /* Reminder.swift */; settings = {ASSET_TAGS = (); }; };
 		2ED290141A70AED000DF4356 /* MonthViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED290131A70AED000DF4356 /* MonthViewCell.swift */; };
 		2ED290161A70B10500DF4356 /* DayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED290151A70B10500DF4356 /* DayViewController.swift */; };
 		2ED2901A1A73284E00DF4356 /* KOOLColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED290191A73284E00DF4356 /* KOOLColors.swift */; };
@@ -170,6 +171,7 @@
 		2E7641EA1BBB6BDD00F4E6A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		2E7641EC1BBB6BDD00F4E6A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E7641F41BBB6EAC00F4E6A2 /* WidgetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WidgetTableViewCell.swift; sourceTree = "<group>"; };
+		2E9643021BE560C500CFF92C /* Reminder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
 		2ED290131A70AED000DF4356 /* MonthViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthViewCell.swift; sourceTree = "<group>"; };
 		2ED290151A70B10500DF4356 /* DayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayViewController.swift; sourceTree = "<group>"; };
 		2ED290191A73284E00DF4356 /* KOOLColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KOOLColors.swift; sourceTree = "<group>"; };
@@ -335,6 +337,7 @@
 				2E33756F1B9A78F8001DE6D4 /* ContainerView/SidePanelView */,
 				2E3375701B9A793C001DE6D4 /* EventForm */,
 				2E39009E1B0E4B05005B4E6E /* Event.swift */,
+				2E9643021BE560C500CFF92C /* Reminder.swift */,
 				2ED290191A73284E00DF4356 /* KOOLColors.swift */,
 				DB3495D21A6D78CF0083668E /* Main.storyboard */,
 				DB3495D51A6D78CF0083668E /* Images.xcassets */,
@@ -625,6 +628,7 @@
 				2E5BDB851B8412C1002F81F4 /* CenterViewController.swift in Sources */,
 				DBD70A1E1A8A8F1400639001 /* EventForm.swift in Sources */,
 				2E33757D1B9DD540001DE6D4 /* NotificationTimeOffsetViewController.swift in Sources */,
+				2E9643031BE560C500CFF92C /* Reminder.swift in Sources */,
 				2E2E82831A7099A800F83374 /* MonthViewController.swift in Sources */,
 				2EDB8AF41BC71BE20026916F /* CalendarPickerViewController.swift in Sources */,
 				DB7577A91AA224A700159E18 /* EventCell.swift in Sources */,
