@@ -113,6 +113,7 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
         self.daysInMonth = lastDateComponents.day
         
         self.collectionView.reloadData()
+        self.koolTableView.reloadData()
         setUpConstraints()
     }
     
@@ -137,6 +138,10 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
     }
     
     override func viewWillAppear(animated: Bool) {
+        let comps = NSCalendar.currentCalendar().components([.Month, .Year], fromDate: NSDate())
+        comps.day = selectedDay
+        self.eventsOnSelectedDay = Event.eventsOnDate(NSCalendar.currentCalendar().dateFromComponents(comps)!)
+        
         self.collectionView.reloadData()
         self.koolTableView.reloadData()
     }
@@ -278,7 +283,7 @@ extension MonthViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = koolTableView.dequeueReusableCellWithIdentifier("daySummaryCell", forIndexPath: indexPath) as! DaySummaryCell
         cell.backgroundColor = UIColor.clearColor()
         cell.eventName.text = eventsOnSelectedDay[indexPath.row].title
-        cell.eventTime.text = "placeholder"
+//        cell.eventTime.text = "placeholder"
         return cell
     }
     
@@ -290,7 +295,7 @@ extension MonthViewController: UITableViewDelegate, UITableViewDataSource {
         if section == 0 {
             return eventsOnSelectedDay.count
         } else {
-            // this'll be for the reminders
+            // this'll be for the remindersu
             return 0
         }
     }
