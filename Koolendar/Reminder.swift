@@ -11,7 +11,6 @@ import SQLite
 
 private let id_r = Expression<Int>("id")
 private let title_r = Expression<String>("title")
-private let description_r = Expression<String>("description")
 private let time_r = Expression<NSDate>("time")
 private let calendarId_r = Expression<Int>("calendarId")
 
@@ -31,21 +30,6 @@ class Reminder {
             } else {
                 self._title = self.sqlRow!.get(title_r)
                 return self._title!
-            }
-        }
-    }
-    
-    private var _description: String?
-    var description: String {
-        set {
-            _description = newValue
-        }
-        get {
-            if let description = self._description {
-                return description
-            } else {
-                self._description = self.sqlRow!.get(description_r)
-                return self._description!
             }
         }
     }
@@ -121,7 +105,6 @@ class Reminder {
     
     init(title: String, description: String, time: NSDate, calendarId: Int?, id: Int?) {
         self.title = title
-        self.description = description
         self.time = time
         if let calendarId = calendarId { self.calendarId = calendarId }
         self.id = id
@@ -129,15 +112,6 @@ class Reminder {
     
     init(row: Row) {
         self.sqlRow = row
-    }
-    
-    convenience init(day: Int, month: Int, year: Int) {
-        let comps = NSCalendar.currentCalendar().components([.Minute, .Hour], fromDate: NSDate())
-        comps.day = day
-        comps.month = month
-        comps.year = year
-        let date = NSCalendar.currentCalendar().dateFromComponents(comps)!
-        self.init(title: "", description: "", time: date, calendarId: nil, id: nil)
     }
 
     class private func db(block: (Connection, Table, Table) -> Void) {
@@ -150,7 +124,6 @@ class Reminder {
         try! db.run(reminders.create(ifNotExists: true) { t in
             t.column(id_r, primaryKey: true)
             t.column(title_r)
-            t.column(description_r)
             t.column(time_r)
             t.column(calendarId_r)
         })
@@ -171,10 +144,10 @@ class Reminder {
     func save() {
         Reminder.reminders() { reminders, db in
             if let id = self.id {
-                let _ = try? db.run(reminders.filter(id_r == id).update(title_r <- self.title, description_r <- self.description, time_r <- self.time, calendarId_r <- self.calendarId))
+                let _ = try? db.run(reminders.filter(id_r == id).update(title_r <- self.title, time_r <- self.time, calendarId_r <- self.calendarId))
             } else {
                 do {
-                    let id = try db.run(reminders.insert(title_r <- self.title, description_r <- self.description, time_r <- self.time, calendarId_r <- self.calendarId))
+                    let id = try db.run(reminders.insert(title_r <- self.title, time_r <- self.time, calendarId_r <- self.calendarId))
                     self.id = Int(id)
                 } catch {
                     print("couldn't save the event 😞")
@@ -192,6 +165,14 @@ class Reminder {
         
         Reminder.reminders() { reminders, db in
             let _ = try? db.run(reminders.filter(id_r == id).delete())
+        }
+    }
+    
+    class func each(block: (Reminder -> ())) {
+        Reminder.reminders() { reminders, db in
+            for e in db.prepare(reminders) {
+                block(Reminder(row: e))
+            }
         }
     }
     
