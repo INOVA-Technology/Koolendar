@@ -20,6 +20,87 @@ private let name_c = Expression<String>("name")
 
 class Reminder {
     
+    private var _title: String?
+    var title: String {
+        set {
+            _title = newValue
+        }
+        get {
+            if let title = self._title {
+                return title
+            } else {
+                self._title = self.sqlRow!.get(title_r)
+                return self._title!
+            }
+        }
+    }
+    
+    private var _description: String?
+    var description: String {
+        set {
+            _description = newValue
+        }
+        get {
+            if let description = self._description {
+                return description
+            } else {
+                self._description = self.sqlRow!.get(description_r)
+                return self._description!
+            }
+        }
+    }
+    
+    private var _time: NSDate?
+    var time: NSDate {
+        set {
+            _time = newValue
+        }
+        get {
+            if let time = self._time {
+                return time
+            } else {
+                self._time = self.sqlRow!.get(time_r)
+                return self._time!
+            }
+        }
+    }
+
+    var _id: Int?
+    var id: Int? {
+        set {
+            _id = newValue
+        }
+        get {
+            if let id = self._id {
+                return id
+            } else if let row = self.sqlRow {
+                self._id = row.get(id_r)
+                return self._id
+            } else {
+                return nil
+            }
+        }
+    }
+    
+    var _calendarId: Int?
+    var calendarId: Int {
+        set {
+            _calendarId = newValue
+        }
+        get {
+            if let calendarId = self._calendarId {
+                return calendarId
+            } else if let row = self.sqlRow {
+                self._calendarId = row.get(calendarId_r)
+                return self._calendarId!
+            } else {
+                return 1
+            }
+        }
+    }
+    
+    var sqlRow: Row?
+    
     class func reminders(block: (Table, Connection) -> Void) {
         Reminder.db({ db, reminders, _ in block(reminders, db) })
     }
@@ -37,6 +118,27 @@ class Reminder {
 //        }
 //        return calsToReturn
 //    }
+    
+    init(title: String, description: String, time: NSDate, calendarId: Int?, id: Int?) {
+        self.title = title
+        self.description = description
+        self.time = time
+        if let calendarId = calendarId { self.calendarId = calendarId }
+        self.id = id
+    }
+    
+    init(row: Row) {
+        self.sqlRow = row
+    }
+    
+    convenience init(day: Int, month: Int, year: Int) {
+        let comps = NSCalendar.currentCalendar().components([.Minute, .Hour], fromDate: NSDate())
+        comps.day = day
+        comps.month = month
+        comps.year = year
+        let date = NSCalendar.currentCalendar().dateFromComponents(comps)!
+        self.init(title: "", description: "", time: date, calendarId: nil, id: nil)
+    }
 
     class private func db(block: (Connection, Table, Table) -> Void) {
         let dbDir = NSSearchPathForDirectoriesInDomains(
@@ -66,21 +168,31 @@ class Reminder {
         block(db, reminders, calendars)
     }
     
-//    func save() {
-//        Reminder.reminders() { reminders, db in
-//            if let id = self.id {
-//                let _ = try? db.run(reminders.filter(id_r == id).update(title_r <- self.title, description_r <- self.description, time_r <- self.time, calendarId_r <- self.calendarId))
-//            } else {
-//                do {
-//                    let id = try db.run(reminders.insert(title_r <- self.title, description_r <- self.description, time_r <- self.time, calendarId_r <- self.calendarId))
-//                    self.id = Int(id)
-//                } catch {
-//                    print("couldn't save the event 😞")
-//                    print(error)
-//                }
-//            }
-//        }
-//        
-//    }
+    func save() {
+        Reminder.reminders() { reminders, db in
+            if let id = self.id {
+                let _ = try? db.run(reminders.filter(id_r == id).update(title_r <- self.title, description_r <- self.description, time_r <- self.time, calendarId_r <- self.calendarId))
+            } else {
+                do {
+                    let id = try db.run(reminders.insert(title_r <- self.title, description_r <- self.description, time_r <- self.time, calendarId_r <- self.calendarId))
+                    self.id = Int(id)
+                } catch {
+                    print("couldn't save the event 😞")
+                    print(error)
+                }
+            }
+        }
+    }
+    
+    func delete() {
+        guard let id = self.id else {
+            print("couldn't delete an event that hasn't been saved")
+            return
+        }
+        
+        Reminder.reminders() { reminders, db in
+            let _ = try? db.run(reminders.filter(id_r == id).delete())
+        }
+    }
     
 }
