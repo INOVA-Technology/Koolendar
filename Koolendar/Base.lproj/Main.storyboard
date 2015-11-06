@@ -762,6 +762,9 @@
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="datePickerAction:" destination="6Qf-a4-0EA" eventType="editingDidEnd" id="Mad-nh-9dR"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remind Me At This Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mE8-Ms-zsq">
                                 <rect key="frame" x="20" y="141" width="186" height="21"/>
@@ -790,6 +793,10 @@
                             <constraint firstAttribute="trailingMargin" secondItem="FOU-za-UdI" secondAttribute="trailing" id="xwZ-RV-kt7"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="dateField" destination="doU-HS-dC4" id="I7k-Vp-8W7"/>
+                        <outlet property="reminderName" destination="FOU-za-UdI" id="5gM-XX-xbS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ytu-7d-hks" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
