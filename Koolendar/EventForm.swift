@@ -80,7 +80,7 @@ class EventForm: UIViewController, UITextFieldDelegate, NotificationTimeOffsetVi
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         
-        return true;
+        return true
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -116,7 +116,7 @@ class EventForm: UIViewController, UITextFieldDelegate, NotificationTimeOffsetVi
         let timeFormatter = NSDateFormatter()
         timeFormatter.dateStyle = .NoStyle
         timeFormatter.timeStyle = .ShortStyle
-        dateFieldStarting.text = timeFormatter.stringFromDate(sender.date) 
+        dateFieldStarting.text = timeFormatter.stringFromDate(sender.date)
         startDateLegit = sender.date
     }
     

@@ -181,4 +181,10 @@ class DayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         self.navigationController!.pushViewController(vc, animated: true)
     }
     
+    @IBAction func createReminder() {
+        let vc = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("ReminderFormViewController") as! ReminderForm
+        vc.reminder = Reminder(title: "", time: NSDate(), calendarId: 0, id: nil)
+        self.navigationController!.pushViewController(vc, animated: true)
+    }
+    
 }

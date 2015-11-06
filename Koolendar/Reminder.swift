@@ -103,7 +103,7 @@ class Reminder {
 //        return calsToReturn
 //    }
     
-    init(title: String, description: String, time: NSDate, calendarId: Int?, id: Int?) {
+    init(title: String, time: NSDate, calendarId: Int?, id: Int?) {
         self.title = title
         self.time = time
         if let calendarId = calendarId { self.calendarId = calendarId }
