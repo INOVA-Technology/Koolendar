@@ -280,20 +280,28 @@ class MonthViewController: CenterViewController, UICollectionViewDataSource, UIC
 extension MonthViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = koolTableView.dequeueReusableCellWithIdentifier("daySummaryCell", forIndexPath: indexPath) as! DaySummaryCell
-        cell.backgroundColor = UIColor.clearColor()
-        let event = eventsOnSelectedDay[indexPath.row]
-        
-        cell.eventName.text = event.title
-        
-        let formatter = NSDateFormatter()
-        formatter.dateStyle = .NoStyle
-        formatter.timeStyle = .ShortStyle
-        
-        let daTime = "\(formatter.stringFromDate(event.startTime))-\(formatter.stringFromDate(event.endTime))"
-        cell.eventTime.text = daTime
+        if indexPath.section == 0 {
+            let cell = koolTableView.dequeueReusableCellWithIdentifier("daySummaryCell", forIndexPath: indexPath) as! DaySummaryCell
+            cell.backgroundColor = UIColor.clearColor()
+            let event = eventsOnSelectedDay[indexPath.row]
+            
+            cell.eventName.text = event.title
+            
+            let formatter = NSDateFormatter()
+            formatter.dateStyle = .NoStyle
+            formatter.timeStyle = .ShortStyle
+            
+            let daTime = "\(formatter.stringFromDate(event.startTime))-\(formatter.stringFromDate(event.endTime))"
+            cell.eventTime.text = daTime
 
-        return cell
+            return cell
+        } else {
+            let cell = koolTableView.dequeueReusableCellWithIdentifier("daySummaryCell", forIndexPath: indexPath) as! DaySummaryCell
+            cell.backgroundColor = UIColor.clearColor()
+            cell.eventName.text = "placeholder"
+            
+            return cell
+        }
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -304,8 +312,13 @@ extension MonthViewController: UITableViewDelegate, UITableViewDataSource {
         if section == 0 {
             return eventsOnSelectedDay.count
         } else {
-            // this'll be for the remindersu
-            return 0
+            var count: Int!
+            
+            Reminder.reminders({ reminders, db in
+                count = db.scalar(reminders.count)
+            })
+            
+            return count
         }
     }
     

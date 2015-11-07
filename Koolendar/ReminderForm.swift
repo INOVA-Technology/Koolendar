@@ -51,6 +51,8 @@ class ReminderForm: UIViewController {
     
     @IBAction func createReminder() {
         reminder.title = reminderName.text!
+        reminder.time = datePicker.date
+        reminder.save()
     }
     
     func handleDatePicker(sender: UIDatePicker) {
